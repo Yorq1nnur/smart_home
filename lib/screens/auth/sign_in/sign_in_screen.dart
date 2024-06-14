@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_home/screens/auth/widgets/auth_text_field.dart';
 import 'package:smart_home/screens/global_widgets/global_button.dart';
+import 'package:smart_home/screens/routes/routes.dart';
 import 'package:smart_home/screens/welcome/widgets/continue_button.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_constants.dart';
@@ -253,13 +254,22 @@ class _SignInScreenState extends State<SignInScreen> {
                       backgroundColor: Colors.red,
                     );
                   } else {
-                    UtilityFunctions.showSnackBar(
+                    _emailFocusNode.unfocus();
+                    _passwordFocusNode.unfocus();
+                    UtilityFunctions.showAuthDialog(
                       context: context,
-                      message: "SUCCESS!!!",
+                      message: 'Sign in...',
                     );
+                    Future.delayed(const Duration(seconds: 3), () {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RouteNames.welcomeScreen,
+                        (route) => false,
+                      );
+                    });
                   }
                 },
-                title: 'Sign up',
+                title: 'Sign in',
               ),
               26.getH(),
             ],
