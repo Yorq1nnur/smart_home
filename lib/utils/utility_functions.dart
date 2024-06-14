@@ -3,6 +3,10 @@ import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
 
 class UtilityFunctions {
+  static void methodPrint(dynamic data) {
+    debugPrint("\$\$\$\$\$\n$data\n\$\$\$\$\$");
+  }
+
   static void showAuthDialog({
     required BuildContext context,
     required String message,

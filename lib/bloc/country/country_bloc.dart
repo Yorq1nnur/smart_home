@@ -4,6 +4,7 @@ import 'package:smart_home/data/models/country_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home/data/network/network_response.dart';
 import 'package:smart_home/data/repositories/country_repository.dart';
+import 'package:smart_home/utils/utility_functions.dart';
 
 part 'country_event.dart';
 
@@ -27,6 +28,10 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
     NetworkResponse networkResponse = await countryRepository.getCountries();
 
     if (networkResponse.errorText.isEmpty) {
+      List<CountryModel> countries = networkResponse.data;
+      UtilityFunctions.methodPrint(
+        'GET COUNTRIES OF LENGTH IS: ${countries.length}',
+      );
       emit(
         state.copyWith(
           formStatus: FormStatus.success,
