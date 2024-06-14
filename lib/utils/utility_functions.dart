@@ -9,10 +9,18 @@ class UtilityFunctions {
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(
-          message,
-          textAlign: TextAlign.center,
-          style: AppTextStyle.urbanistW900,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(16),
+            topLeft: Radius.circular(16),
+          ),
+        ),
+        content: Center(
+          child: Text(
+            message,
+            textAlign: TextAlign.center,
+            style: AppTextStyle.urbanistW900,
+          ),
         ),
         duration: const Duration(seconds: 2),
         backgroundColor: backgroundColor ?? Colors.blue,

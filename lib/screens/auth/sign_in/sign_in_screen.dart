@@ -142,6 +142,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: 24.h,
                         width: 24.h,
                         decoration: BoxDecoration(
+                          color: terms ? AppColors.c405FF2 : Colors.white,
                           border: Border.all(
                             color: AppColors.c405FF2,
                             width: 3.w,
@@ -160,6 +161,10 @@ class _SignInScreenState extends State<SignInScreen> {
                             child: Center(
                               child: SvgPicture.asset(
                                 AppImages.tick,
+                                colorFilter: const ColorFilter.mode(
+                                  Colors.white,
+                                  BlendMode.srcIn,
+                                ),
                               ),
                             ),
                           ),

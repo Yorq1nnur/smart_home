@@ -138,6 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 24.h,
                   width: 24.h,
                   decoration: BoxDecoration(
+                    color: terms ? AppColors.c405FF2 : Colors.white,
                     border: Border.all(
                       color: AppColors.c405FF2,
                       width: 3.w,
@@ -162,28 +163,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 16.getW(),
-                RichText(
-                  text: TextSpan(
-                    text: 'I agree to Smartify ',
-                    style: AppTextStyle.urbanistW500.copyWith(
+                Text(
+                  'I agree to Smartify ',
+                  style: AppTextStyle.urbanistW500
+                    ..copyWith(
                       fontSize: 18.w,
                     ),
-                    children: [
-                      TextSpan(
-                        text: 'Terms & Conditions',
-                        style: AppTextStyle.urbanistW500.copyWith(
-                          fontSize: 18.w,
-                          color: AppColors.c405FF2,
-                        ),
-                      ),
-                      TextSpan(
-                        text: '.',
-                        style: AppTextStyle.urbanistW500.copyWith(
-                          fontSize: 18.w,
-                        ),
-                      ),
-                    ],
+                ),
+                ZoomTapAnimation(
+                  child: Text(
+                    'Terms & Conditions',
+                    style: AppTextStyle.urbanistW500.copyWith(
+                      fontSize: 18.w,
+                      color: AppColors.c405FF2,
+                    ),
                   ),
+                ),
+                Text(
+                  '.',
+                  style: AppTextStyle.urbanistW500
+                    ..copyWith(
+                      fontSize: 18.w,
+                    ),
                 ),
               ],
             ),
@@ -260,16 +261,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   _emailFocusNode.unfocus();
                   _passwordFocusNode.unfocus();
                 });
-                if (!_formKey.currentState!.validate()) {
-                  UtilityFunctions.showSnackBar(
-                    context: context,
-                    message: 'PLEASE, INPUT ALL DATA!!!',
-                    backgroundColor: Colors.red,
-                  );
+                if (terms) {
+                  if (!_formKey.currentState!.validate()) {
+                    UtilityFunctions.showSnackBar(
+                      context: context,
+                      message: 'PLEASE, INPUT ALL DATA!!!',
+                      backgroundColor: Colors.red,
+                    );
+                  } else {
+                    UtilityFunctions.showSnackBar(
+                      context: context,
+                      message: "SUCCESS!!!",
+                    );
+                  }
                 } else {
                   UtilityFunctions.showSnackBar(
                     context: context,
-                    message: "SUCCESS!!!",
+                    message: 'Please accept the terms of use!!!',
+                    backgroundColor: Colors.red,
                   );
                 }
               },
