@@ -1,6 +1,5 @@
 import 'package:smart_home/data/local/storage_repository.dart';
-import 'package:smart_home/screens/on_boarding/on_boarding_screen.dart';
-import 'package:smart_home/screens/welcome/welcome_screen.dart';
+import 'package:smart_home/screens/routes/routes.dart';
 import 'package:smart_home/utils/app_images.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
@@ -24,17 +23,13 @@ class _SplashScreenState extends State<SplashScreen> {
     bool isNewUser = StorageRepository.getBool(key: "is_new_user");
     Future.delayed(const Duration(seconds: 3), () {
       !isNewUser
-          ? Navigator.pushReplacement(
+          ? Navigator.pushReplacementNamed(
               context,
-              MaterialPageRoute(
-                builder: (context) => const OnBoardingScreen(),
-              ),
+              RouteNames.onBoardingScreen,
             )
-          : Navigator.pushReplacement(
+          : Navigator.pushReplacementNamed(
               context,
-              MaterialPageRoute(
-                builder: (context) => const WelcomeScreen(),
-              ),
+              RouteNames.welcomeScreen,
             );
     });
   }

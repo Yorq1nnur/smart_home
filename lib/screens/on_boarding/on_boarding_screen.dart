@@ -2,7 +2,7 @@ import 'package:smart_home/data/local/storage_repository.dart';
 import 'package:smart_home/screens/global_widgets/global_button.dart';
 import 'package:smart_home/screens/on_boarding/widgets/bottom_part.dart';
 import 'package:smart_home/screens/on_boarding/widgets/top_part.dart';
-import 'package:smart_home/screens/welcome/welcome_screen.dart';
+import 'package:smart_home/screens/routes/routes.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
@@ -92,13 +92,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     await StorageRepository.setBool(
                                             key: 'is_new_user', value: true)
                                         .then((v) {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const WelcomeScreen(),
-                                        ),
-                                      );
+                                      Navigator.pushReplacementNamed(
+                                          context, RouteNames.welcomeScreen);
                                     });
                                   },
                                   child: Center(
@@ -149,12 +144,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               await StorageRepository.setBool(
                                       key: 'is_new_user', value: true)
                                   .then((v) {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const WelcomeScreen(),
-                                  ),
-                                );
+                                Navigator.pushReplacementNamed(
+                                    context, RouteNames.welcomeScreen);
                               });
                             },
                             title: "Let's Get Started",

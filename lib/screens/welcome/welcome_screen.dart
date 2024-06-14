@@ -1,4 +1,5 @@
 import 'package:smart_home/screens/global_widgets/global_button.dart';
+import 'package:smart_home/screens/routes/routes.dart';
 import 'package:smart_home/screens/welcome/data/buttons_data.dart';
 import 'package:smart_home/screens/welcome/widgets/continue_button.dart';
 import 'package:smart_home/utils/app_colors.dart';
@@ -76,12 +77,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 SizedBox(
                   height: 40.h,
                 ),
-                GlobalButton(onTap: () {}, title: "Sign up"),
+                GlobalButton(
+                  onTap: () {
+                    Navigator.pushNamed(context, RouteNames.signUpScreen);
+                  },
+                  title: "Sign up",
+                ),
                 SizedBox(
                   height: 20.h,
                 ),
                 GlobalButton(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, RouteNames.signInScreen);
+                  },
                   title: "Sign in",
                   color: AppColors.cF0F2FE,
                   textColor: AppColors.c405FF2,
