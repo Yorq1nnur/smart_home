@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void init() {
-    bool isAuth = StorageRepository.getBool(key: "is_new_user");
+    bool isAuth = StorageRepository.getBool(key: "is_auth");
     bool isNewUser = StorageRepository.getBool(key: "is_new_user");
     Future.delayed(const Duration(seconds: 3), () {
       if (isAuth) {

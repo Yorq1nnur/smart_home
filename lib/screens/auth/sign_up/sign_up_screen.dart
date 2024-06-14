@@ -12,7 +12,6 @@ import 'package:smart_home/utils/size.dart';
 import 'package:smart_home/utils/utility_functions.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
-import '../../../data/local/storage_repository.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -275,16 +274,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       context: context,
                       message: 'Sign up...',
                     );
-                    Future.delayed(const Duration(seconds: 3), () async {
-                      await StorageRepository.setBool(
-                          key: "is_auth", value: true)
-                          .then((v) {
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          RouteNames.homeScreen,
-                              (route) => false,
-                        );
-                      });
+                    Future.delayed(const Duration(seconds: 3), ()  {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RouteNames.homeScreen,
+                            (route) => false,
+                      );
                     });
                   }
                 } else {
