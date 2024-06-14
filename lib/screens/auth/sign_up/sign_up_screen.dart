@@ -12,7 +12,6 @@ import 'package:smart_home/utils/size.dart';
 import 'package:smart_home/utils/utility_functions.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
-
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -274,11 +273,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       context: context,
                       message: 'Sign up...',
                     );
-                    Future.delayed(const Duration(seconds: 3), ()  {
-                      Navigator.pushNamedAndRemoveUntil(
+                    Future.delayed(const Duration(seconds: 3), () {
+                      Navigator.pushNamed(
                         context,
                         RouteNames.countriesScreen,
-                            (route) => false,
                       );
                     });
                   }

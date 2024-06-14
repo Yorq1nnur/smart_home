@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home/bloc/country/country_bloc.dart';
 import 'package:smart_home/data/repositories/country_repository.dart';
-import 'package:smart_home/screens/routes/routes.dart';
+import 'package:smart_home/screens/countries/countries_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -31,8 +31,9 @@ class App extends StatelessWidget {
               backgroundColor: Colors.white,
             ),
           ),
-          initialRoute: RouteNames.splashScreen,
-          onGenerateRoute: AppRoutes.generateRoute,
+          // initialRoute: RouteNames.splashScreen,
+          // onGenerateRoute: AppRoutes.generateRoute,
+          home: const CountriesScreen(),
         ),
       ),
     );

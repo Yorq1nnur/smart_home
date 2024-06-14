@@ -16,4 +16,5 @@ class AppImages {
   static const String enabledEye = 'assets/icons/enabled_eye.svg';
   static const String disabledEye = 'assets/icons/disabled_eye.svg';
   static const String tick = 'assets/icons/tick.svg';
+  static const String search = 'assets/icons/search.svg';
 }

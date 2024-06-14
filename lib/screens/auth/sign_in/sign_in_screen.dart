@@ -261,10 +261,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       message: 'Sign in...',
                     );
                     Future.delayed(const Duration(seconds: 3), () {
-                      Navigator.pushNamedAndRemoveUntil(
+                      Navigator.pushNamed(
                         context,
                         RouteNames.countriesScreen,
-                        (route) => false,
                       );
                     });
                   }
