@@ -40,6 +40,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
         ),
       );
     } else {
+      UtilityFunctions.methodPrint('GET CATEGORIES OF ERROR IS: ${networkResponse.errorText}');
       emit(
         state.copyWith(
           formStatus: FormStatus.error,
@@ -54,7 +55,7 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
       state.copyWith(
         countries: event.searchedCountries
             .where(
-              (e) => e.name['name'].toString().toLowerCase().contains(
+              (e) => e.name.toLowerCase().contains(
                     event.query.toLowerCase(),
                   ),
             )

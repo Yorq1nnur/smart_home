@@ -1,5 +1,5 @@
 class CountryModel {
-  final Map<String, dynamic> name;
+  final String name;
   final String flag;
 
   CountryModel({
@@ -9,8 +9,8 @@ class CountryModel {
 
   factory CountryModel.fromJson(Map<String, dynamic> json) {
     return CountryModel(
-      name: json['name'] as Map<String,dynamic>? ?? {},
-      flag: json['flag'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      flag: json['emoji'] as String? ?? '',
     );
   }
 }

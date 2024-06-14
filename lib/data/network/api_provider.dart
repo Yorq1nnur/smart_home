@@ -11,7 +11,7 @@ class ApiProvider {
         Uri.parse(AppConstants.countriesUrl),
       );
       if (response.statusCode == 200) {
-        List<CountryModel> countries = (jsonDecode(response.body) as List?)
+        List<CountryModel> countries = (jsonDecode(response.body)['data']['countries'] as List?)
                 ?.map((e) => CountryModel.fromJson(e))
                 .toList() ??
             [];
