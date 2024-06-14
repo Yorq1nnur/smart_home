@@ -1,5 +1,4 @@
 import 'package:smart_home/screens/routes/routes.dart';
-import 'package:smart_home/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_home/data/local/storage_repository.dart';
 

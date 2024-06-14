@@ -15,4 +15,5 @@ class AppImages {
   static const String twitter = 'assets/icons/twitter.svg';
   static const String enabledEye = 'assets/icons/enabled_eye.svg';
   static const String disabledEye = 'assets/icons/disabled_eye.svg';
+  static const String tick = 'assets/icons/tick.svg';
 }
