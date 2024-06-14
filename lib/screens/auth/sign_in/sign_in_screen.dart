@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_home/data/local/storage_repository.dart';
 import 'package:smart_home/screens/auth/widgets/auth_text_field.dart';
 import 'package:smart_home/screens/global_widgets/global_button.dart';
 import 'package:smart_home/screens/routes/routes.dart';
@@ -260,12 +261,16 @@ class _SignInScreenState extends State<SignInScreen> {
                       context: context,
                       message: 'Sign in...',
                     );
-                    Future.delayed(const Duration(seconds: 3), () {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RouteNames.welcomeScreen,
-                        (route) => false,
-                      );
+                    Future.delayed(const Duration(seconds: 3), () async {
+                      await StorageRepository.setBool(
+                              key: "is_auth", value: true)
+                          .then((v) {
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          RouteNames.homeScreen,
+                          (route) => false,
+                        );
+                      });
                     });
                   }
                 },

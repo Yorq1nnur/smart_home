@@ -20,17 +20,23 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void init() {
+    bool isAuth = StorageRepository.getBool(key: "is_new_user");
     bool isNewUser = StorageRepository.getBool(key: "is_new_user");
     Future.delayed(const Duration(seconds: 3), () {
-      !isNewUser
-          ? Navigator.pushReplacementNamed(
-              context,
-              RouteNames.onBoardingScreen,
-            )
-          : Navigator.pushReplacementNamed(
-              context,
-              RouteNames.welcomeScreen,
-            );
+      if (isAuth) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, RouteNames.homeScreen, (route) => false);
+      } else {
+        !isNewUser
+            ? Navigator.pushReplacementNamed(
+                context,
+                RouteNames.onBoardingScreen,
+              )
+            : Navigator.pushReplacementNamed(
+                context,
+                RouteNames.welcomeScreen,
+              );
+      }
     });
   }
 
