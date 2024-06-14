@@ -257,10 +257,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             14.getH(),
             GlobalButton(
               onTap: () {
-                setState(() {
-                  _emailFocusNode.unfocus();
-                  _passwordFocusNode.unfocus();
-                });
                 if (terms) {
                   if (!_formKey.currentState!.validate()) {
                     UtilityFunctions.showSnackBar(
@@ -269,10 +265,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       backgroundColor: Colors.red,
                     );
                   } else {
-                    UtilityFunctions.showSnackBar(
+                    setState(() {
+                      _emailFocusNode.unfocus();
+                      _passwordFocusNode.unfocus();
+                    });
+                    UtilityFunctions.showAuthDialog(
                       context: context,
-                      message: "SUCCESS!!!",
+                      message: 'Sign up...',
                     );
+                    Future.delayed(const Duration(seconds: 3), () {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RouteNames.welcomeScreen,
+                        (route) => false,
+                      );
+                    });
                   }
                 } else {
                   UtilityFunctions.showSnackBar(
