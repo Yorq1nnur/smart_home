@@ -17,6 +17,17 @@ class CountryState extends Equatable {
         errorText: '',
       );
 
+  CountryState copyWith({
+    FormStatus? formStatus,
+    String? errorText,
+    List<CountryModel>? countries,
+  }) =>
+      CountryState(
+        formStatus: formStatus ?? this.formStatus,
+        countries: countries ?? this.countries,
+        errorText: errorText ?? this.errorText,
+      );
+
   @override
   List<Object?> get props => [
         errorText,
