@@ -1,0 +1,53 @@
+name: smart_home
+description: "Smart home"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.6
+  shared_preferences: ^2.2.3
+  flutter_svg: ^2.0.10+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/Urbanist/
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/Urbanist/Urbanist-Black.otf
+        - asset: assets/fonts/Urbanist/Urbanist-BlackItalic.otf
+        - asset: assets/fonts/Urbanist/Urbanist-Bold.otf
+        - asset: assets/fonts/Urbanist/Urbanist-BoldItalic.otf
+        - asset: assets/fonts/Urbanist/Urbanist-ExtraBold.otf
+        - asset: assets/fonts/Urbanist/Urbanist-ExtraBoldItalic.otf
+        - asset: assets/fonts/Urbanist/Urbanist-ExtraLight.otf
+        - asset: assets/fonts/Urbanist/Urbanist-ExtraLightItalic.otf
+        - asset: assets/fonts/Urbanist/Urbanist-Italic.otf
+        - asset: assets/fonts/Urbanist/Urbanist-Light.otf
+        - asset: assets/fonts/Urbanist/Urbanist-LightItalic.otf
+        - asset: assets/fonts/Urbanist/Urbanist-Medium.otf
+        - asset: assets/fonts/Urbanist/Urbanist-MediumItalic.otf
+        - asset: assets/fonts/Urbanist/Urbanist-Regular.otf
+        - asset: assets/fonts/Urbanist/Urbanist-SemiBold.otf
+        - asset: assets/fonts/Urbanist/Urbanist-SemiBoldItalic.otf
+        - asset: assets/fonts/Urbanist/Urbanist-Thin.otf
+        - asset: assets/fonts/Urbanist/Urbanist-ThinItalic.otf
