@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_home/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:smart_home/screens/auth/sign_up/sign_up_screen.dart';
+import 'package:smart_home/screens/countries/countries_screen.dart';
 import 'package:smart_home/screens/home/home_screen.dart';
 import 'package:smart_home/screens/on_boarding/on_boarding_screen.dart';
 import 'package:smart_home/screens/welcome/welcome_screen.dart';
@@ -36,6 +37,10 @@ class AppRoutes {
         return navigate(
           const HomeScreen(),
         );
+      case RouteNames.countriesScreen:
+        return navigate(
+          const CountriesScreen(),
+        );
       default:
         return navigate(
           const Scaffold(
@@ -63,4 +68,5 @@ class RouteNames {
   static const String signUpScreen = "/sign_up_route";
   static const String signInScreen = "/sign_in_route";
   static const String homeScreen = "/home_route";
+  static const String countriesScreen = "/countries_route";
 }
