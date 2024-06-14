@@ -22,5 +22,5 @@ class SearchCountriesEvent extends CountryEvent {
 
 class GetCountriesEvent extends CountryEvent {
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
