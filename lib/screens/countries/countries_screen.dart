@@ -22,6 +22,7 @@ class CountriesScreen extends StatefulWidget {
 
 class _CountriesScreenState extends State<CountriesScreen> {
   int activeIndex = 0;
+  bool isLocationGranted = false;
 
   final PageController pageController = PageController();
 
@@ -141,6 +142,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                           UtilityFunctions.showLocationPermissionDialog(
                             context: context,
                             widget: Column(
+                              mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
@@ -175,10 +177,11 @@ class _CountriesScreenState extends State<CountriesScreen> {
                                 32.getH(),
                                 ZoomTapAnimation(
                                   onTap: () async {
-                                    await AppPermissions
+                                    isLocationGranted = await AppPermissions
                                         .getLocationPermission();
                                     if (!context.mounted) return;
                                     Navigator.of(context).pop();
+                                    UtilityFunctions.methodPrint('LOCATIONS GRANTED: $isLocationGranted');
                                   },
                                   child: Container(
                                     height: 58.h,
