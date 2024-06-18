@@ -35,12 +35,14 @@ class CountryBloc extends Bloc<CountryEvent, CountryState> {
       emit(
         state.copyWith(
           formStatus: FormStatus.success,
-          countries: networkResponse.data,
-          allCountries: networkResponse.data,
+          countries: countries,
+          allCountries: countries,
         ),
       );
     } else {
-      UtilityFunctions.methodPrint('GET CATEGORIES OF ERROR IS: ${networkResponse.errorText}');
+      UtilityFunctions.methodPrint(
+        'GET CATEGORIES OF ERROR IS: ${networkResponse.errorText}',
+      );
       emit(
         state.copyWith(
           formStatus: FormStatus.error,

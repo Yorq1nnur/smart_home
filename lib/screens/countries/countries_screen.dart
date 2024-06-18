@@ -14,6 +14,16 @@ class CountriesScreen extends StatefulWidget {
 class _CountriesScreenState extends State<CountriesScreen> {
   int activeIndex = 0;
 
+  // @override
+  // void initState() {
+  //   Future.microtask(
+  //         () => context.read<CountryBloc>().add(
+  //       GetCountriesEvent(),
+  //     ),
+  //   );
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.sizeOf(context).height;

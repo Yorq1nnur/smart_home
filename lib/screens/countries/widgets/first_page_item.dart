@@ -155,8 +155,16 @@ class _FirstPageItemState extends State<FirstPageItem> {
             );
           }
           if (state.formStatus == FormStatus.success) {
+            UtilityFunctions.methodPrint(
+              'DCDSCSDCSDCCSDCSDCS: ${state.countries.isEmpty}',
+            );
+            UtilityFunctions.methodPrint(
+              'CURRENT COUNTRIES OF LENGTH IS: ${state.countries.length}',
+            );
             return Expanded(
               child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
                   padding: EdgeInsets.symmetric(
                     vertical: 18.h,
                   ),
@@ -196,9 +204,11 @@ class _FirstPageItemState extends State<FirstPageItem> {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Row(
+                              mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
+                                  mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
@@ -208,7 +218,8 @@ class _FirstPageItemState extends State<FirstPageItem> {
                                       ),
                                     ),
                                     16.getW(),
-                                    Expanded(
+                                    SizedBox(
+                                      width: width/2,
                                       child: Text(
                                         state.countries[index].name,
                                         maxLines: 10,
