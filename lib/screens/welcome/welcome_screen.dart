@@ -32,100 +32,102 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               horizontal: 24.h,
               vertical: 36.h,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: Image.asset(
-                    AppImages.letsSmartTify,
-                    height: 80.h,
-                    width: 80.w,
-                    fit: BoxFit.contain,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Image.asset(
+                      AppImages.letsSmartTify,
+                      height: 80.h,
+                      width: 80.w,
+                      fit: BoxFit.contain,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 50.h,
-                ),
-                Text(
-                  "Let's Get Started!!",
-                  style: AppTextStyle.urbanistW700.copyWith(
-                    fontSize: 32.w,
-                    color: AppColors.c212121,
+                  SizedBox(
+                    height: 50.h,
                   ),
-                ),
-                SizedBox(
-                  height: 12.h,
-                ),
-                Text(
-                  "Let's dive in into your account",
-                  style: AppTextStyle.urbanistW400.copyWith(
-                    fontSize: 18.w,
-                    color: AppColors.c616161,
+                  Text(
+                    "Let's Get Started!!",
+                    style: AppTextStyle.urbanistW700.copyWith(
+                      fontSize: 32.w,
+                      color: AppColors.c212121,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                ...List.generate(
-                  buttonsData.length,
-                  (index) => ContinueButton(
-                    imagePath: buttonsData[index].imagePath,
-                    title: buttonsData[index].title,
-                    onTap: buttonsData[index].onTap,
+                  SizedBox(
+                    height: 12.h,
                   ),
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                GlobalButton(
-                  onTap: () {
-                    Navigator.pushNamed(context, RouteNames.signUpScreen);
-                  },
-                  title: "Sign up",
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                GlobalButton(
-                  onTap: () {
-                    Navigator.pushNamed(context, RouteNames.signInScreen);
-                  },
-                  title: "Sign in",
-                  color: AppColors.cF0F2FE,
-                  textColor: AppColors.c405FF2,
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Privacy Policy',
-                        style: AppTextStyle.urbanistW400.copyWith(
-                          fontSize: 14.w,
-                          color: AppColors.c616161,
+                  Text(
+                    "Let's dive in into your account",
+                    style: AppTextStyle.urbanistW400.copyWith(
+                      fontSize: 18.w,
+                      color: AppColors.c616161,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40.h,
+                  ),
+                  ...List.generate(
+                    buttonsData.length,
+                    (index) => ContinueButton(
+                      imagePath: buttonsData[index].imagePath,
+                      title: buttonsData[index].title,
+                      onTap: buttonsData[index].onTap,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40.h,
+                  ),
+                  GlobalButton(
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteNames.signUpScreen);
+                    },
+                    title: "Sign up",
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  GlobalButton(
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteNames.signInScreen);
+                    },
+                    title: "Sign in",
+                    color: AppColors.cF0F2FE,
+                    textColor: AppColors.c405FF2,
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Privacy Policy',
+                          style: AppTextStyle.urbanistW400.copyWith(
+                            fontSize: 14.w,
+                            color: AppColors.c616161,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 30.w,
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Terms of Service',
-                        style: AppTextStyle.urbanistW400.copyWith(
-                          fontSize: 14.w,
-                          color: AppColors.c616161,
+                      SizedBox(
+                        width: 30.w,
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Terms of Service',
+                          style: AppTextStyle.urbanistW400.copyWith(
+                            fontSize: 14.w,
+                            color: AppColors.c616161,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
