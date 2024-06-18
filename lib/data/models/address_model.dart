@@ -17,5 +17,4 @@ class AddressModel {
         ' long: $long'
         '}';
   }
-
 }

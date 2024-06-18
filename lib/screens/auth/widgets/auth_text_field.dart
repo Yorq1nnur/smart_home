@@ -17,7 +17,8 @@ class AuthTextField extends StatelessWidget {
     required this.textInputAction,
     required this.isPassword,
     required this.onEyeOnTap,
-    required this.prefixIcon, required this.hintText,
+    required this.prefixIcon,
+    required this.hintText,
   });
 
   final bool isEnabled;

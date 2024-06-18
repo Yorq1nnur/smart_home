@@ -277,7 +277,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Navigator.pushNamedAndRemoveUntil(
                         context,
                         RouteNames.countriesScreen,
-                            (route) => false,
+                        (route) => false,
                       );
                     });
                   }

@@ -11,10 +11,11 @@ class ApiProvider {
         Uri.parse(AppConstants.countriesUrl),
       );
       if (response.statusCode == 200) {
-        List<CountryModel> countries = (jsonDecode(response.body)['data']['countries'] as List?)
-                ?.map((e) => CountryModel.fromJson(e))
-                .toList() ??
-            [];
+        List<CountryModel> countries =
+            (jsonDecode(response.body)['data']['countries'] as List?)
+                    ?.map((e) => CountryModel.fromJson(e))
+                    .toList() ??
+                [];
 
         return NetworkResponse(data: countries);
       }

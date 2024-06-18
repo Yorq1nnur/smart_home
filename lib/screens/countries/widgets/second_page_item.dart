@@ -12,7 +12,7 @@ class SecondPageItem extends StatefulWidget {
 class _SecondPageItemState extends State<SecondPageItem> {
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         12.getH(),
