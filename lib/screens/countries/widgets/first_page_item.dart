@@ -26,16 +26,6 @@ class _FirstPageItemState extends State<FirstPageItem> {
   String selectedCountry = '';
 
   @override
-  void initState() {
-    Future.microtask(
-      () => context.read<CountryBloc>().add(
-            GetCountriesEvent(),
-          ),
-    );
-    super.initState();
-  }
-
-  @override
   void dispose() {
     _searchFocus.dispose();
     _searchController.dispose();
@@ -81,6 +71,15 @@ class _FirstPageItemState extends State<FirstPageItem> {
               },
               focusNode: _searchFocus,
               decoration: InputDecoration(
+                fillColor: AppColors.cFAFAFA,
+                filled: true,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: AppColors.cFAFAFA,
+                    width: 1.w,
+                  ),
+                ),
                 contentPadding: EdgeInsets.symmetric(
                   horizontal: 20.w,
                   vertical: 22.h,
@@ -114,10 +113,12 @@ class _FirstPageItemState extends State<FirstPageItem> {
                       setState(() {
                         _searchFocus.unfocus();
                       });
+                      if (_searchController.text.isNotEmpty) {
+                        context.read<CountryBloc>().add(
+                              GetCountriesEvent(),
+                            );
+                      }
                       _searchController.clear();
-                      context.read<CountryBloc>().add(
-                            GetCountriesEvent(),
-                          );
                     },
                     icon: Icon(
                       Icons.clear,

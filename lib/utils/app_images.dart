@@ -16,6 +16,15 @@ class AppImages {
   static const String enabledEye = 'assets/icons/enabled_eye.svg';
   static const String disabledEye = 'assets/icons/disabled_eye.svg';
   static const String tick = 'assets/icons/tick.svg';
+  static const String tickRoom = 'assets/icons/tick_room.svg';
   static const String countryTick = 'assets/icons/country_tick.svg';
   static const String search = 'assets/icons/search.svg';
+  static const String backyard = 'assets/icons/backyard.svg';
+  static const String badRoom = 'assets/icons/bad_room.svg';
+  static const String bathroom = 'assets/icons/bathroom.svg';
+  static const String diningRoom = 'assets/icons/dining_room.svg';
+  static const String livingRoom = 'assets/icons/living_room.svg';
+  static const String studyRoom = 'assets/icons/study_room.svg';
+  static const String addNewRoom = 'assets/icons/add_new_room.svg';
+  static const String kitchen = 'assets/icons/kitchen.svg';
 }

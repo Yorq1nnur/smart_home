@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_home/bloc/country/country_bloc.dart';
 import 'package:smart_home/screens/countries/widgets/first_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/second_page_item.dart';
+import 'package:smart_home/screens/countries/widgets/third_page_item.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
@@ -17,15 +20,15 @@ class _CountriesScreenState extends State<CountriesScreen> {
 
   final PageController pageController = PageController();
 
-  // @override
-  // void initState() {
-  //   Future.microtask(
-  //         () => context.read<CountryBloc>().add(
-  //       GetCountriesEvent(),
-  //     ),
-  //   );
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    Future.microtask(
+      () => context.read<CountryBloc>().add(
+            GetCountriesEvent(),
+          ),
+    );
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -38,10 +41,11 @@ class _CountriesScreenState extends State<CountriesScreen> {
     height = MediaQuery.sizeOf(context).height;
     width = MediaQuery.sizeOf(context).width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: 24.w,
+            horizontal: 16.w,
             vertical: 12.h,
           ),
           child: Column(
@@ -82,6 +86,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                   children: const [
                     FirstPageItem(),
                     SecondPageItem(),
+                    ThirdPageItem(),
                   ],
                 ),
               ),
@@ -97,7 +102,15 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       color: AppColors.cF0F2FE,
                     ),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        if (activeIndex == 3) {
+                        } else {
+                          setState(() {
+                            activeIndex++;
+                          });
+                          pageController.jumpToPage(activeIndex);
+                        }
+                      },
                       borderRadius: BorderRadius.circular(30),
                       child: Center(
                         child: Text(
@@ -119,7 +132,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                     ),
                     child: InkWell(
                       onTap: () {
-                        if (activeIndex == 2) {
+                        if (activeIndex == 3) {
                         } else {
                           setState(() {
                             activeIndex++;
