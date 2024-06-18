@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_home/bloc/country/country_bloc.dart';
 import 'package:smart_home/screens/countries/widgets/first_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/second_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/third_page_item.dart';
+import 'package:smart_home/services/app_permissions.dart';
 import 'package:smart_home/utils/app_colors.dart';
+import 'package:smart_home/utils/app_images.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
 import 'package:smart_home/utils/utility_functions.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class CountriesScreen extends StatefulWidget {
   const CountriesScreen({super.key});
@@ -133,7 +137,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                     ),
                     child: InkWell(
                       onTap: () {
-                        if (activeIndex == 3) {
+                        if (activeIndex == 2) {
                           UtilityFunctions.showLocationPermissionDialog(
                             context: context,
                             widget: Column(
@@ -147,15 +151,80 @@ class _CountriesScreenState extends State<CountriesScreen> {
                                     color: AppColors.c405FF2,
                                   ),
                                   child: Center(
-                                    child: Icon(
-                                      Icons.gps_fixed,
-                                      size: 44.w,
-                                      color: Colors.white,
+                                    child: SvgPicture.asset(
+                                      AppImages.gps,
+                                      width: 44.w,
+                                      height: 44.h,
                                     ),
                                   ),
                                 ),
                                 32.getH(),
-                                Text("Enable Location")
+                                Text(
+                                  "Enable Location",
+                                  style: AppTextStyle.urbanistW700.copyWith(
+                                    fontSize: 24.w,
+                                  ),
+                                ),
+                                16.getH(),
+                                Text(
+                                  'Please activate the location feature, so we can find your home address.',
+                                  style: AppTextStyle.urbanistW400.copyWith(
+                                    fontSize: 16.w,
+                                  ),
+                                ),
+                                32.getH(),
+                                ZoomTapAnimation(
+                                  onTap: () async {
+                                    await AppPermissions
+                                        .getLocationPermission();
+                                    if (!context.mounted) return;
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                    height: 58.h,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.c405FF2,
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    child: Center(
+                                      child: Center(
+                                        child: Text(
+                                          'Enable Location',
+                                          style: AppTextStyle.urbanistW700
+                                              .copyWith(
+                                            fontSize: 16.w,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                12.getH(),
+                                ZoomTapAnimation(
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                    height: 58.h,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.cF0F2FE,
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        'Not Now',
+                                        style:
+                                            AppTextStyle.urbanistW700.copyWith(
+                                          fontSize: 16.w,
+                                          color: AppColors.c405FF2,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           );

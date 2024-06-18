@@ -52,10 +52,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               )),
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(
           horizontal: 24.w,
         ),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -252,6 +253,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ContinueButton(
               imagePath: AppImages.apple,
               title: 'Continue with Apple',
+              onTap: () {},
+            ),
+            ContinueButton(
+              imagePath: AppImages.facebook,
+              title: 'Continue with Facebook',
+              onTap: () {},
+            ),
+            ContinueButton(
+              imagePath: AppImages.twitter,
+              title: 'Continue with Twitter',
               onTap: () {},
             ),
             14.getH(),
