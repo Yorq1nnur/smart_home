@@ -1,5 +1,6 @@
 import 'package:smart_home/data/models/address_model.dart';
 import 'package:smart_home/data/models/room_model.dart';
+import 'package:smart_home/utils/utility_functions.dart';
 
 class MyHomeModel {
   final String country;
@@ -49,11 +50,10 @@ class MyHomeModel {
         ' country: $country,'
         ' countryOfFlag: $countryOfFlag,'
         ' homeName: $homeName,'
-        ' rooms: ${rooms.toString()},'
+        ' rooms: ${rooms.toString()}'
         ' addressModel: ${addressModel.toString()}'
         '}';
   }
-
 }
 
 enum MyHomeModelFields {
