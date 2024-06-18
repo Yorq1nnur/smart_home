@@ -40,7 +40,7 @@ class _ThirdPageItemState extends State<ThirdPageItem> {
         Wrap(
           children: List.generate(
             _rooms.length,
-                (index) {
+            (index) {
               return Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: 8.w,
@@ -56,11 +56,13 @@ class _ThirdPageItemState extends State<ThirdPageItem> {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(8),
                     onTap: () {
-                      activeIndexes[index] == index ? setState(() {
-                        activeIndexes[index] = -1;
-                      }) : setState(() {
-                        activeIndexes[index] = index;
-                      });
+                      activeIndexes[index] == index
+                          ? setState(() {
+                              activeIndexes[index] = -1;
+                            })
+                          : setState(() {
+                              activeIndexes[index] = index;
+                            });
                     },
                     child: Stack(
                       children: [
@@ -105,7 +107,7 @@ class _ThirdPageItemState extends State<ThirdPageItem> {
   }
 }
 
-List<RoomModel> _rooms = [
+final List<RoomModel> _rooms = [
   RoomModel(roomImage: AppImages.livingRoom, roomName: 'Living Room'),
   RoomModel(roomImage: AppImages.badRoom, roomName: 'Badroom'),
   RoomModel(roomImage: AppImages.bathroom, roomName: 'Bathroom'),
