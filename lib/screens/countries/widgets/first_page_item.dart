@@ -20,8 +20,7 @@ class FirstPageItem extends StatefulWidget {
 class _FirstPageItemState extends State<FirstPageItem> {
   final FocusNode _searchFocus = FocusNode();
   final TextEditingController _searchController = TextEditingController();
-
-  int activeIndex = -1;
+  String selectedCountry = '';
 
   @override
   void initState() {
@@ -173,7 +172,7 @@ class _FirstPageItemState extends State<FirstPageItem> {
                           borderRadius: BorderRadius.circular(8),
                           onTap: () {
                             setState(() {
-                              activeIndex = index;
+                              selectedCountry = state.countries[index].name;
                             });
                             UtilityFunctions.methodPrint(
                               '${state.countries[index].name} on tapped',
@@ -189,30 +188,44 @@ class _FirstPageItemState extends State<FirstPageItem> {
                               color: AppColors.cFAFAFA,
                               border: Border.all(
                                 width: 2.w,
-                                color: activeIndex == index
+                                color: state.countries[index].name ==
+                                        selectedCountry
                                     ? AppColors.c405FF2
                                     : AppColors.cEEEEEE,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  state.countries[index].flag,
-                                  style: TextStyle(
-                                    fontSize: 60.w,
-                                  ),
-                                ),
-                                16.getW(),
-                                Expanded(
-                                  child: Text(
-                                    state.countries[index].name,
-                                    maxLines: 10,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: AppTextStyle.urbanistW600.copyWith(
-                                      fontSize: 18.w,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      state.countries[index].flag,
+                                      style: TextStyle(
+                                        fontSize: 60.w,
+                                      ),
                                     ),
+                                    16.getW(),
+                                    Expanded(
+                                      child: Text(
+                                        state.countries[index].name,
+                                        maxLines: 10,
+                                        overflow: TextOverflow.ellipsis,
+                                        style:
+                                            AppTextStyle.urbanistW600.copyWith(
+                                          fontSize: 18.w,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Visibility(
+                                  visible: selectedCountry ==
+                                      state.countries[index].name,
+                                  child: SvgPicture.asset(
+                                    AppImages.countryTick,
                                   ),
                                 ),
                               ],

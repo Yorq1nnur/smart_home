@@ -97,7 +97,14 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       color: AppColors.c405FF2,
                     ),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        if (activeIndex == 2) {
+                        } else {
+                          setState(() {
+                            activeIndex++;
+                          });
+                        }
+                      },
                       borderRadius: BorderRadius.circular(30),
                       child: Center(
                         child: Text(
