@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:smart_home/bloc/form_status/form_status.dart';
 import 'package:smart_home/bloc/my_home/my_home_bloc.dart';
 import 'package:smart_home/data/models/my_home_model.dart';
+import 'package:smart_home/screens/countries/widgets/page_of_rich_text.dart';
 import 'package:smart_home/utils/size.dart';
 import 'package:smart_home/utils/utility_functions.dart';
 import '../../../bloc/country/country_bloc.dart';
@@ -46,28 +47,10 @@ class _FirstPageItemState extends State<FirstPageItem> {
     return Column(
       children: [
         12.getH(),
-        RichText(
-          text: TextSpan(
-            text: 'Select ',
-            style: AppTextStyle.urbanistW700.copyWith(
-              fontSize: 32.w,
-            ),
-            children: [
-              TextSpan(
-                text: 'Country ',
-                style: AppTextStyle.urbanistW700.copyWith(
-                  fontSize: 32.w,
-                  color: AppColors.c405FF2,
-                ),
-              ),
-              TextSpan(
-                text: 'Origin ',
-                style: AppTextStyle.urbanistW700.copyWith(
-                  fontSize: 32.w,
-                ),
-              ),
-            ],
-          ),
+        const PageOfRichText(
+          firstText: 'Select ',
+          secondText: 'Country ',
+          thirdText: 'Origin ',
         ),
         8.getH(),
         Text(
@@ -128,6 +111,9 @@ class _FirstPageItemState extends State<FirstPageItem> {
                   visible: _searchFocus.hasFocus,
                   child: IconButton(
                     onPressed: () {
+                      setState(() {
+                        _searchFocus.unfocus();
+                      });
                       _searchController.clear();
                       context.read<CountryBloc>().add(
                             GetCountriesEvent(),

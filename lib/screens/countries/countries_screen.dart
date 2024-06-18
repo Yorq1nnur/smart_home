@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_home/screens/countries/widgets/first_page_item.dart';
+import 'package:smart_home/screens/countries/widgets/second_page_item.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
@@ -14,6 +15,8 @@ class CountriesScreen extends StatefulWidget {
 class _CountriesScreenState extends State<CountriesScreen> {
   int activeIndex = 0;
 
+  final PageController pageController = PageController();
+
   // @override
   // void initState() {
   //   Future.microtask(
@@ -23,6 +26,12 @@ class _CountriesScreenState extends State<CountriesScreen> {
   //   );
   //   super.initState();
   // }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +78,10 @@ class _CountriesScreenState extends State<CountriesScreen> {
               ),
               Expanded(
                 child: PageView(
+                  controller: pageController,
                   children: const [
                     FirstPageItem(),
+                    SecondPageItem(),
                   ],
                 ),
               ),
@@ -113,6 +124,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                           setState(() {
                             activeIndex++;
                           });
+                          pageController.jumpToPage(activeIndex);
                         }
                       },
                       borderRadius: BorderRadius.circular(30),

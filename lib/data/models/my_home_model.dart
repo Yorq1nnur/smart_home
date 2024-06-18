@@ -1,6 +1,5 @@
 import 'package:smart_home/data/models/address_model.dart';
 import 'package:smart_home/data/models/room_model.dart';
-import 'package:smart_home/utils/utility_functions.dart';
 
 class MyHomeModel {
   final String country;
