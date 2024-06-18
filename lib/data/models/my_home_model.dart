@@ -42,6 +42,18 @@ class MyHomeModel {
         homeName: homeName ?? this.homeName,
         rooms: rooms ?? this.rooms,
       );
+
+  @override
+  String toString() {
+    return 'MyHomeModel{'
+        ' country: $country,'
+        ' countryOfFlag: $countryOfFlag,'
+        ' homeName: $homeName,'
+        ' rooms: ${rooms.toString()},'
+        ' addressModel: ${addressModel.toString()}'
+        '}';
+  }
+
 }
 
 enum MyHomeModelFields {

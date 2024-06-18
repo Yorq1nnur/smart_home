@@ -8,4 +8,14 @@ class AddressModel {
     required this.lat,
     required this.long,
   });
+
+  @override
+  String toString() {
+    return 'AddressModel{'
+        ' addressDetails: $addressDetails,'
+        ' lat: $lat,'
+        ' long: $long'
+        '}';
+  }
+
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_home/bloc/form_status/form_status.dart';
+import 'package:smart_home/bloc/my_home/my_home_bloc.dart';
+import 'package:smart_home/data/models/my_home_model.dart';
 import 'package:smart_home/utils/size.dart';
 import 'package:smart_home/utils/utility_functions.dart';
 import '../../../bloc/country/country_bloc.dart';
@@ -182,6 +184,18 @@ class _FirstPageItemState extends State<FirstPageItem> {
                             setState(() {
                               selectedCountry = state.countries[index].name;
                             });
+                            BlocProvider.of<MyHomeBloc>(context).add(
+                              MakeMyHomeEvent(
+                                MyHomeModelFields.country,
+                                state.countries[index].name,
+                              ),
+                            );
+                            BlocProvider.of<MyHomeBloc>(context).add(
+                              MakeMyHomeEvent(
+                                MyHomeModelFields.countryOfFlag,
+                                state.countries[index].flag,
+                              ),
+                            );
                             UtilityFunctions.methodPrint(
                               '${state.countries[index].name} on tapped',
                             );
@@ -219,7 +233,7 @@ class _FirstPageItemState extends State<FirstPageItem> {
                                     ),
                                     16.getW(),
                                     SizedBox(
-                                      width: width/2,
+                                      width: width / 2,
                                       child: Text(
                                         state.countries[index].name,
                                         maxLines: 10,
