@@ -15,9 +15,9 @@ class _SecondPageItemState extends State<SecondPageItem> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         PageOfRichText(
-          firstText: 'firstText',
-          secondText: 'secondText',
-          thirdText: 'thirdText',
+          firstText: 'Add ',
+          secondText: 'Home ',
+          thirdText: 'Name',
         ),
       ],
     );
