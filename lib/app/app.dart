@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home/bloc/country/country_bloc.dart';
+import 'package:smart_home/bloc/my_home/my_home_bloc.dart';
 import 'package:smart_home/data/repositories/country_repository.dart';
 import '../screens/routes/routes.dart';
 
@@ -21,6 +22,9 @@ class App extends StatelessWidget {
             create: (context) => CountryBloc(
               context.read<CountryRepository>(),
             ),
+          ),
+          BlocProvider(
+            create: (_) => MyHomeBloc(),
           ),
         ],
         child: MaterialApp(
