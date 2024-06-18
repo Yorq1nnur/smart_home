@@ -13,7 +13,7 @@ class UtilityFunctions {
   }) {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (context) {
         return PopScope(
           canPop: false,
           child: AlertDialog(
@@ -76,5 +76,31 @@ class UtilityFunctions {
         backgroundColor: backgroundColor ?? Colors.blue,
       ),
     );
+  }
+
+  static void showLocationPermissionDialog({
+    required BuildContext context,
+    required Widget widget,
+  }) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            content: Container(
+              width: width - 100,
+              height: height / 2,
+              padding: EdgeInsets.symmetric(
+                horizontal: 32.w,
+                vertical: 32.h,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: widget,
+            ),
+          );
+        });
   }
 }

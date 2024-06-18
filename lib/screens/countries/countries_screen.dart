@@ -7,6 +7,7 @@ import 'package:smart_home/screens/countries/widgets/third_page_item.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
+import 'package:smart_home/utils/utility_functions.dart';
 
 class CountriesScreen extends StatefulWidget {
   const CountriesScreen({super.key});
@@ -133,6 +134,31 @@ class _CountriesScreenState extends State<CountriesScreen> {
                     child: InkWell(
                       onTap: () {
                         if (activeIndex == 3) {
+                          UtilityFunctions.showLocationPermissionDialog(
+                            context: context,
+                            widget: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 80.w,
+                                  width: 80.w,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.c405FF2,
+                                  ),
+                                  child: Center(
+                                    child: Icon(
+                                      Icons.gps_fixed,
+                                      size: 44.w,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                32.getH(),
+                                Text("Enable Location")
+                              ],
+                            ),
+                          );
                         } else {
                           setState(() {
                             activeIndex++;
