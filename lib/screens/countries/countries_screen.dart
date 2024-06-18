@@ -14,14 +14,6 @@ class CountriesScreen extends StatefulWidget {
 class _CountriesScreenState extends State<CountriesScreen> {
   int activeIndex = 0;
 
-  final FocusNode _searchFocus = FocusNode();
-
-  @override
-  void dispose() {
-    _searchFocus.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.sizeOf(context).height;
@@ -71,6 +63,54 @@ class _CountriesScreenState extends State<CountriesScreen> {
                     FirstPageItem(),
                   ],
                 ),
+              ),
+              15.getH(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Ink(
+                    height: 58.h,
+                    width: width / 2.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: AppColors.cF0F2FE,
+                    ),
+                    child: InkWell(
+                      onTap: () {},
+                      borderRadius: BorderRadius.circular(30),
+                      child: Center(
+                        child: Text(
+                          'Skip',
+                          style: AppTextStyle.urbanistW700.copyWith(
+                            fontSize: 16.w,
+                            color: AppColors.c405FF2,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Ink(
+                    height: 58.h,
+                    width: width / 2.5,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: AppColors.c405FF2,
+                    ),
+                    child: InkWell(
+                      onTap: () {},
+                      borderRadius: BorderRadius.circular(30),
+                      child: Center(
+                        child: Text(
+                          'Continue',
+                          style: AppTextStyle.urbanistW700.copyWith(
+                            fontSize: 16.w,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           ),

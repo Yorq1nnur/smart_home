@@ -19,6 +19,9 @@ class FirstPageItem extends StatefulWidget {
 
 class _FirstPageItemState extends State<FirstPageItem> {
   final FocusNode _searchFocus = FocusNode();
+  final TextEditingController _searchController = TextEditingController();
+
+  int activeIndex = -1;
 
   @override
   void initState() {
@@ -33,6 +36,7 @@ class _FirstPageItemState extends State<FirstPageItem> {
   @override
   void dispose() {
     _searchFocus.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 
@@ -77,6 +81,7 @@ class _FirstPageItemState extends State<FirstPageItem> {
         BlocBuilder<CountryBloc, CountryState>(
           builder: (context, state) {
             return TextField(
+              controller: _searchController,
               onTap: () {
                 setState(() {
                   _searchFocus.hasFocus
@@ -118,6 +123,21 @@ class _FirstPageItemState extends State<FirstPageItem> {
                     ),
                   ),
                 ),
+                suffixIcon: Visibility(
+                  visible: _searchFocus.hasFocus,
+                  child: IconButton(
+                    onPressed: () {
+                      _searchController.clear();
+                      context.read<CountryBloc>().add(
+                            GetCountriesEvent(),
+                          );
+                    },
+                    icon: Icon(
+                      Icons.clear,
+                      size: 20.w,
+                    ),
+                  ),
+                ),
               ),
             );
           },
@@ -152,6 +172,9 @@ class _FirstPageItemState extends State<FirstPageItem> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(8),
                           onTap: () {
+                            setState(() {
+                              activeIndex = index;
+                            });
                             UtilityFunctions.methodPrint(
                               '${state.countries[index].name} on tapped',
                             );
@@ -165,8 +188,10 @@ class _FirstPageItemState extends State<FirstPageItem> {
                             decoration: BoxDecoration(
                               color: AppColors.cFAFAFA,
                               border: Border.all(
-                                width: 1.w,
-                                color: AppColors.cEEEEEE,
+                                width: 2.w,
+                                color: activeIndex == index
+                                    ? AppColors.c405FF2
+                                    : AppColors.cEEEEEE,
                               ),
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -199,7 +224,6 @@ class _FirstPageItemState extends State<FirstPageItem> {
                   }),
             );
           }
-
           return const SizedBox.shrink();
         })
       ],
