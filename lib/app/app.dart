@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home/bloc/country/country_bloc.dart';
+import 'package:smart_home/bloc/map/map_bloc.dart';
 import 'package:smart_home/bloc/my_home/my_home_bloc.dart';
 import 'package:smart_home/data/repositories/country_repository.dart';
+
 // import 'package:smart_home/screens/countries/countries_screen.dart';
 import '../screens/routes/routes.dart';
 
@@ -26,6 +28,9 @@ class App extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => MyHomeBloc(),
+          ),
+          BlocProvider(
+            create: (_) => MapBloc(),
           ),
         ],
         child: MaterialApp(

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_home/bloc/country/country_bloc.dart';
 import 'package:smart_home/screens/countries/widgets/first_page_item.dart';
+import 'package:smart_home/screens/countries/widgets/map_item.dart';
 import 'package:smart_home/screens/countries/widgets/second_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/third_page_item.dart';
 import 'package:smart_home/services/app_permissions.dart';
@@ -93,6 +94,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                     FirstPageItem(),
                     SecondPageItem(),
                     ThirdPageItem(),
+                    MapItem(),
                   ],
                 ),
               ),
@@ -181,7 +183,8 @@ class _CountriesScreenState extends State<CountriesScreen> {
                                         .getLocationPermission();
                                     if (!context.mounted) return;
                                     Navigator.of(context).pop();
-                                    UtilityFunctions.methodPrint('LOCATIONS GRANTED: $isLocationGranted');
+                                    UtilityFunctions.methodPrint(
+                                        'LOCATIONS GRANTED: $isLocationGranted');
                                   },
                                   child: Container(
                                     height: 58.h,
