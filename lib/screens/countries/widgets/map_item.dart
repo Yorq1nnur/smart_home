@@ -38,7 +38,7 @@ class _MapItemState extends State<MapItem> {
         Expanded(
           flex: 6,
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: 1.h),
+            height: height / 2.33,
             width: double.infinity,
             color: Colors.red,
             child: BlocConsumer<MapBloc, MapState>(

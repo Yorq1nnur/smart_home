@@ -78,10 +78,10 @@ class UtilityFunctions {
     );
   }
 
-  static void showLocationPermissionDialog({
+  static Future<void> showLocationPermissionDialog({
     required BuildContext context,
     required Widget widget,
-  }) {
+  }) async{
     showDialog(
         context: context,
         builder: (context) {
