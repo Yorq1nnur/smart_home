@@ -103,6 +103,9 @@ class _MapItemState extends State<MapItem> {
                         ),
                         child: IconButton(
                           onPressed: () async {
+                            context.read<MapBloc>().add(
+                                  GetUserLocationEvent(),
+                                );
                             final controller1 = await controller.future;
                             LatLng latLng = LatLng(state.userLatLng.latitude,
                                 state.userLatLng.longitude);

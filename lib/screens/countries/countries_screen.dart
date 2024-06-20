@@ -85,6 +85,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
               ),
               Expanded(
                 child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
                   controller: _pageController,
                   children: const [
                     FirstPageItem(),
@@ -141,6 +142,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                             context: context,
                             widget: const LocationPermissionWidget(),
                           ).then((v) {
+                            Navigator.of(context).pop();
                             setState(() {
                               _activeIndex++;
                             });
