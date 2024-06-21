@@ -34,6 +34,9 @@ class App extends StatelessWidget {
           BlocProvider(
             create: (_) => MapsBloc()
               ..add(
+                RequestPermission(),
+              )
+              ..add(
                 GetUserLocationEvent(),
               ),
           ),
