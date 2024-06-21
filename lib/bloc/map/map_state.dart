@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:equatable/equatable.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -9,12 +11,14 @@ class MapsState extends Equatable {
   final String errorText;
   final LatLng userLatLng;
   final LocationPermission? locationPermission;
+  final bool isLocationGranted;
 
   const MapsState({
     required this.formsStatus,
     required this.addressName,
     required this.errorText,
     required this.userLatLng,
+    required this.isLocationGranted,
     this.locationPermission,
   });
 
@@ -24,14 +28,15 @@ class MapsState extends Equatable {
     String? errorText,
     LatLng? userLatLng,
     LocationPermission? locationPermission,
+    bool? isLocationGranted,
   }) {
     return MapsState(
-      formsStatus: formsStatus ?? this.formsStatus,
-      addressName: addressName ?? this.addressName,
-      errorText: errorText ?? this.errorText,
-      userLatLng: userLatLng ?? this.userLatLng,
-      locationPermission: locationPermission ?? this.locationPermission,
-    );
+        formsStatus: formsStatus ?? this.formsStatus,
+        addressName: addressName ?? this.addressName,
+        errorText: errorText ?? this.errorText,
+        userLatLng: userLatLng ?? this.userLatLng,
+        locationPermission: locationPermission ?? this.locationPermission,
+        isLocationGranted: isLocationGranted ?? this.isLocationGranted);
   }
 
   factory MapsState.initial() {
@@ -40,6 +45,7 @@ class MapsState extends Equatable {
       errorText: "",
       addressName: '',
       userLatLng: LatLng(41.311081, 69.240562),
+      isLocationGranted: false,
     );
   }
 
@@ -50,5 +56,6 @@ class MapsState extends Equatable {
         errorText,
         userLatLng,
         locationPermission,
+        isLocationGranted,
       ];
 }

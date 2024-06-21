@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home/bloc/country/country_bloc.dart';
 import 'package:smart_home/bloc/map/map_bloc.dart';
 import 'package:smart_home/bloc/map/map_event.dart';
+import 'package:smart_home/bloc/map/map_state.dart';
 import 'package:smart_home/screens/countries/widgets/first_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/location_permission_widget.dart';
 import 'package:smart_home/screens/countries/widgets/map_item.dart';
@@ -130,42 +131,51 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       ),
                     ),
                   ),
-                  Ink(
-                    height: 58.h,
-                    width: width / 2.5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: AppColors.c405FF2,
-                    ),
-                    child: InkWell(
-                      onTap: () async {
-                        if (_activeIndex == 2) {
-                          await UtilityFunctions.showLocationPermissionDialog(
-                            context: context,
-                            widget: const LocationPermissionWidget(),
-                          ).then((v) {
+                  BlocListener<MapsBloc, MapsState>(
+                    listener: (context, state) {
+                      if (state.isLocationGranted) {
+                        context.read<MapsBloc>().add(
+                              GetUserLocationEvent(),
+                            );
+                        setState(() {
+                          _activeIndex++;
+                        });
+                        _pageController.jumpToPage(_activeIndex);
+                      }
+                    },
+                    child: Ink(
+                      height: 58.h,
+                      width: width / 2.5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: AppColors.c405FF2,
+                      ),
+                      child: InkWell(
+                        onTap: () async {
+                          if (_activeIndex == 2) {
+                            await UtilityFunctions.showLocationPermissionDialog(
+                              context: context,
+                              widget: const LocationPermissionWidget(),
+                            );
+                            if (!context.mounted) return;
                             context.read<MapsBloc>().add(
-                                  GetUserLocation(),
+                                  CheckLocationPermissionStatusEvent(),
                                 );
+                          } else if (_activeIndex != 3) {
                             setState(() {
                               _activeIndex++;
                             });
                             _pageController.jumpToPage(_activeIndex);
-                          });
-                        } else {
-                          setState(() {
-                            _activeIndex++;
-                          });
-                          _pageController.jumpToPage(_activeIndex);
-                        }
-                      },
-                      borderRadius: BorderRadius.circular(30),
-                      child: Center(
-                        child: Text(
-                          'Continue',
-                          style: AppTextStyle.urbanistW700.copyWith(
-                            fontSize: 16.w,
-                            color: Colors.white,
+                          }
+                        },
+                        borderRadius: BorderRadius.circular(30),
+                        child: Center(
+                          child: Text(
+                            'Continue',
+                            style: AppTextStyle.urbanistW700.copyWith(
+                              fontSize: 16.w,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),

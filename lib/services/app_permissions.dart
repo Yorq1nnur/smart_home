@@ -13,4 +13,14 @@ class AppPermissions {
       return true;
     }
   }
+  static Future<bool> checkLocationPermission() async {
+    PermissionStatus status = await Permission.location.status;
+    debugPrint("location STATUS:$status");
+    if (status.isDenied) {
+      debugPrint("location STATUS AFTER ASK:$status");
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:smart_home/bloc/form_status/form_status.dart';
 import 'package:smart_home/bloc/map/map_event.dart';
 import 'package:smart_home/bloc/map/map_state.dart';
+import 'package:smart_home/services/app_permissions.dart';
 import 'package:smart_home/utils/utility_functions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,9 +16,21 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
     on<GetLocation>(_onGetLocation);
     on<RequestPermission>(_onRequestPermission);
     on<GetUserLocation>(_onGetUserLocation);
+    on<CheckLocationPermissionStatusEvent>(_checkStatus);
   }
 
-  void _onGetUserLocation(GetUserLocation event, Emitter<MapsState> emit) async {
+  _checkStatus(CheckLocationPermissionStatusEvent event, emit) async {
+    bool status = await AppPermissions.checkLocationPermission();
+
+    emit(
+      state.copyWith(
+        isLocationGranted: status,
+      ),
+    );
+  }
+
+  void _onGetUserLocation(
+      GetUserLocation event, Emitter<MapsState> emit) async {
     emit(state.copyWith(formsStatus: FormStatus.loading));
 
     LocationPermission permission = await Geolocator.checkPermission();
@@ -34,7 +47,8 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
       return;
     }
 
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
 
     emit(state.copyWith(
       userLatLng: LatLng(position.latitude, position.longitude),
@@ -49,7 +63,8 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
 
   void _onGetAddressName(GetAddressName event, Emitter<MapsState> emit) async {
     try {
-      List<Placemark> placeMarks = await placemarkFromCoordinates(event.latLng.latitude, event.latLng.longitude);
+      List<Placemark> placeMarks = await placemarkFromCoordinates(
+          event.latLng.latitude, event.latLng.longitude);
       if (placeMarks.isNotEmpty) {
         Placemark placeMark = placeMarks.first;
         emit(state.copyWith(
@@ -76,9 +91,11 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
   void _onGetLocation(GetLocation event, Emitter<MapsState> emit) async {
     emit(state.copyWith(formsStatus: FormStatus.loading));
 
-    LocationPermission permission = state.locationPermission ?? await Geolocator.checkPermission();
+    LocationPermission permission =
+        state.locationPermission ?? await Geolocator.checkPermission();
 
-    if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
       permission = await Geolocator.requestPermission();
     }
 
@@ -101,13 +118,16 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
   }
 
   Future<Position?> _getLocation(LocationPermission permission) async {
-    if (permission == LocationPermission.always || permission == LocationPermission.whileInUse) {
-      return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      return await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
     }
     return null;
   }
 
-  void _onRequestPermission(RequestPermission event, Emitter<MapsState> emit) async {
+  void _onRequestPermission(
+      RequestPermission event, Emitter<MapsState> emit) async {
     LocationPermission permission = await Geolocator.requestPermission();
     emit(state.copyWith(locationPermission: permission));
   }

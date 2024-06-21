@@ -4,9 +4,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 abstract class MapsEvent extends Equatable {
   const MapsEvent();
-
-  @override
-  List<Object?> get props => [];
 }
 
 class GetAddressName extends MapsEvent {
@@ -18,9 +15,20 @@ class GetAddressName extends MapsEvent {
   List<Object> get props => [latLng];
 }
 
-class GetUserLocationEvent extends MapsEvent {}
+class CheckLocationPermissionStatusEvent extends MapsEvent{
+  @override
+  List<Object?> get props => [];
+}
 
-class GetUserLocation extends MapsEvent {}
+class GetUserLocationEvent extends MapsEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class GetUserLocation extends MapsEvent {
+  @override
+  List<Object?> get props => [];
+}
 
 class LaunchMapsUrl extends MapsEvent {
   final LatLng userLocation;
@@ -32,6 +40,12 @@ class LaunchMapsUrl extends MapsEvent {
   List<Object> get props => [userLocation, companyLocation];
 }
 
-class GetLocation extends MapsEvent {}
+class GetLocation extends MapsEvent {
+  @override
+  List<Object?> get props => [];
+}
 
-class RequestPermission extends MapsEvent {}
+class RequestPermission extends MapsEvent {
+  @override
+  List<Object?> get props => [];
+}
