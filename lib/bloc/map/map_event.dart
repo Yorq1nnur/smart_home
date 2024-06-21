@@ -20,12 +20,8 @@ class CheckLocationPermissionStatusEvent extends MapsEvent{
   List<Object?> get props => [];
 }
 
-class GetUserLocationEvent extends MapsEvent {
-  @override
-  List<Object?> get props => [];
-}
 
-class GetUserLocation extends MapsEvent {
+class GetUserLocationEvent extends MapsEvent {
   @override
   List<Object?> get props => [];
 }

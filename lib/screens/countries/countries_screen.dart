@@ -131,55 +131,56 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       ),
                     ),
                   ),
-                  BlocListener<MapsBloc, MapsState>(
-                    listener: (context, state) {
-                      if (state.isLocationGranted) {
-                        context.read<MapsBloc>().add(
-                              GetUserLocationEvent(),
-                            );
-                        setState(() {
-                          _activeIndex++;
-                        });
-                        _pageController.jumpToPage(_activeIndex);
-                      }
-                    },
-                    child: Ink(
-                      height: 58.h,
-                      width: width / 2.5,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: AppColors.c405FF2,
-                      ),
-                      child: InkWell(
-                        onTap: () async {
-                          if (_activeIndex == 2) {
-                            await UtilityFunctions.showLocationPermissionDialog(
-                              context: context,
-                              widget: const LocationPermissionWidget(),
-                            );
-                            if (!context.mounted) return;
-                            context.read<MapsBloc>().add(
-                                  CheckLocationPermissionStatusEvent(),
-                                );
-                          } else if (_activeIndex != 3) {
-                            setState(() {
-                              _activeIndex++;
-                            });
-                            _pageController.jumpToPage(_activeIndex);
-                          }
-                        },
-                        borderRadius: BorderRadius.circular(30),
-                        child: Center(
-                          child: Text(
-                            'Continue',
-                            style: AppTextStyle.urbanistW700.copyWith(
-                              fontSize: 16.w,
-                              color: Colors.white,
+                  BlocBuilder<MapsBloc, MapsState>(
+                    builder: (context, state) {
+                      return Ink(
+                        height: 58.h,
+                        width: width / 2.5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: AppColors.c405FF2,
+                        ),
+                        child: InkWell(
+                          onTap: () async {
+                            if (_activeIndex == 2) {
+                              await UtilityFunctions
+                                  .showLocationPermissionDialog(
+                                context: context,
+                                widget: const LocationPermissionWidget(),
+                              );
+                              if (!context.mounted) return;
+                              context.read<MapsBloc>().add(
+                                    CheckLocationPermissionStatusEvent(),
+                                  );
+                              if (state.isLocationGranted) {
+                                context.read<MapsBloc>().add(
+                                      GetUserLocationEvent(),
+                                    );
+                                setState(() {
+                                  _activeIndex++;
+                                });
+                                _pageController.jumpToPage(_activeIndex);
+                              }
+                            } else if (_activeIndex != 3) {
+                              setState(() {
+                                _activeIndex++;
+                              });
+                              _pageController.jumpToPage(_activeIndex);
+                            }
+                          },
+                          borderRadius: BorderRadius.circular(30),
+                          child: Center(
+                            child: Text(
+                              'Continue',
+                              style: AppTextStyle.urbanistW700.copyWith(
+                                fontSize: 16.w,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                 ],
               )

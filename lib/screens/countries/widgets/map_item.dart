@@ -24,7 +24,7 @@ class _MapItemState extends State<MapItem> {
   void initState() {
     Future.microtask(
       () => context.read<MapsBloc>().add(
-            GetUserLocation(),
+            GetUserLocationEvent(),
           ),
     );
     super.initState();
@@ -107,7 +107,7 @@ class _MapItemState extends State<MapItem> {
                   child: IconButton(
                     onPressed: () async {
                       context.read<MapsBloc>().add(
-                            GetUserLocation(),
+                            GetUserLocationEvent(),
                           );
                       final controller1 = await controller.future;
                       LatLng latLng = LatLng(

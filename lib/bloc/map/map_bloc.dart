@@ -15,7 +15,7 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
     on<LaunchMapsUrl>(_onLaunchMapsUrl);
     on<GetLocation>(_onGetLocation);
     on<RequestPermission>(_onRequestPermission);
-    on<GetUserLocation>(_onGetUserLocation);
+    on<GetUserLocationEvent>(_onGetUserLocation);
     on<CheckLocationPermissionStatusEvent>(_checkStatus);
   }
 
@@ -30,7 +30,7 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
   }
 
   void _onGetUserLocation(
-      GetUserLocation event, Emitter<MapsState> emit) async {
+      GetUserLocationEvent event, Emitter<MapsState> emit) async {
     emit(state.copyWith(formsStatus: FormStatus.loading));
 
     LocationPermission permission = await Geolocator.checkPermission();
