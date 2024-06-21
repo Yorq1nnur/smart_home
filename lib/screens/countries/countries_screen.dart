@@ -131,7 +131,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       ),
                     ),
                   ),
-                  BlocBuilder<MapsBloc, MapsState>(
+                  BlocConsumer<MapsBloc,MapsState>(
                     builder: (context, state) {
                       return Ink(
                         height: 58.h,
@@ -147,20 +147,12 @@ class _CountriesScreenState extends State<CountriesScreen> {
                                   .showLocationPermissionDialog(
                                 context: context,
                                 widget: const LocationPermissionWidget(),
-                              );
-                              if (!context.mounted) return;
-                              context.read<MapsBloc>().add(
-                                    CheckLocationPermissionStatusEvent(),
-                                  );
-                              if (state.isLocationGranted) {
+                              ).then((v) {
+                                if (!context.mounted) return;
                                 context.read<MapsBloc>().add(
-                                      GetUserLocationEvent(),
+                                      CheckLocationPermissionStatusEvent(),
                                     );
-                                setState(() {
-                                  _activeIndex++;
-                                });
-                                _pageController.jumpToPage(_activeIndex);
-                              }
+                              });
                             } else if (_activeIndex != 3) {
                               setState(() {
                                 _activeIndex++;
@@ -180,6 +172,20 @@ class _CountriesScreenState extends State<CountriesScreen> {
                           ),
                         ),
                       );
+                    },
+                    listener: (context, state) {
+                      if (state.isLocationGranted) {
+                        context.read<MapsBloc>().add(
+                              GetUserLocationEvent(),
+                            );
+                        setState(() {
+                          _activeIndex++;
+                        });
+                        _pageController.jumpToPage(_activeIndex);
+                        context.read<MapsBloc>().add(
+                              ChangeStatusInitialEvent(),
+                            );
+                      }
                     },
                   ),
                 ],

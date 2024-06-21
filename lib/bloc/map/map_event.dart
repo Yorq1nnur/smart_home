@@ -15,11 +15,15 @@ class GetAddressName extends MapsEvent {
   List<Object> get props => [latLng];
 }
 
-class CheckLocationPermissionStatusEvent extends MapsEvent{
+class CheckLocationPermissionStatusEvent extends MapsEvent {
   @override
   List<Object?> get props => [];
 }
 
+class ChangeStatusInitialEvent extends MapsEvent {
+  @override
+  List<Object?> get props => [];
+}
 
 class GetUserLocationEvent extends MapsEvent {
   @override

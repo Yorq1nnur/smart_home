@@ -24,7 +24,7 @@ class _MapItemState extends State<MapItem> {
   void initState() {
     Future.microtask(
       () => context.read<MapsBloc>().add(
-            GetUserLocationEvent(),
+            ChangeStatusInitialEvent(),
           ),
     );
     super.initState();

@@ -17,6 +17,15 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
     on<RequestPermission>(_onRequestPermission);
     on<GetUserLocationEvent>(_onGetUserLocation);
     on<CheckLocationPermissionStatusEvent>(_checkStatus);
+    on<ChangeStatusInitialEvent>(_changeToInitial);
+  }
+
+  _changeToInitial(ChangeStatusInitialEvent event, emit) {
+    emit(
+      state.copyWith(
+        isLocationGranted: false,
+      ),
+    );
   }
 
   _checkStatus(CheckLocationPermissionStatusEvent event, emit) async {
