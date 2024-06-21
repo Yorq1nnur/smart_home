@@ -22,9 +22,11 @@ class MapItem extends StatefulWidget {
 class _MapItemState extends State<MapItem> {
   @override
   void initState() {
-    Future.microtask(() => context.read<MapBloc>().add(
-          GetUserLocationEvent(),
-        ));
+    Future.microtask(
+      () => context.read<MapsBloc>().add(
+            GetUserLocation(),
+          ),
+    );
     super.initState();
   }
 
@@ -41,7 +43,7 @@ class _MapItemState extends State<MapItem> {
             height: height / 2.33,
             width: double.infinity,
             color: Colors.red,
-            child: BlocConsumer<MapBloc, MapState>(
+            child: BlocConsumer<MapsBloc, MapsState>(
               listener: (context, state) {},
               builder: (context, state) {
                 return Stack(
@@ -49,8 +51,8 @@ class _MapItemState extends State<MapItem> {
                     GoogleMap(
                       onCameraIdle: () async {
                         if (cameraPosition != null) {
-                          context.read<MapBloc>().add(
-                              GetAddressName(cameraPosition?.target as LatLng));
+                          context.read<MapsBloc>().add(
+                              ChangeCurrentCameraPosition(cameraPosition!));
                         }
                       },
                       onCameraMove: (CameraPosition currentCameraPosition) {
@@ -59,8 +61,9 @@ class _MapItemState extends State<MapItem> {
                             "CURRENT POSITION:${currentCameraPosition.target.longitude}");
                       },
                       mapType: MapType.hybrid,
-                      initialCameraPosition:
-                          CameraPosition(target: state.userLatLng, zoom: 15),
+                      initialCameraPosition: CameraPosition(
+                          target: state.currentCameraPosition!.target,
+                          zoom: 15),
                       onMapCreated: (GoogleMapController createdController) {
                         controller.complete(createdController);
                       },
@@ -77,7 +80,7 @@ class _MapItemState extends State<MapItem> {
                           borderRadius: BorderRadius.circular(20.w),
                         ),
                         child: Text(
-                          state.addressName,
+                          state.currentPlaceName,
                           textAlign: TextAlign.center,
                           style: AppTextStyle.urbanistW700.copyWith(
                             fontSize: 16,
@@ -103,12 +106,14 @@ class _MapItemState extends State<MapItem> {
                         ),
                         child: IconButton(
                           onPressed: () async {
-                            context.read<MapBloc>().add(
-                                  GetUserLocationEvent(),
+                            context.read<MapsBloc>().add(
+                                  GetUserLocation(),
                                 );
                             final controller1 = await controller.future;
-                            LatLng latLng = LatLng(state.userLatLng.latitude,
-                                state.userLatLng.longitude);
+                            LatLng latLng = LatLng(
+                              state.currentCameraPosition!.target.latitude,
+                              state.currentCameraPosition!.target.longitude,
+                            );
                             controller1.animateCamera(
                               CameraUpdate.newCameraPosition(
                                 CameraPosition(

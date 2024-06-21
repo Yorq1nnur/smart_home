@@ -30,7 +30,7 @@ class App extends StatelessWidget {
             create: (_) => MyHomeBloc(),
           ),
           BlocProvider(
-            create: (_) => MapBloc(),
+            create: (_) => MapsBloc(),
           ),
         ],
         child: MaterialApp(

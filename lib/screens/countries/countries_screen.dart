@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home/bloc/country/country_bloc.dart';
+import 'package:smart_home/bloc/map/map_bloc.dart';
+import 'package:smart_home/bloc/map/map_event.dart';
 import 'package:smart_home/screens/countries/widgets/first_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/location_permission_widget.dart';
 import 'package:smart_home/screens/countries/widgets/map_item.dart';
@@ -142,7 +144,9 @@ class _CountriesScreenState extends State<CountriesScreen> {
                             context: context,
                             widget: const LocationPermissionWidget(),
                           ).then((v) {
-                            Navigator.of(context).pop();
+                            context.read<MapsBloc>().add(
+                                  GetUserLocation(),
+                                );
                             setState(() {
                               _activeIndex++;
                             });

@@ -9,7 +9,7 @@ class AppPermissions {
       PermissionStatus status = await Permission.location.request();
       debugPrint("location STATUS AFTER ASK:$status");
       return false;
-    } else  {
+    } else {
       return true;
     }
   }
