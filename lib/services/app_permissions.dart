@@ -3,10 +3,10 @@ import 'package:permission_handler/permission_handler.dart';
 
 class AppPermissions {
   static Future<bool> getLocationPermission() async {
-    PermissionStatus status = await Permission.location.status;
+    PermissionStatus status = await Permission.locationWhenInUse.status;
     debugPrint("location STATUS:$status");
     if (status.isDenied) {
-      PermissionStatus status = await Permission.location.request();
+      PermissionStatus status = await Permission.locationWhenInUse.request();
       debugPrint("location STATUS AFTER ASK:$status");
       return false;
     } else {
@@ -15,7 +15,7 @@ class AppPermissions {
   }
 
   static Future<bool> checkLocationPermission() async {
-    PermissionStatus status = await Permission.location.status;
+    PermissionStatus status = await Permission.locationWhenInUse.status;
     debugPrint("location STATUS:$status");
     if (status.isDenied) {
       debugPrint("location STATUS AFTER ASK:$status");

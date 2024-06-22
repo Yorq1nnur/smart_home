@@ -138,6 +138,9 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
   void _onRequestPermission(
       RequestPermission event, Emitter<MapsState> emit) async {
     LocationPermission permission = await Geolocator.requestPermission();
+    add(
+      GetUserLocationEvent(),
+    );
     emit(state.copyWith(locationPermission: permission));
   }
 }

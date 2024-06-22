@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home/bloc/country/country_bloc.dart';
+import 'package:smart_home/bloc/map/map_bloc.dart';
+import 'package:smart_home/bloc/map/map_event.dart';
 import 'package:smart_home/screens/countries/widgets/first_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/map_item.dart';
 import 'package:smart_home/screens/countries/widgets/second_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/third_page_item.dart';
+import 'package:smart_home/services/app_permissions.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
@@ -150,7 +153,19 @@ class _CountriesScreenState extends State<CountriesScreen> {
                         //     _pageController.jumpToPage(_activeIndex);
                         //   });
                         // } else
-                          if (_activeIndex != 3) {
+                        if (_activeIndex == 2) {
+                          context.read<MapsBloc>().add(
+                                RequestPermission(),
+                              );
+                          // context.read<MapsBloc>().add(
+                          //   GetUserLocationEvent(),
+                          // );
+                          setState(() {
+                            _activeIndex++;
+                          });
+                          _pageController.jumpToPage(_activeIndex);
+                        }
+                        if (_activeIndex != 3) {
                           setState(() {
                             _activeIndex++;
                           });
