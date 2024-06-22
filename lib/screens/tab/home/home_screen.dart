@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_home/bloc/map/map_bloc.dart';
+import 'package:smart_home/bloc/map/map_state.dart';
+import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_images.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,15 +41,109 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         actions: [
-          SvgPicture.asset(
-            AppImages.robot,
+          ZoomTapAnimation(
+            onTap: () {},
+            child: SvgPicture.asset(
+              AppImages.robot,
+            ),
           ),
           20.getW(),
-          SvgPicture.asset(
-            AppImages.alarm,
+          ZoomTapAnimation(
+            onTap: () {},
+            child: SvgPicture.asset(
+              AppImages.alarm,
+            ),
           ),
           24.getW(),
         ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 24.w,
+          vertical: 10.h,
+        ),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.w,
+                vertical: 17.h,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.c405FF2,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        width: 80.w,
+                        height: 45.h,
+                        child: Stack(
+                          children: [
+                            Text(
+                              "20",
+                              style: AppTextStyle.urbanistW900.copyWith(
+                                fontSize: 40.w,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Positioned(
+                              top: 0,
+                              right: 0,
+                              child: SvgPicture.asset(AppImages.gradus),
+                            ),
+                          ],
+                        ),
+                      ),
+                      12.getH(),
+                      BlocBuilder<MapsBloc, MapsState>(
+                        builder: (context, state) {
+                          return SizedBox(
+                            width: 150.w,
+                            child: Text(
+                              state.addressName,
+                              style: AppTextStyle.urbanistW500.copyWith(
+                                fontSize: 12.w,
+                                color: Colors.white,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      5.getH(),
+                      Text(
+                        'Today Cloudly',
+                        style: AppTextStyle.urbanistW500.copyWith(
+                          fontSize: 12.w,
+                          color: Colors.white,
+                        ),
+                      ),
+                      12.getH(),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+
+                            ],
+                          )
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
