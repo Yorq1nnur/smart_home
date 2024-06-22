@@ -3,13 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smart_home/bloc/country/country_bloc.dart';
 import 'package:smart_home/bloc/map/map_bloc.dart';
 import 'package:smart_home/bloc/map/map_event.dart';
+import 'package:smart_home/bloc/map/map_state.dart';
 import 'package:smart_home/screens/countries/widgets/first_page_item.dart';
+import 'package:smart_home/screens/countries/widgets/location_permission_widget.dart';
 import 'package:smart_home/screens/countries/widgets/map_item.dart';
 import 'package:smart_home/screens/countries/widgets/second_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/third_page_item.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
+import '../../utils/utility_functions.dart';
 
 class CountriesScreen extends StatefulWidget {
   const CountriesScreen({super.key});
@@ -128,56 +131,52 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       ),
                     ),
                   ),
-                  Ink(
-                    height: 58.h,
-                    width: width / 2.5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: AppColors.c405FF2,
-                    ),
-                    child: InkWell(
-                      onTap: () async {
-                        // if (_activeIndex == 2) {
-                        //   await UtilityFunctions.showLocationPermissionDialog(
-                        //     context: context,
-                        //     widget: const LocationPermissionWidget(),
-                        //   ).then((v) {
-                        //     if (!context.mounted) return;
-                        //     context.read<MapsBloc>().add(
-                        //           GetUserLocationEvent(),
-                        //         );
-                        //     setState(() {
-                        //       _activeIndex++;
-                        //     });
-                        //     _pageController.jumpToPage(_activeIndex);
-                        //   });
-                        // } else
-                        if (_activeIndex == 2) {
-                          context.read<MapsBloc>().add(
-                                RequestPermission(),
-                              );
-                          context.read<MapsBloc>().add(
-                            GetUserLocationEvent(),
-                          );
+                  BlocListener<MapsBloc, MapsState>(
+                    listener: (context, state) async {
+                      if (state.isLocationGranted) {
+                        context.read<MapsBloc>().add(
+                              GetUserLocationEvent(),
+                            );
+                        context.read<MapsBloc>().add(
+                              ChangeStatusInitialEvent(),
+                            );
+                        await Future.delayed(const Duration(seconds: 1), () {
                           setState(() {
-                            _activeIndex++;
+                            _activeIndex = 3;
                           });
                           _pageController.jumpToPage(_activeIndex);
-                        }
-                        if (_activeIndex != 3) {
-                          setState(() {
-                            _activeIndex++;
-                          });
-                          _pageController.jumpToPage(_activeIndex);
-                        }
-                      },
-                      borderRadius: BorderRadius.circular(30),
-                      child: Center(
-                        child: Text(
-                          'Continue',
-                          style: AppTextStyle.urbanistW700.copyWith(
-                            fontSize: 16.w,
-                            color: Colors.white,
+                        });
+                      }
+                    },
+                    child: Ink(
+                      height: 58.h,
+                      width: width / 2.5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: AppColors.c405FF2,
+                      ),
+                      child: InkWell(
+                        onTap: () async {
+                          if (_activeIndex == 2) {
+                            await UtilityFunctions.showLocationPermissionDialog(
+                              context: context,
+                              widget: const LocationPermissionWidget(),
+                            );
+                          } else if (_activeIndex != 3) {
+                            setState(() {
+                              _activeIndex++;
+                            });
+                            _pageController.jumpToPage(_activeIndex);
+                          }
+                        },
+                        borderRadius: BorderRadius.circular(30),
+                        child: Center(
+                          child: Text(
+                            'Continue',
+                            style: AppTextStyle.urbanistW700.copyWith(
+                              fontSize: 16.w,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),

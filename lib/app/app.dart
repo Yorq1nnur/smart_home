@@ -6,9 +6,8 @@ import 'package:smart_home/bloc/map/map_bloc.dart';
 import 'package:smart_home/bloc/map/map_event.dart';
 import 'package:smart_home/bloc/my_home/my_home_bloc.dart';
 import 'package:smart_home/data/repositories/country_repository.dart';
-
-// import '../screens/routes/routes.dart';
-import 'package:smart_home/screens/countries/countries_screen.dart';
+import '../screens/routes/routes.dart';
+// import 'package:smart_home/screens/countries/countries_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -55,9 +54,9 @@ class App extends StatelessWidget {
               ),
             ),
           ),
-          // initialRoute: RouteNames.splashScreen,
-          // onGenerateRoute: AppRoutes.generateRoute,
-          home: const CountriesScreen(),
+          initialRoute: RouteNames.splashScreen,
+          onGenerateRoute: AppRoutes.generateRoute,
+          // home: const CountriesScreen(),
         ),
       ),
     );

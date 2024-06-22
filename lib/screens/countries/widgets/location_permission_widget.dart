@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:smart_home/bloc/map/map_bloc.dart';
+import 'package:smart_home/bloc/map/map_event.dart';
 import 'package:smart_home/utils/size.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 import '../../../services/app_permissions.dart';
@@ -53,8 +56,12 @@ class LocationPermissionWidget extends StatelessWidget {
             isLocationGranted = await AppPermissions.getLocationPermission();
             if (!context.mounted) return;
             Navigator.of(context).pop();
+            context.read<MapsBloc>().add(
+                  CheckLocationPermissionStatusEvent(),
+                );
             UtilityFunctions.methodPrint(
-                'LOCATIONS GRANTED: $isLocationGranted');
+              'LOCATIONS GRANTED: $isLocationGranted',
+            );
           },
           child: Container(
             height: 58.h,
