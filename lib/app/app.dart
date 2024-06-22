@@ -6,6 +6,7 @@ import 'package:smart_home/bloc/map/map_bloc.dart';
 import 'package:smart_home/bloc/map/map_event.dart';
 import 'package:smart_home/bloc/my_home/my_home_bloc.dart';
 import 'package:smart_home/bloc/rooms/rooms_bloc.dart';
+import 'package:smart_home/bloc/tab_box/tab_box_bloc.dart';
 import 'package:smart_home/data/repositories/country_repository.dart';
 import '../screens/routes/routes.dart';
 // import 'package:smart_home/screens/countries/countries_screen.dart';
@@ -30,8 +31,12 @@ class App extends StatelessWidget {
           ),
           BlocProvider(
             create: (_) => MyHomeBloc(),
-          ),  BlocProvider(
+          ),
+          BlocProvider(
             create: (_) => RoomsBloc(),
+          ),
+          BlocProvider(
+            create: (_) => TabBoxBloc(),
           ),
           BlocProvider(
             create: (_) => MapsBloc()
