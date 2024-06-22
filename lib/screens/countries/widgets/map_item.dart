@@ -1,14 +1,14 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:smart_home/utils/size.dart';
 import '../../../bloc/map/map_bloc.dart';
 import '../../../bloc/map/map_event.dart';
 import '../../../bloc/map/map_state.dart';
 import '../../../utils/app_images.dart';
 import '../../../utils/app_text_style.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:smart_home/utils/size.dart';
 
 class MapItem extends StatefulWidget {
   const MapItem({
@@ -40,7 +40,16 @@ class _MapItemState extends State<MapItem> {
       width: double.infinity,
       color: Colors.red,
       child: BlocConsumer<MapsBloc, MapsState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.isLocationGranted) {
+            context.read<MapsBloc>().add(
+                  GetUserLocationEvent(),
+                );
+            context.read<MapsBloc>().add(
+                  ChangeStatusInitialEvent(),
+                );
+          }
+        },
         builder: (context, state) {
           return Stack(
             children: [
