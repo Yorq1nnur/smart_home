@@ -6,6 +6,7 @@ import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_images.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
+import 'package:smart_home/utils/utility_functions.dart';
 
 class ThirdPageItem extends StatefulWidget {
   const ThirdPageItem({super.key});
@@ -16,6 +17,7 @@ class ThirdPageItem extends StatefulWidget {
 
 class _ThirdPageItemState extends State<ThirdPageItem> {
   List<int> activeIndexes = [-1, -1, -1, -1, -1, -1, -1, -1];
+  List<String> rooms = [];
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +65,22 @@ class _ThirdPageItemState extends State<ThirdPageItem> {
                           : setState(() {
                               activeIndexes[index] = index;
                             });
+                      activeIndexes[index] == index
+                          ? setState(() {
+                              rooms.add(
+                                _rooms[index].roomName,
+                              );
+                            })
+                          : setState(() {
+                              rooms.removeWhere((v) {
+                                return v == _rooms[index].roomName;
+                              });
+                            });
+                      for (String element in rooms) {
+                        UtilityFunctions.methodPrint(
+                          element,
+                        );
+                      }
                     },
                     child: Stack(
                       children: [
