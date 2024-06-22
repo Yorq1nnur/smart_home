@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_home/bloc/map/map_bloc.dart';
 import 'package:smart_home/bloc/map/map_event.dart';
 import 'package:smart_home/bloc/map/map_state.dart';
+import 'package:smart_home/bloc/rooms/rooms_bloc.dart';
+import 'package:smart_home/screens/tab/home/widgets/room_item.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_images.dart';
 import 'package:smart_home/utils/app_text_style.dart';
@@ -25,8 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
             GetUserLocationEvent(),
           ),
     );
+    Future.microtask(
+      () => context.read<RoomsBloc>().add(
+            GetAllRoomsEvent(),
+          ),
+    );
     super.initState();
   }
+
+  int activeIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -200,6 +209,98 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+            ),
+            20.getH(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "All Devices",
+                  style: AppTextStyle.urbanistW700.copyWith(
+                    fontSize: 20.w,
+                  ),
+                ),
+                ZoomTapAnimation(
+                  child: Icon(
+                    Icons.more_vert,
+                    size: 24.w,
+                  ),
+                ),
+              ],
+            ),
+            16.getH(),
+            BlocBuilder<RoomsBloc, RoomsState>(
+              builder: (context, state) {
+                if (state.rooms.isNotEmpty) {
+                  return SizedBox(
+                    height: 42.h,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            right: 6.w,
+                          ),
+                          child: RoomItem(
+                            containerColors: activeIndex == -1
+                                ? AppColors.c405FF2
+                                : Colors.white,
+                            title: 'All Rooms',
+                            onTap: () {
+                              setState(() {
+                                activeIndex = -1;
+                              });
+                            },
+                          ),
+                        ),
+                        ...List.generate(
+                          state.rooms.length,
+                          (index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 6.w,
+                              ),
+                              child: RoomItem(
+                                containerColors: activeIndex == index
+                                    ? AppColors.c405FF2
+                                    : Colors.white,
+                                title: state.rooms[index],
+                                onTap: () {
+                                  setState(() {
+                                    activeIndex = index;
+                                  });
+                                },
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return SizedBox(
+                    height: 42.h,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      children: [
+                        RoomItem(
+                          containerColors: activeIndex == -1
+                              ? AppColors.c405FF2
+                              : Colors.white,
+                          title: 'All Rooms',
+                          onTap: () {
+                            setState(() {
+                              activeIndex = -1;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              },
             ),
           ],
         ),
