@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:smart_home/utils/utility_functions.dart';
 
 class StorageRepository {
   static final StorageRepository instance = StorageRepository._();
@@ -86,7 +87,14 @@ class StorageRepository {
     required List<String> values,
   }) async {
     if (_preference != null) {
-      debugPrint("SAVING LIST:$values");
+      UtilityFunctions.methodPrint(
+        'SAVED LIST STRING! VALUES IS:',
+      );
+      for (String value in values) {
+        UtilityFunctions.methodPrint(
+          value,
+        );
+      }
       _preference!.setStringList(key, values);
     }
   }

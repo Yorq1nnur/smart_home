@@ -4,6 +4,8 @@ import 'package:smart_home/bloc/country/country_bloc.dart';
 import 'package:smart_home/bloc/map/map_bloc.dart';
 import 'package:smart_home/bloc/map/map_event.dart';
 import 'package:smart_home/bloc/map/map_state.dart';
+import 'package:smart_home/bloc/rooms/rooms_bloc.dart';
+import 'package:smart_home/data/local/storage_repository.dart';
 import 'package:smart_home/screens/countries/widgets/first_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/location_permission_widget.dart';
 import 'package:smart_home/screens/countries/widgets/map_item.dart';
@@ -158,10 +160,13 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       child: InkWell(
                         onTap: () async {
                           if (_activeIndex == 2) {
-                            await UtilityFunctions.showLocationPermissionDialog(
-                              context: context,
-                              widget: const LocationPermissionWidget(),
-                            );
+                            await StorageRepository.setListString(key: 'my_rooms', values: context.read<RoomsBloc>().state.rooms,).whenComplete(() async {
+                              await UtilityFunctions.showLocationPermissionDialog(
+                                context: context,
+                                widget: const LocationPermissionWidget(),
+                              );
+                            });
+
                           } else if (_activeIndex != 3) {
                             setState(() {
                               _activeIndex++;

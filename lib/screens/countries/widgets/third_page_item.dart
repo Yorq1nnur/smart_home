@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_home/bloc/rooms/rooms_bloc.dart';
 import 'package:smart_home/data/models/room_model.dart';
 import 'package:smart_home/screens/countries/widgets/page_of_rich_text.dart';
 import 'package:smart_home/utils/app_colors.dart';
@@ -81,6 +83,11 @@ class _ThirdPageItemState extends State<ThirdPageItem> {
                           element,
                         );
                       }
+                      context.read<RoomsBloc>().add(
+                            AddRoomsEvent(
+                              rooms,
+                            ),
+                          );
                     },
                     child: Stack(
                       children: [
