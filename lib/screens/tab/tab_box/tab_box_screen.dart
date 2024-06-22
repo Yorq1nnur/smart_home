@@ -64,36 +64,52 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
                 label: 'Home',
                 icon: SvgPicture.asset(
                   AppImages.unActiveHome,
+                  width: 24.w,
+                  height: 24.h,
                 ),
                 activeIcon: SvgPicture.asset(
                   AppImages.activeHome,
+                  width: 24.w,
+                  height: 24.h,
                 ),
               ),
               BottomNavigationBarItem(
                 label: 'Smart',
                 icon: SvgPicture.asset(
                   AppImages.unActiveSmart,
+                  width: 24.w,
+                  height: 24.h,
                 ),
                 activeIcon: SvgPicture.asset(
                   AppImages.activeSmart,
+                  width: 24.w,
+                  height: 24.h,
                 ),
               ),
               BottomNavigationBarItem(
                 label: 'Reports',
                 icon: SvgPicture.asset(
                   AppImages.unActiveReport,
+                  width: 24.w,
+                  height: 24.h,
                 ),
                 activeIcon: SvgPicture.asset(
                   AppImages.activeReport,
+                  width: 24.w,
+                  height: 24.h,
                 ),
               ),
               BottomNavigationBarItem(
                 label: 'Account',
                 icon: SvgPicture.asset(
                   AppImages.unActiveAccount,
+                  width: 24.w,
+                  height: 24.h,
                 ),
                 activeIcon: SvgPicture.asset(
                   AppImages.activeAccount,
+                  width: 24.w,
+                  height: 24.h,
                 ),
               ),
             ],
