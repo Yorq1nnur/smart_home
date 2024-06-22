@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_home/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:smart_home/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:smart_home/screens/countries/countries_screen.dart';
-import 'package:smart_home/screens/home/home_screen.dart';
+import 'package:smart_home/screens/tab/home/home_screen.dart';
 import 'package:smart_home/screens/on_boarding/on_boarding_screen.dart';
 import 'package:smart_home/screens/welcome/welcome_screen.dart';
 

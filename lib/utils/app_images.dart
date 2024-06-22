@@ -31,4 +31,16 @@ class AppImages {
   static const String studyRoom = 'assets/icons/study_room.svg';
   static const String addNewRoom = 'assets/icons/add_new_room.svg';
   static const String kitchen = 'assets/icons/kitchen.svg';
+
+  ///ACTIVE TAB BOX SVG PICTURES
+  static const String activeAccount = 'assets/icons/active_account.svg';
+  static const String activeHome = 'assets/icons/active_home.svg';
+  static const String activeReport = 'assets/icons/active_report.svg';
+  static const String activeSmart = 'assets/icons/active_smart.svg';
+
+  ///UN ACTIVE TAB BOX SVG PICTURES
+  static const String unActiveAccount = 'assets/icons/un_active_account.svg';
+  static const String unActiveHome = 'assets/icons/un_active_home.svg';
+  static const String unActiveReport = 'assets/icons/un_active_report.svg';
+  static const String unActiveSmart = 'assets/icons/un_active_smart.svg';
 }
