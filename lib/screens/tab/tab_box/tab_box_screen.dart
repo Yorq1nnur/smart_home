@@ -62,6 +62,7 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
             items: [
               BottomNavigationBarItem(
                 label: 'Home',
+                tooltip: "Home screen",
                 icon: SvgPicture.asset(
                   AppImages.unActiveHome,
                   width: 24.w,
@@ -75,6 +76,7 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
               ),
               BottomNavigationBarItem(
                 label: 'Smart',
+                tooltip: "Smart screen",
                 icon: SvgPicture.asset(
                   AppImages.unActiveSmart,
                   width: 24.w,
@@ -88,6 +90,7 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
               ),
               BottomNavigationBarItem(
                 label: 'Reports',
+                tooltip: "Reports screen",
                 icon: SvgPicture.asset(
                   AppImages.unActiveReport,
                   width: 24.w,
@@ -101,6 +104,7 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
               ),
               BottomNavigationBarItem(
                 label: 'Account',
+                tooltip: "Account screen",
                 icon: SvgPicture.asset(
                   AppImages.unActiveAccount,
                   width: 24.w,

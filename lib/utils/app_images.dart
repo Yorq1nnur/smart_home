@@ -1,6 +1,7 @@
 class AppImages {
   ///.png
   static const String smartTify = 'assets/images/smartify.png';
+  static const String weather = 'assets/images/weather.png';
   static const String letsSmartTify = 'assets/images/lets_smartify.png';
   static const String firstOnBoarding = 'assets/images/first_onboarding.png';
   static const String secondOnBoarding = 'assets/images/second_onboarding.png';
@@ -11,6 +12,9 @@ class AppImages {
   static const String gradus = 'assets/icons/gradus.svg';
   static const String cancel = 'assets/icons/cancel.svg';
   static const String wellDone = 'assets/icons/well_done.svg';
+  static const String plant = 'assets/icons/plant.svg';
+  static const String humidity = 'assets/icons/humidity.svg';
+  static const String speed = 'assets/icons/speed.svg';
   static const String alarm = 'assets/icons/alarm.svg';
   static const String robot = 'assets/icons/robot.svg';
   static const String email = 'assets/icons/email.svg';

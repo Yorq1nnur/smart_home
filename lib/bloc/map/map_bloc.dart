@@ -68,6 +68,11 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
     UtilityFunctions.methodPrint("LATITUDE:${position.latitude}");
     UtilityFunctions.methodPrint("SPEED:${position.speed}");
     UtilityFunctions.methodPrint("ALTITUDE:${position.altitude}");
+    add(
+      GetAddressName(
+        state.userLatLng,
+      ),
+    );
   }
 
   void _onGetAddressName(GetAddressName event, Emitter<MapsState> emit) async {
