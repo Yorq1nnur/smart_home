@@ -11,6 +11,7 @@ import 'package:smart_home/screens/countries/widgets/location_permission_widget.
 import 'package:smart_home/screens/countries/widgets/map_item.dart';
 import 'package:smart_home/screens/countries/widgets/second_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/third_page_item.dart';
+import 'package:smart_home/screens/routes/routes.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
@@ -160,18 +161,32 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       child: InkWell(
                         onTap: () async {
                           if (_activeIndex == 2) {
-                            await StorageRepository.setListString(key: 'my_rooms', values: context.read<RoomsBloc>().state.rooms,).whenComplete(() async {
-                              await UtilityFunctions.showLocationPermissionDialog(
+                            await StorageRepository.setListString(
+                              key: 'my_rooms',
+                              values: context.read<RoomsBloc>().state.rooms,
+                            ).whenComplete(() async {
+                              await UtilityFunctions
+                                  .showLocationPermissionDialog(
                                 context: context,
                                 widget: const LocationPermissionWidget(),
                               );
                             });
-
                           } else if (_activeIndex != 3) {
                             setState(() {
                               _activeIndex++;
                             });
                             _pageController.jumpToPage(_activeIndex);
+                          } else {
+                            await StorageRepository.setBool(
+                              key: 'is_auth',
+                              value: true,
+                            ).whenComplete(() {
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                RouteNames.homeScreen,
+                                (route) => false,
+                              );
+                            });
                           }
                         },
                         borderRadius: BorderRadius.circular(30),
