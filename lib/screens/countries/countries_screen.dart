@@ -7,7 +7,6 @@ import 'package:smart_home/screens/countries/widgets/first_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/map_item.dart';
 import 'package:smart_home/screens/countries/widgets/second_page_item.dart';
 import 'package:smart_home/screens/countries/widgets/third_page_item.dart';
-import 'package:smart_home/services/app_permissions.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
@@ -157,9 +156,9 @@ class _CountriesScreenState extends State<CountriesScreen> {
                           context.read<MapsBloc>().add(
                                 RequestPermission(),
                               );
-                          // context.read<MapsBloc>().add(
-                          //   GetUserLocationEvent(),
-                          // );
+                          context.read<MapsBloc>().add(
+                            GetUserLocationEvent(),
+                          );
                           setState(() {
                             _activeIndex++;
                           });
