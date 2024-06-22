@@ -183,7 +183,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                             ).whenComplete(() {
                               Navigator.pushNamedAndRemoveUntil(
                                 context,
-                                RouteNames.homeScreen,
+                                RouteNames.tabBoxScreen,
                                 (route) => false,
                               );
                             });
