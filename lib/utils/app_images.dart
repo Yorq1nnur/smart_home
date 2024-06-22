@@ -8,9 +8,12 @@ class AppImages {
 
   ///.svg
   static const String apple = 'assets/icons/apple.svg';
+  static const String alarm = 'assets/icons/alarm.svg';
+  static const String robot = 'assets/icons/robot.svg';
   static const String email = 'assets/icons/email.svg';
   static const String lock = 'assets/icons/lock.svg';
   static const String facebook = 'assets/icons/facebook.svg';
+  static const String arrowDown = 'assets/icons/arrow_down.svg';
   static const String google = 'assets/icons/google.svg';
   static const String gps = 'assets/icons/gps.svg';
   static const String twitter = 'assets/icons/twitter.svg';
