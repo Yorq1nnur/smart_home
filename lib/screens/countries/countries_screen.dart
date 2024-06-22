@@ -177,16 +177,11 @@ class _CountriesScreenState extends State<CountriesScreen> {
                             });
                             _pageController.jumpToPage(_activeIndex);
                           } else {
-                            await StorageRepository.setBool(
-                              key: 'is_auth',
-                              value: true,
-                            ).whenComplete(() {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                RouteNames.tabBoxScreen,
-                                (route) => false,
-                              );
-                            });
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              RouteNames.wellDoneScreen,
+                              (predicate) => false,
+                            );
                           }
                         },
                         borderRadius: BorderRadius.circular(30),

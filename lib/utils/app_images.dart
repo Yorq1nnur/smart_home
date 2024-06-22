@@ -8,6 +8,8 @@ class AppImages {
 
   ///.svg
   static const String apple = 'assets/icons/apple.svg';
+  static const String cancel = 'assets/icons/cancel.svg';
+  static const String wellDone = 'assets/icons/well_done.svg';
   static const String alarm = 'assets/icons/alarm.svg';
   static const String robot = 'assets/icons/robot.svg';
   static const String email = 'assets/icons/email.svg';

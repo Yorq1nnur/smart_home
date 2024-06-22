@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'package:smart_home/screens/countries/widgets/page_of_rich_text.dart';
+import 'package:smart_home/utils/app_colors.dart';
+
 import '../../../bloc/map/map_bloc.dart';
 import '../../../bloc/map/map_event.dart';
 import '../../../bloc/map/map_state.dart';
@@ -21,127 +24,151 @@ class MapItem extends StatefulWidget {
 
 class _MapItemState extends State<MapItem> {
   @override
-  void initState() {
-    Future.microtask(
-      () => context.read<MapsBloc>().add(
-            GetUserLocationEvent(),
-          ),
-    );
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     CameraPosition? cameraPosition;
     final Completer<GoogleMapController> controller =
         Completer<GoogleMapController>();
-    return Container(
-      height: height / 2.33,
-      width: double.infinity,
-      color: Colors.red,
-      child: BlocConsumer<MapsBloc, MapsState>(
-        listener: (context, state) {
-          if (state.isLocationGranted) {
-            context.read<MapsBloc>().add(
-                  GetUserLocationEvent(),
-                );
-            context.read<MapsBloc>().add(
-                  ChangeStatusInitialEvent(),
-                );
-          }
-        },
-        builder: (context, state) {
-          return Stack(
-            children: [
-              GoogleMap(
-                onCameraIdle: () async {
-                  if (cameraPosition != null) {
-                    context.read<MapsBloc>().add(
-                          GetAddressName(
-                            cameraPosition?.target as LatLng,
-                          ),
-                        );
-                  }
-                },
-                onCameraMove: (CameraPosition currentCameraPosition) {
-                  cameraPosition = currentCameraPosition;
-                  debugPrint(
-                      "CURRENT POSITION:${currentCameraPosition.target.longitude}");
-                },
-                mapType: MapType.hybrid,
-                initialCameraPosition: CameraPosition(
-                  target: state.userLatLng,
-                  zoom: 15,
-                ),
-                onMapCreated: (GoogleMapController createdController) {
-                  controller.complete(createdController);
-                },
-              ),
-              Positioned(
-                top: 10,
-                right: 0,
-                left: 0,
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white70,
-                    borderRadius: BorderRadius.circular(20.w),
-                  ),
-                  child: Text(
-                    state.addressName,
-                    textAlign: TextAlign.center,
-                    style: AppTextStyle.urbanistW700.copyWith(
-                      fontSize: 16,
-                      color: Colors.black,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          8.getH(),
+          const Center(
+            child: PageOfRichText(
+              firstText: 'Set Home ',
+              secondText: 'Location',
+              thirdText: '',
+            ),
+          ),
+          8.getH(),
+          Text(
+            "Pin your home's location to enhance location-based features. Privacy is our priority.",
+            style: AppTextStyle.urbanistW400.copyWith(
+              fontSize: 18.w,
+              color: AppColors.c616161,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          24.getH(),
+          Container(
+            height: height / 2,
+            width: double.infinity,
+            color: Colors.red,
+            child: BlocConsumer<MapsBloc, MapsState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return Stack(
+                  children: [
+                    GoogleMap(
+                      onCameraIdle: () async {
+                        if (cameraPosition != null) {
+                          context.read<MapsBloc>().add(
+                                GetAddressName(
+                                  cameraPosition?.target as LatLng,
+                                ),
+                              );
+                        }
+                      },
+                      onCameraMove: (CameraPosition currentCameraPosition) {
+                        cameraPosition = currentCameraPosition;
+                        debugPrint(
+                            "CURRENT POSITION:${currentCameraPosition.target.longitude}");
+                      },
+                      mapType: MapType.hybrid,
+                      initialCameraPosition: CameraPosition(
+                        target: state.userLatLng,
+                        zoom: 15,
+                      ),
+                      onMapCreated: (GoogleMapController createdController) {
+                        controller.complete(createdController);
+                      },
                     ),
-                  ),
-                ),
-              ),
-              Align(
-                child: SvgPicture.asset(
-                  AppImages.gps,
-                  width: 50,
-                  height: 50,
-                ),
-              ),
-              Positioned(
-                left: 20, // Adjust as needed
-                bottom: 20, // Adjust as needed
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                  ),
-                  child: IconButton(
-                    onPressed: () async {
-                      context.read<MapsBloc>().add(
-                            GetUserLocationEvent(),
-                          );
-                      final controller1 = await controller.future;
-                      LatLng latLng = LatLng(
-                        state.userLatLng.latitude,
-                        state.userLatLng.longitude,
-                      );
-                      controller1.animateCamera(
-                        CameraUpdate.newCameraPosition(
-                          CameraPosition(
-                            target: latLng,
-                            zoom: 15,
+                    Align(
+                      child: SvgPicture.asset(
+                        AppImages.gps,
+                        width: 50,
+                        height: 50,
+                      ),
+                    ),
+                    Positioned(
+                      left: 20, // Adjust as needed
+                      bottom: 20, // Adjust as needed
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        child: IconButton(
+                          onPressed: () async {
+                            context.read<MapsBloc>().add(
+                                  GetUserLocationEvent(),
+                                );
+                            final controller1 = await controller.future;
+                            LatLng latLng = LatLng(
+                              state.userLatLng.latitude,
+                              state.userLatLng.longitude,
+                            );
+                            controller1.animateCamera(
+                              CameraUpdate.newCameraPosition(
+                                CameraPosition(
+                                  target: latLng,
+                                  zoom: 15,
+                                ),
+                              ),
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.my_location,
+                            color: Colors.orange,
                           ),
                         ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.my_location,
-                      color: Colors.orange,
+                      ),
                     ),
-                  ),
+                  ],
+                );
+              },
+            ),
+          ),
+          24.getH(),
+          Text(
+            'Address Details',
+            style: AppTextStyle.urbanistW600.copyWith(
+              fontSize: 18.w,
+            ),
+          ),
+          8.getH(),
+          BlocBuilder<MapsBloc, MapsState>(
+            builder: (context, state) {
+              return Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(
+                  vertical: 18.h,
+                  horizontal: 20.w,
                 ),
-              ),
-            ],
-          );
-        },
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: AppColors.cFAFAFA,
+                    width: 1.w
+                  ),
+                  color: AppColors.cFAFAFA,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  state.addressName,
+                  textAlign: TextAlign.start,
+                  style: AppTextStyle.urbanistW700.copyWith(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                  maxLines: null,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

@@ -6,6 +6,7 @@ import 'package:smart_home/screens/tab/home/home_screen.dart';
 import 'package:smart_home/screens/on_boarding/on_boarding_screen.dart';
 import 'package:smart_home/screens/tab/tab_box/tab_box_screen.dart';
 import 'package:smart_home/screens/welcome/welcome_screen.dart';
+import 'package:smart_home/screens/well_done/well_done_screen.dart';
 import '../splash/splash_screen.dart';
 
 class AppRoutes {
@@ -45,6 +46,10 @@ class AppRoutes {
         return navigate(
           const TabBoxScreen(),
         );
+      case RouteNames.wellDoneScreen:
+        return navigate(
+          const WellDoneScreen(),
+        );
       default:
         return navigate(
           const Scaffold(
@@ -74,4 +79,5 @@ class RouteNames {
   static const String homeScreen = "/home_route";
   static const String countriesScreen = "/countries_route";
   static const String tabBoxScreen = "/tab_box_route";
+  static const String wellDoneScreen = "/well_done_route";
 }
