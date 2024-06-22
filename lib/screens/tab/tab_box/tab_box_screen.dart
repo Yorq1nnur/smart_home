@@ -36,6 +36,13 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
         return _screens[state.activeIndex];
       }),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: (v) {
+          context.read<TabBoxBloc>().add(
+                ChangeActiveIndexEvent(
+                  v,
+                ),
+              );
+        },
         items: [
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -43,6 +50,30 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
             ),
             activeIcon: SvgPicture.asset(
               AppImages.activeHome,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              AppImages.unActiveSmart,
+            ),
+            activeIcon: SvgPicture.asset(
+              AppImages.activeSmart,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              AppImages.unActiveReport,
+            ),
+            activeIcon: SvgPicture.asset(
+              AppImages.activeReport,
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              AppImages.unActiveAccount,
+            ),
+            activeIcon: SvgPicture.asset(
+              AppImages.activeAccount,
             ),
           ),
         ],

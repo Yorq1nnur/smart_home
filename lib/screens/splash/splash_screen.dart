@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       if (isAuth) {
         Navigator.pushNamedAndRemoveUntil(
-            context, RouteNames.homeScreen, (route) => false);
+            context, RouteNames.tabBoxScreen, (route) => false);
       } else {
         !isNewUser
             ? Navigator.pushReplacementNamed(

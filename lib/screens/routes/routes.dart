@@ -4,8 +4,8 @@ import 'package:smart_home/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:smart_home/screens/countries/countries_screen.dart';
 import 'package:smart_home/screens/tab/home/home_screen.dart';
 import 'package:smart_home/screens/on_boarding/on_boarding_screen.dart';
+import 'package:smart_home/screens/tab/tab_box/tab_box_screen.dart';
 import 'package:smart_home/screens/welcome/welcome_screen.dart';
-
 import '../splash/splash_screen.dart';
 
 class AppRoutes {
@@ -41,6 +41,10 @@ class AppRoutes {
         return navigate(
           const CountriesScreen(),
         );
+      case RouteNames.tabBoxScreen:
+        return navigate(
+          const TabBoxScreen(),
+        );
       default:
         return navigate(
           const Scaffold(
@@ -69,4 +73,5 @@ class RouteNames {
   static const String signInScreen = "/sign_in_route";
   static const String homeScreen = "/home_route";
   static const String countriesScreen = "/countries_route";
+  static const String tabBoxScreen = "/tab_box_route";
 }
