@@ -7,7 +7,8 @@ class RoomItem extends StatelessWidget {
   const RoomItem({
     super.key,
     required this.containerColors,
-    required this.title, required this.onTap,
+    required this.title,
+    required this.onTap,
   });
 
   final Color containerColors;

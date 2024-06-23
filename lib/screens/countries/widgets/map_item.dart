@@ -148,10 +148,7 @@ class _MapItemState extends State<MapItem> {
                   horizontal: 20.w,
                 ),
                 decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppColors.cFAFAFA,
-                    width: 1.w
-                  ),
+                  border: Border.all(color: AppColors.cFAFAFA, width: 1.w),
                   color: AppColors.cFAFAFA,
                   borderRadius: BorderRadius.circular(10),
                 ),
