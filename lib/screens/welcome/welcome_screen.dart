@@ -48,7 +48,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     height: 50.h,
                   ),
                   Text(
-                    "Let's Get Started!!",
+                    "Qani boshladik!!!",
                     style: AppTextStyle.urbanistW700.copyWith(
                       fontSize: 32.w,
                       color: AppColors.c212121,
@@ -58,7 +58,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     height: 12.h,
                   ),
                   Text(
-                    "Let's dive in into your account",
+                    "Keling, hisobingizga kiraylik",
                     style: AppTextStyle.urbanistW400.copyWith(
                       fontSize: 18.w,
                       color: AppColors.c616161,
@@ -82,7 +82,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     onTap: () {
                       Navigator.pushNamed(context, RouteNames.signUpScreen);
                     },
-                    title: "Sign up",
+                    title: "Ro'yxatdan o'tish",
                   ),
                   SizedBox(
                     height: 20.h,
@@ -91,7 +91,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     onTap: () {
                       Navigator.pushNamed(context, RouteNames.signInScreen);
                     },
-                    title: "Sign in",
+                    title: "Tizimga kirish",
                     color: AppColors.cF0F2FE,
                     textColor: AppColors.c405FF2,
                   ),
@@ -104,7 +104,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          'Privacy Policy',
+                          'Maxfiylik siyosati',
                           style: AppTextStyle.urbanistW400.copyWith(
                             fontSize: 14.w,
                             color: AppColors.c616161,
@@ -117,7 +117,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       TextButton(
                         onPressed: () {},
                         child: Text(
-                          'Terms of Service',
+                          "Xizmat ko'rsatish shartlari",
                           style: AppTextStyle.urbanistW400.copyWith(
                             fontSize: 14.w,
                             color: AppColors.c616161,

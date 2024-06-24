@@ -27,13 +27,13 @@ class _ThirdPageItemState extends State<ThirdPageItem> {
       children: [
         12.getH(),
         const PageOfRichText(
-          firstText: 'Add ',
-          secondText: 'Rooms',
+          firstText: 'Xonalarni ',
+          secondText: "Qo'shish",
           thirdText: '',
         ),
         8.getH(),
         Text(
-          "Select the rooms in your house. Don't worry, you can always add more later.",
+          "Uyingizdagi xonalarni tanlang. Xavotir olmang, har doim keyinroq qo'shishingiz mumkin.",
           style: AppTextStyle.urbanistW400.copyWith(
             fontSize: 18.w,
             color: AppColors.c616161,
@@ -43,7 +43,7 @@ class _ThirdPageItemState extends State<ThirdPageItem> {
         20.getH(),
         Wrap(
           children: List.generate(
-            _rooms.length,
+            myRooms.length,
             (index) {
               return Padding(
                 padding: EdgeInsets.symmetric(
@@ -70,12 +70,12 @@ class _ThirdPageItemState extends State<ThirdPageItem> {
                       activeIndexes[index] == index
                           ? setState(() {
                               rooms.add(
-                                _rooms[index].roomName,
+                                myRooms[index].roomName,
                               );
                             })
                           : setState(() {
                               rooms.removeWhere((v) {
-                                return v == _rooms[index].roomName;
+                                return v == myRooms[index].roomName;
                               });
                             });
                       for (String element in rooms) {
@@ -100,11 +100,11 @@ class _ThirdPageItemState extends State<ThirdPageItem> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SvgPicture.asset(
-                                _rooms[index].roomImage,
+                                myRooms[index].roomImage,
                               ),
                               8.getH(),
                               Text(
-                                _rooms[index].roomName,
+                                myRooms[index].roomName,
                               ),
                             ],
                           ),
@@ -132,13 +132,3 @@ class _ThirdPageItemState extends State<ThirdPageItem> {
   }
 }
 
-final List<RoomModel> _rooms = [
-  RoomModel(roomImage: AppImages.livingRoom, roomName: 'Living Room'),
-  RoomModel(roomImage: AppImages.badRoom, roomName: 'Badroom'),
-  RoomModel(roomImage: AppImages.bathroom, roomName: 'Bathroom'),
-  RoomModel(roomImage: AppImages.kitchen, roomName: 'Kitchen'),
-  RoomModel(roomImage: AppImages.studyRoom, roomName: 'Study Room'),
-  RoomModel(roomImage: AppImages.diningRoom, roomName: 'Dining Room'),
-  RoomModel(roomImage: AppImages.backyard, roomName: 'Backyard'),
-  RoomModel(roomImage: AppImages.addNewRoom, roomName: 'Add Room'),
-];

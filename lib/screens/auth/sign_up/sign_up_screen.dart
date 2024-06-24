@@ -61,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Join Smartify Today 👤",
+              "Bugun Smartifyga qo'shiling 👤",
               style: AppTextStyle.urbanistW700.copyWith(
                 fontSize: 32.w,
                 color: AppColors.c212121,
@@ -69,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             10.getH(),
             Text(
-              "Join Smartify, Your Gateway to Smart Living.",
+              "Sizning Smart Living Gateway Smartify-ga qo'shiling.",
               style: AppTextStyle.urbanistW400.copyWith(
                 fontSize: 18.w,
                 color: AppColors.c616161,
@@ -106,7 +106,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   16.getH(),
                   Text(
-                    'Password',
+                    'Parol',
                     style: AppTextStyle.urbanistW600.copyWith(
                       fontSize: 18.w,
                     ),
@@ -126,7 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       });
                     },
                     prefixIcon: AppImages.email,
-                    hintText: 'Password',
+                    hintText: 'Parol',
                   ),
                 ],
               ),
@@ -165,7 +165,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 16.getW(),
                 Text(
-                  'I agree to Smartify ',
+                  'Men Smartify ',
                   style: AppTextStyle.urbanistW500
                     ..copyWith(
                       fontSize: 18.w,
@@ -173,7 +173,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 ZoomTapAnimation(
                   child: Text(
-                    'Terms & Conditions',
+                    'qoida va shartlari',
                     style: AppTextStyle.urbanistW500.copyWith(
                       fontSize: 18.w,
                       color: AppColors.c405FF2,
@@ -181,7 +181,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 Text(
-                  '.',
+                  'ga roziman.',
                   style: AppTextStyle.urbanistW500
                     ..copyWith(
                       fontSize: 18.w,
@@ -194,7 +194,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Already have an account?',
+                  'Allaqachon hisobingiz bormi?',
                   style: AppTextStyle.urbanistW400.copyWith(
                     fontSize: 18.w,
                   ),
@@ -208,7 +208,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     );
                   },
                   child: Text(
-                    'Sign in',
+                    'Tizimga kirish',
                     style: AppTextStyle.urbanistW600.copyWith(
                       fontSize: 18.w,
                       color: AppColors.c405FF2,
@@ -247,22 +247,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
             10.getH(),
             ContinueButton(
               imagePath: AppImages.google,
-              title: 'Continue with Google',
+              title: 'Google bilan davom etish',
               onTap: () {},
             ),
             ContinueButton(
               imagePath: AppImages.apple,
-              title: 'Continue with Apple',
+              title: 'Apple bilan davom etish',
               onTap: () {},
             ),
             ContinueButton(
               imagePath: AppImages.facebook,
-              title: 'Continue with Facebook',
+              title: 'Facebook bilan davom etish',
               onTap: () {},
             ),
             ContinueButton(
               imagePath: AppImages.twitter,
-              title: 'Continue with Twitter',
+              title: 'Twitter bilan davom etish',
               onTap: () {},
             ),
             14.getH(),
@@ -272,7 +272,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   if (!_formKey.currentState!.validate()) {
                     UtilityFunctions.showSnackBar(
                       context: context,
-                      message: 'PLEASE, INPUT ALL DATA!!!',
+                      message: "ILTIMOS, BARCHA MA'LUMOTLARNI TO'LDIRING!!!",
                       backgroundColor: Colors.red,
                     );
                   } else {
@@ -295,12 +295,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 } else {
                   UtilityFunctions.showSnackBar(
                     context: context,
-                    message: 'Please accept the terms of use!!!',
+                    message: 'Iltimos, foydalanish shartlarini qabul qiling!!!',
                     backgroundColor: Colors.red,
                   );
                 }
               },
-              title: 'Sign up',
+              title: "Ro'yxatdan o'tish",
             ),
             26.getH(),
           ],

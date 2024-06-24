@@ -98,7 +98,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                   },
                                   child: Center(
                                     child: Text(
-                                      'Skip',
+                                      'Oʻtkazib yuborish',
                                       style: AppTextStyle.urbanistW700.copyWith(
                                         fontSize: 16.w,
                                         color: AppColors.c405FF2,
@@ -128,7 +128,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                   },
                                   child: Center(
                                     child: Text(
-                                      'Continue',
+                                      'Davom etish',
                                       style: AppTextStyle.urbanistW700.copyWith(
                                         fontSize: 16.w,
                                         color: Colors.white,
@@ -148,7 +148,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                     context, RouteNames.welcomeScreen);
                               });
                             },
-                            title: "Let's Get Started",
+                            title: "Qani boshladik",
                           ),
                   ],
                 ),

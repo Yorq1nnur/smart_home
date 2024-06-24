@@ -125,7 +125,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                       borderRadius: BorderRadius.circular(30),
                       child: Center(
                         child: Text(
-                          'Skip',
+                          "O'tkazib yuborish",
                           style: AppTextStyle.urbanistW700.copyWith(
                             fontSize: 16.w,
                             color: AppColors.c405FF2,
@@ -187,7 +187,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                         borderRadius: BorderRadius.circular(30),
                         child: Center(
                           child: Text(
-                            'Continue',
+                            'Davom etish',
                             style: AppTextStyle.urbanistW700.copyWith(
                               fontSize: 16.w,
                               color: Colors.white,

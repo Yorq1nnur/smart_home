@@ -15,22 +15,22 @@ class ButtonsData {
 
 List<ButtonsData> buttonsData = [
   ButtonsData(
-    title: 'Continue with Google',
+    title: 'Google bilan davom etish',
     imagePath: AppImages.google,
     onTap: () {},
   ),
   ButtonsData(
-    title: 'Continue with Apple',
+    title: 'Apple bilan davom etish',
     imagePath: AppImages.apple,
     onTap: () {},
   ),
   ButtonsData(
-    title: 'Continue with Facebook',
+    title: 'Facebook bilan davom etish',
     imagePath: AppImages.facebook,
     onTap: () {},
   ),
   ButtonsData(
-    title: 'Continue with Twitter',
+    title: 'Twitter bilan davom etish',
     imagePath: AppImages.twitter,
     onTap: () {},
   ),

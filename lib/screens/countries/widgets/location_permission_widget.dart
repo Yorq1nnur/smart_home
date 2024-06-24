@@ -38,14 +38,14 @@ class LocationPermissionWidget extends StatelessWidget {
         ),
         32.getH(),
         Text(
-          "Enable Location",
+          "Joylashuvni yoqish",
           style: AppTextStyle.urbanistW700.copyWith(
             fontSize: 24.w,
           ),
         ),
         16.getH(),
         Text(
-          'Please activate the location feature, so we can find your home address.',
+          'Uy manzilingizni topishimiz uchun joylashuv funksiyasini faollashtiring.',
           style: AppTextStyle.urbanistW400.copyWith(
             fontSize: 16.w,
           ),
@@ -73,7 +73,7 @@ class LocationPermissionWidget extends StatelessWidget {
             child: Center(
               child: Center(
                 child: Text(
-                  'Enable Location',
+                  'Joylashuvni yoqish',
                   style: AppTextStyle.urbanistW700.copyWith(
                     fontSize: 16.w,
                     color: Colors.white,
@@ -97,7 +97,7 @@ class LocationPermissionWidget extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                'Not Now',
+                'Hozir emas',
                 style: AppTextStyle.urbanistW700.copyWith(
                   fontSize: 16.w,
                   color: AppColors.c405FF2,

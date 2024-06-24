@@ -38,13 +38,13 @@ class _FirstPageItemState extends State<FirstPageItem> {
       children: [
         12.getH(),
         const PageOfRichText(
-          firstText: 'Select ',
-          secondText: 'Country ',
-          thirdText: 'Origin ',
+          firstText: "O'z ",
+          secondText: 'Davlatingizni ',
+          thirdText: 'Tanlang',
         ),
         8.getH(),
         Text(
-          "Let's start by selecting the country where your smart haven resides.",
+          "Keling, aqlli uyingiz joylashgan mamlakatni tanlashdan boshlaylik.",
           style: AppTextStyle.urbanistW400.copyWith(
             fontSize: 18.w,
             color: AppColors.c616161,
@@ -91,7 +91,7 @@ class _FirstPageItemState extends State<FirstPageItem> {
                     width: 1.w,
                   ),
                 ),
-                hintText: 'Search Country',
+                hintText: 'Mamlakatni qidirish',
                 prefixIcon: Padding(
                   padding: EdgeInsets.only(
                     left: 20.w,

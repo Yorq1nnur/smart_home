@@ -14,22 +14,22 @@ class OnBoardingData {
 
 final List<OnBoardingData> onBoardingData = [
   OnBoardingData(
-    title: 'Empower Your Home,\nSimplify Your Life',
+    title: 'Uyingizga kuch bering,\nHayotingizni soddalashtiring',
     subTitle:
-        """Transform your living space into a smarter, more connected home with Smartify.
-All at your fingertips.""",
+        """Smartify bilan yashash joyingizni yanada aqlliroq va aloqador uyga aylantiring.
+Hammasi sizning qo'lingizda.""",
     imagePath: AppImages.firstOnBoarding,
   ),
   OnBoardingData(
-    title: 'Effortless Control,\nAutomate, & Secure',
+    title: 'Qiyinchiliksiz nazorat,\nAvtomatlashtirish va xavfsiz',
     subTitle:
-        """Smartify empowers you to control your devices, & automate your routines. Embrace a world where your home adapts to your needs""",
+        """Smartify sizga qurilmalaringizni boshqarish va tartiblaringizni avtomatlashtirish imkonini beradi. Uyingiz ehtiyojlaringizga mos keladigan dunyoni qabul qiling""",
     imagePath: AppImages.secondOnBoarding,
   ),
   OnBoardingData(
-    title: 'Efficiency that Saves, Comfort that Lasts.',
+    title: 'Tejaydigan samaradorlik, uzoq davom etadigan qulaylik.',
     subTitle:
-        """Take control of your home's energy usage, set preferences, and enjoy a space that adapts to your needs while saving power.""",
+        """Uyingizning energiya sarfini nazorat qiling, afzalliklarni belgilang va quvvatni tejash bilan birga ehtiyojlaringizga mos keladigan joydan zavqlaning.""",
     imagePath: AppImages.thirdOnBoarding,
   ),
 ];

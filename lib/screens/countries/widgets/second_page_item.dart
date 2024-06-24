@@ -22,7 +22,7 @@ class _SecondPageItemState extends State<SecondPageItem> {
 
   @override
   void initState() {
-    textEditingController.text = 'My Home';
+    textEditingController.text = 'Mening Uyim';
     super.initState();
   }
 
@@ -33,12 +33,12 @@ class _SecondPageItemState extends State<SecondPageItem> {
       children: [
         12.getH(),
         const PageOfRichText(
-          firstText: 'Add ',
-          secondText: 'Home ',
-          thirdText: 'Name',
+          firstText: 'Uyingiz ',
+          secondText: 'Nomini ',
+          thirdText: "Qo'shing",
         ),
         Text(
-          'Every smart home needs a name. What would you like to call yours?',
+          "Har bir aqlli uyga nom kerak. O'zingiznikini nima deb atashni xohlaysiz?",
           style: AppTextStyle.urbanistW400.copyWith(
             fontSize: 18.w,
             color: AppColors.c616161,
