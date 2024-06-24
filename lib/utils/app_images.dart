@@ -9,6 +9,8 @@ class AppImages {
 
   ///.svg
   static const String apple = 'assets/icons/apple.svg';
+  static const String microphone = 'assets/icons/microphone.svg';
+  static const String noDevices = 'assets/icons/no_devices.svg';
   static const String gradus = 'assets/icons/gradus.svg';
   static const String cancel = 'assets/icons/cancel.svg';
   static const String wellDone = 'assets/icons/well_done.svg';

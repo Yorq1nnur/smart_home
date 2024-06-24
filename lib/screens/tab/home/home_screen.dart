@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_home/bloc/map/map_bloc.dart';
 import 'package:smart_home/bloc/map/map_event.dart';
-import 'package:smart_home/bloc/map/map_state.dart';
 import 'package:smart_home/bloc/rooms/rooms_bloc.dart';
 import 'package:smart_home/screens/tab/home/widgets/room_item.dart';
+import 'package:smart_home/screens/tab/home/widgets/weather_widget.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_images.dart';
 import 'package:smart_home/utils/app_text_style.dart';
@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  int activeIndex = -1;
+  int _activeIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -84,131 +84,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Column(
           children: [
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.w,
-                vertical: 17.h,
-              ),
-              decoration: BoxDecoration(
-                color: AppColors.c405FF2,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        width: 80.w,
-                        height: 45.h,
-                        child: Stack(
-                          children: [
-                            Text(
-                              "20",
-                              style: AppTextStyle.urbanistW900.copyWith(
-                                fontSize: 40.w,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Positioned(
-                              top: 0,
-                              right: 0,
-                              child: SvgPicture.asset(AppImages.gradus),
-                            ),
-                          ],
-                        ),
-                      ),
-                      12.getH(),
-                      BlocBuilder<MapsBloc, MapsState>(
-                        builder: (context, state) {
-                          return SizedBox(
-                            width: 150.w,
-                            child: Text(
-                              state.addressName,
-                              style: AppTextStyle.urbanistW500.copyWith(
-                                fontSize: 12.w,
-                                color: Colors.white,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                      5.getH(),
-                      Text(
-                        'Today Cloudy',
-                        style: AppTextStyle.urbanistW500.copyWith(
-                          fontSize: 12.w,
-                          color: Colors.white,
-                        ),
-                      ),
-                      12.getH(),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SvgPicture.asset(
-                                AppImages.plant,
-                              ),
-                              5.getW(),
-                              Text(
-                                "AQI 92",
-                                style: AppTextStyle.urbanistW400.copyWith(
-                                  fontSize: 10.w,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SvgPicture.asset(
-                                AppImages.humidity,
-                              ),
-                              5.getW(),
-                              Text(
-                                "78.2 %",
-                                style: AppTextStyle.urbanistW400.copyWith(
-                                  fontSize: 10.w,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SvgPicture.asset(
-                                AppImages.speed,
-                              ),
-                              5.getW(),
-                              Text(
-                                "2.0 m/s",
-                                style: AppTextStyle.urbanistW400.copyWith(
-                                  fontSize: 10.w,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  Image.asset(
-                    AppImages.weather,
-                    width: 160.w,
-                    height: 105.h,
-                    fit: BoxFit.contain,
-                  ),
-                ],
-              ),
+            const WeatherWidget(
+              gradus: '20',
+              humidity: '78.2',
+              speed: "2.0",
             ),
             20.getH(),
             Row(
@@ -243,13 +122,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             right: 6.w,
                           ),
                           child: RoomItem(
-                            containerColors: activeIndex == -1
+                            containerColors: _activeIndex == -1
                                 ? AppColors.c405FF2
                                 : Colors.white,
                             title: 'All Rooms',
                             onTap: () {
                               setState(() {
-                                activeIndex = -1;
+                                _activeIndex = -1;
                               });
                             },
                           ),
@@ -262,13 +141,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 horizontal: 6.w,
                               ),
                               child: RoomItem(
-                                containerColors: activeIndex == index
+                                containerColors: _activeIndex == index
                                     ? AppColors.c405FF2
                                     : Colors.white,
                                 title: state.rooms[index],
                                 onTap: () {
                                   setState(() {
-                                    activeIndex = index;
+                                    _activeIndex = index;
                                   });
                                 },
                               ),
@@ -286,13 +165,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       physics: const BouncingScrollPhysics(),
                       children: [
                         RoomItem(
-                          containerColors: activeIndex == -1
+                          containerColors: _activeIndex == -1
                               ? AppColors.c405FF2
                               : Colors.white,
                           title: 'All Rooms',
                           onTap: () {
                             setState(() {
-                              activeIndex = -1;
+                              _activeIndex = -1;
                             });
                           },
                         ),
@@ -301,6 +180,109 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }
               },
+            ),
+            47.getH(),
+            Center(
+              child: Column(
+                children: [
+                  SvgPicture.asset(
+                    AppImages.noDevices,
+                    width: 120.w,
+                    height: 120.h,
+                    fit: BoxFit.contain,
+                  ),
+                  24.getH(),
+                  Text(
+                    'No devices',
+                    style: AppTextStyle.urbanistW700.copyWith(
+                      fontSize: 20.w,
+                    ),
+                  ),
+                  8.getH(),
+                  Text(
+                    "You haven't added a device yet.",
+                    style: AppTextStyle.urbanistW400.copyWith(
+                      fontSize: 16.w,
+                      color: AppColors.c616161,
+                    ),
+                  ),
+                  24.getH(),
+                  Ink(
+                    height: 50.h,
+                    width: 160.w,
+                    decoration: BoxDecoration(
+                      color: AppColors.c405FF2,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(30),
+                      onTap: () {},
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 24.w,
+                          vertical: 14.h,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(
+                              Icons.add,
+                              size: 16.w,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'Add device',
+                              style: AppTextStyle.urbanistW700.copyWith(
+                                fontSize: 14.w,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(
+          bottom: 16.h,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ZoomTapAnimation(
+              child: SvgPicture.asset(
+                AppImages.microphone,
+                width: 28.w,
+                height: 28.h,
+              ),
+            ),
+            34.getW(),
+            Ink(
+              height: 60.h,
+              width: 60.w,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.c405FF2,
+              ),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(50),
+                onTap: () {},
+                child: Center(
+                  child: Icon(
+                    Icons.add,
+                    size: 28.w,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
