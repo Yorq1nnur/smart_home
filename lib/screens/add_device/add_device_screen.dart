@@ -157,7 +157,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                           ),
                           36.getH(),
                           TextButton(
-                            onPressed: (){},
+                            onPressed: () {},
                             child: Text(
                               "Qurilmalaringizni topib boʻlmadimi?",
                               style: AppTextStyle.urbanistW400.copyWith(
@@ -181,45 +181,45 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                     ),
                   )
                 : Expanded(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: height/18,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          physics: const BouncingScrollPhysics(),
-                          children: List.generate(
-                            _deviceCategories.length,
-                                (index) => Padding(
-                              padding: EdgeInsets.only(
-                                left: index == 0 ? 0 : 6.w,
-                                right: index == _deviceCategories.length - 1
-                                    ? 0
-                                    : 6.w,
-                              ),
-                              child: DeviceCategoryItem(
-                                title: _deviceCategories[index],
-                                isSelected: activeIndexCategory == index,
-                                onTap: () {
-                                  setState(() {
-                                    activeIndexCategory = index;
-                                  });
-                                  activeIndexCategory == 0
-                                      ? context.read<DevicesBloc>().add(
-                                    GetAllDevicesEvent(),
-                                  )
-                                      : context.read<DevicesBloc>().add(
-                                    GetCategoryDevicesEvent(
-                                      _deviceCategories[index],
-                                    ),
-                                  );
-                                },
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: height / 18,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            physics: const BouncingScrollPhysics(),
+                            children: List.generate(
+                              _deviceCategories.length,
+                              (index) => Padding(
+                                padding: EdgeInsets.only(
+                                  left: index == 0 ? 0 : 6.w,
+                                  right: index == _deviceCategories.length - 1
+                                      ? 0
+                                      : 6.w,
+                                ),
+                                child: DeviceCategoryItem(
+                                  title: _deviceCategories[index],
+                                  isSelected: activeIndexCategory == index,
+                                  onTap: () {
+                                    setState(() {
+                                      activeIndexCategory = index;
+                                    });
+                                    activeIndexCategory == 0
+                                        ? context.read<DevicesBloc>().add(
+                                              GetAllDevicesEvent(),
+                                            )
+                                        : context.read<DevicesBloc>().add(
+                                              GetCategoryDevicesEvent(
+                                                _deviceCategories[index],
+                                              ),
+                                            );
+                                  },
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Expanded(
+                        Expanded(
                           child: ListView(
                             physics: const BouncingScrollPhysics(),
                             children: [
@@ -227,9 +227,12 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                               BlocBuilder<DevicesBloc, DevicesState>(
                                 builder: (context, state) {
                                   return state.devices.isEmpty
-                                      ? const Center(child: Text('Hech qanday qurilma topilmadi:('))
+                                      ? const Center(
+                                          child: Text(
+                                              'Hech qanday qurilma topilmadi:('))
                                       : GridView.count(
-                                    physics: const NeverScrollableScrollPhysics(),
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           crossAxisCount: 2,
                                           mainAxisSpacing: 16.w,
@@ -253,9 +256,13 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                                     ),
                                                     12.getH(),
                                                     Text(
-                                                      state.devices[index].deviceName,
-                  
-                                                      ///TODO CONFIRM TEXT STYLE
+                                                      state.devices[index]
+                                                          .deviceName,
+                                                      style: AppTextStyle
+                                                          .urbanistW500
+                                                          .copyWith(
+                                                        fontSize: 16.w,
+                                                      ),
                                                     )
                                                   ],
                                                 ),
@@ -268,9 +275,9 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                             ],
                           ),
                         ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
           ],
         ),
       ),
