@@ -72,73 +72,94 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
             ),
             36.getH(),
             method == _list[0]
-                ? SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Looking for nearby devices...",
-                          style: AppTextStyle.urbanistW700.copyWith(
-                            fontSize: 24.w,
+                ? Expanded(
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Looking for nearby devices...",
+                            style: AppTextStyle.urbanistW700.copyWith(
+                              fontSize: 24.w,
+                            ),
                           ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(
-                            top: 12.h,
-                            bottom: 36.h,
+                          Container(
+                            margin: EdgeInsets.only(
+                              top: 12.h,
+                              bottom: 36.h,
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8.w,
+                              vertical: 8.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.cFAFAFA,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SvgPicture.asset(AppImages.wifi),
+                                8.getW(),
+                                SvgPicture.asset(AppImages.bluetooth),
+                                8.getW(),
+                                Text(
+                                  "Turn on your Wifi & Bluetooth to connect",
+                                  style: AppTextStyle.urbanistW700.copyWith(
+                                    fontSize: 16.w,
+                                    color: AppColors.c616161,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 8.w,
-                            vertical: 8.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.cFAFAFA,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SvgPicture.asset(AppImages.wifi),
-                              8.getW(),
-                              SvgPicture.asset(AppImages.bluetooth),
-                              8.getW(),
-                              Text(
-                                "Turn on your Wifi & Bluetooth to connect",
-                                style: AppTextStyle.urbanistW700.copyWith(
-                                  fontSize: 16.w,
-                                  color: AppColors.c616161,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        const RippleItem(),
-                        36.getH(),
-                        Ink(
-                          height: 58.h,
-                          width: width / 2 + 35.w,
-                          decoration: BoxDecoration(
-                            color: AppColors.c405FF2,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(30),
-                            onTap: () {},
-                            child: Center(
-                              child: Text(
-                                "Connect to All Devices",
-                                style: AppTextStyle.urbanistW700.copyWith(
-                                  fontSize: 16.w,
-                                  color: Colors.white,
+                          const RippleItem(),
+                          36.getH(),
+                          Ink(
+                            height: 58.h,
+                            width: width / 2 + 35.w,
+                            decoration: BoxDecoration(
+                              color: AppColors.c405FF2,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(30),
+                              onTap: () {},
+                              child: Center(
+                                child: Text(
+                                  "Connect to All Devices",
+                                  style: AppTextStyle.urbanistW700.copyWith(
+                                    fontSize: 16.w,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                          36.getH(),
+                          Text(
+                            "Can't find your devices?",
+                            style: AppTextStyle.urbanistW400.copyWith(
+                              fontSize: 16.w,
+                              color: AppColors.c616161,
+                            ),
+                          ),
+                          4.getH(),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Learn more',
+                              style: AppTextStyle.urbanistW500.copyWith(
+                                fontSize: 14.w,
+                                color: AppColors.c405FF2,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                )
+                  )
                 : const SizedBox.shrink(),
           ],
         ),
