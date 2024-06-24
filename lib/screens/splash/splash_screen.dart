@@ -5,7 +5,6 @@ import 'package:smart_home/utils/app_images.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
 import 'package:flutter/material.dart';
-
 import '../../bloc/map/map_bloc.dart';
 import '../../bloc/map/map_event.dart';
 import '../../bloc/rooms/rooms_bloc.dart';
