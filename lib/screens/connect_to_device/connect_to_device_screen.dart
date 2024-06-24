@@ -236,6 +236,7 @@ class _ConnectToDeviceScreenState extends State<ConnectToDeviceScreen> {
 
   void _startConnecting() {
     setState(() {
+      connectOnTapped = true;
       value = 0.0;
     });
 
