@@ -57,14 +57,14 @@ class WellDoneScreen extends StatelessWidget {
                 ),
                 32.getH(),
                 Text(
-                  'Well Done',
+                  'Juda Qoyil',
                   style: AppTextStyle.urbanistW700.copyWith(
                     fontSize: 32.w,
                   ),
                 ),
                 12.getH(),
                 Text(
-                  "Congratulations! Your home is now a Smartify haven. Start exploring and managing your smart space with ease.",
+                  "Tabriklaymiz! Sizning uyingiz endi Smartify boshpanasiga aylandi. Osonlik bilan aqlli makoningizni o'rganish va boshqarishni boshlang.",
                   style: AppTextStyle.urbanistW400.copyWith(
                     fontSize: 18.w,
                     color: AppColors.c616161,
@@ -101,7 +101,7 @@ class WellDoneScreen extends StatelessWidget {
                 },
                 child: Center(
                   child: Text(
-                    'Get Started',
+                    'Boshlash',
                     style: AppTextStyle.urbanistW700.copyWith(
                       fontSize: 16.w,
                       color: Colors.white,

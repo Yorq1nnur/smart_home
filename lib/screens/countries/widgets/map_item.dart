@@ -38,14 +38,14 @@ class _MapItemState extends State<MapItem> {
             8.getH(),
             const Center(
               child: PageOfRichText(
-                firstText: 'Set Home ',
-                secondText: 'Location',
+                firstText: 'Uy manzilini ',
+                secondText: "O'rnatish",
                 thirdText: '',
               ),
             ),
             8.getH(),
             Text(
-              "Pin your home's location to enhance location-based features. Privacy is our priority.",
+              "Joylashuvga asoslangan funksiyalarni yaxshilash uchun uyingiz joylashuvini belgilang. Maxfiylik bizning ustuvor vazifamizdir.",
               style: AppTextStyle.urbanistW400.copyWith(
                 fontSize: 18.w,
                 color: AppColors.c616161,
@@ -134,7 +134,7 @@ class _MapItemState extends State<MapItem> {
             ),
             24.getH(),
             Text(
-              'Address Details',
+              'Manzil tafsilotlari',
               style: AppTextStyle.urbanistW600.copyWith(
                 fontSize: 18.w,
               ),
