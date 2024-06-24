@@ -66,7 +66,9 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 240.h),
+          SizedBox(
+            height: height / 3.9,
+          ),
           Center(
             child: Image.asset(
               AppImages.smartTify,
@@ -87,14 +89,14 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           const Spacer(),
           SizedBox(
-            height: 75.w,
-            width: 75.w,
+            height: 70.h,
+            width: 70.h,
             child: const CircularProgressIndicator(
               backgroundColor: Colors.white,
             ),
           ),
           SizedBox(
-            height: 80.h,
+            height: height / 11.66,
           ),
         ],
       ),
