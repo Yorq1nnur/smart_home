@@ -243,8 +243,9 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                                 ),
                                               ),
                                               12.getH(),
-                                              Text(state
-                                                  .devices[index].deviceName)
+                                              Text(
+                                                state.devices[index].deviceName,
+                                              )
                                             ],
                                           ),
                                         ),
