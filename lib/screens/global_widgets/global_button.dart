@@ -9,19 +9,20 @@ class GlobalButton extends StatelessWidget {
     required this.onTap,
     required this.title,
     this.color,
-    this.textColor,
+    this.textColor, this.buttonWidth,
   });
 
   final VoidCallback onTap;
   final String title;
   final Color? color;
   final Color? textColor;
+  final double? buttonWidth;
 
   @override
   Widget build(BuildContext context) {
     return Ink(
       height: 58.h,
-      width: width - 48,
+      width: buttonWidth ?? width - 48,
       decoration: BoxDecoration(
         color: color ?? AppColors.c405FF2,
         borderRadius: BorderRadius.circular(30),

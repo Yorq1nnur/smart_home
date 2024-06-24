@@ -5,6 +5,9 @@ import 'package:smart_home/bloc/devices/devices_bloc.dart';
 import 'package:smart_home/screens/add_device/widgets/add_device_methods_item.dart';
 import 'package:smart_home/screens/add_device/widgets/device_category_item.dart';
 import 'package:smart_home/screens/add_device/widgets/ripple_item.dart';
+import 'package:smart_home/screens/global_widgets/can_not_device_item.dart';
+import 'package:smart_home/screens/global_widgets/turn_on_set_item.dart';
+import 'package:smart_home/screens/routes/routes.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_images.dart';
 import 'package:smart_home/utils/app_text_style.dart';
@@ -100,38 +103,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          Container(
-                            margin: EdgeInsets.only(
-                              top: 12.h,
-                              bottom: 36.h,
-                            ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 8.w,
-                              vertical: 8.h,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.cFAFAFA,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SvgPicture.asset(AppImages.wifi),
-                                8.getW(),
-                                SvgPicture.asset(AppImages.bluetooth),
-                                8.getW(),
-                                Expanded(
-                                  child: Text(
-                                    "Ulanish uchun WiFi & Bluetoothni yoqing",
-                                    style: AppTextStyle.urbanistW700.copyWith(
-                                      fontSize: 16.w,
-                                      color: AppColors.c616161,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
+                          const TurnOnSetItem(),
                           const RippleItem(),
                           36.getH(),
                           Ink(
@@ -156,25 +128,9 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                             ),
                           ),
                           36.getH(),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "Qurilmalaringizni topib boʻlmadimi?",
-                              style: AppTextStyle.urbanistW400.copyWith(
-                                fontSize: 16.w,
-                                color: AppColors.c616161,
-                              ),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "Batafsil ma'lumot",
-                              style: AppTextStyle.urbanistW500.copyWith(
-                                fontSize: 14.w,
-                                color: AppColors.c405FF2,
-                              ),
-                            ),
+                          CanNotDeviceItem(
+                            onCanNotTap: () {},
+                            onMoreInfoTap: () {}, canNotTitle: "Can't connect with your devices?", moreInfoTitle: "Ko'proq ma'lumot",
                           ),
                         ],
                       ),
@@ -220,59 +176,63 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                           ),
                         ),
                         Expanded(
-                          child: ListView(
-                            physics: const BouncingScrollPhysics(),
-                            children: [
-                              28.getH(),
-                              BlocBuilder<DevicesBloc, DevicesState>(
-                                builder: (context, state) {
-                                  return state.devices.isEmpty
-                                      ? const Center(
-                                          child: Text(
-                                              'Hech qanday qurilma topilmadi:('))
-                                      : GridView.count(
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          shrinkWrap: true,
-                                          crossAxisCount: 2,
-                                          mainAxisSpacing: 16.w,
-                                          crossAxisSpacing: 16.h,
-                                          children: List.generate(
-                                            state.devices.length,
-                                            (index) => ZoomTapAnimation(
-                                              onTap: () {},
-                                              child: SizedBox(
-                                                width: width / 2.35,
-                                                height: height / 4.22,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Image.asset(
-                                                        state.devices[index]
-                                                            .deviceImage,
-                                                      ),
-                                                    ),
-                                                    12.getH(),
-                                                    Text(
-                                                      state.devices[index]
-                                                          .deviceName,
-                                                      style: AppTextStyle
-                                                          .urbanistW500
-                                                          .copyWith(
-                                                        fontSize: 16.w,
-                                                      ),
-                                                    )
-                                                  ],
+                          child: BlocBuilder<DevicesBloc, DevicesState>(
+                            builder: (context, state) {
+                              return state.devices.isEmpty
+                                  ? const Center(
+                                      child: Text(
+                                        'Hech qanday qurilma topilmadi:(',
+                                      ),
+                                    )
+                                  : GridView.count(
+                                      physics: const BouncingScrollPhysics(),
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: 28.h,
+                                      ),
+                                      shrinkWrap: true,
+                                      crossAxisCount: 2,
+                                      mainAxisSpacing: 16.w,
+                                      crossAxisSpacing: 16.h,
+                                      children: List.generate(
+                                        state.devices.length,
+                                        (index) => ZoomTapAnimation(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                              context,
+                                              RouteNames.connectToDeviceScreen,
+                                              arguments: state.devices[index],
+                                            );
+                                          },
+                                          child: SizedBox(
+                                            width: width / 2.35,
+                                            height: height / 4.22,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Expanded(
+                                                  child: Image.asset(
+                                                    state.devices[index]
+                                                        .deviceImage,
+                                                  ),
                                                 ),
-                                              ),
+                                                12.getH(),
+                                                Text(
+                                                  state.devices[index]
+                                                      .deviceName,
+                                                  style: AppTextStyle
+                                                      .urbanistW500
+                                                      .copyWith(
+                                                    fontSize: 16.w,
+                                                  ),
+                                                )
+                                              ],
                                             ),
                                           ),
-                                        );
-                                },
-                              ),
-                            ],
+                                        ),
+                                      ),
+                                    );
+                            },
                           ),
                         ),
                       ],

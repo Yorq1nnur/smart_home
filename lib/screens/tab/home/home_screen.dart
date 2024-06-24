@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (context, state) {
                 if (state.rooms.isNotEmpty) {
                   return SizedBox(
-                    height: 42.h,
+                    height: 45.h,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),

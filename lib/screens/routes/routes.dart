@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:smart_home/data/models/device_model.dart';
 import 'package:smart_home/screens/add_device/add_device_screen.dart';
 import 'package:smart_home/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:smart_home/screens/auth/sign_up/sign_up_screen.dart';
+import 'package:smart_home/screens/connect_to_device/connect_to_device_screen.dart';
 import 'package:smart_home/screens/countries/countries_screen.dart';
 import 'package:smart_home/screens/tab/home/home_screen.dart';
 import 'package:smart_home/screens/on_boarding/on_boarding_screen.dart';
@@ -55,6 +57,12 @@ class AppRoutes {
         return navigate(
           const AddDeviceScreen(),
         );
+      case RouteNames.connectToDeviceScreen:
+        return navigate(
+          ConnectToDeviceScreen(
+            deviceModel: settings.arguments as DeviceModel,
+          ),
+        );
       default:
         return navigate(
           const Scaffold(
@@ -86,4 +94,5 @@ class RouteNames {
   static const String countriesScreen = "/countries_route";
   static const String tabBoxScreen = "/tab_box_route";
   static const String wellDoneScreen = "/well_done_route";
+  static const String connectToDeviceScreen = "/connect_to_device_route";
 }
