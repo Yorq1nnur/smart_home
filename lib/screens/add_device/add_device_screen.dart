@@ -23,16 +23,6 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
   int activeIndexCategory = 0;
 
   @override
-  void initState() {
-    Future.microtask(
-      () => context.read<DevicesBloc>().add(
-            GetAllDevicesEvent(),
-          ),
-    );
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -73,191 +63,199 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: List.generate(
                 _list.length,
-                (index) => AddDeviceMethodsItem(
-                  title: _list[index],
-                  isSelected: method == _list[index],
-                  onTap: () {
-                    setState(() {
-                      method = _list[index];
-                    });
-                  },
-                ),
+                    (index) =>
+                    AddDeviceMethodsItem(
+                      title: _list[index],
+                      isSelected: method == _list[index],
+                      onTap: () {
+                        setState(() {
+                          method = _list[index];
+                        });
+                        if (method == _list[1]) {
+                          context.read<DevicesBloc>().add(
+                            GetAllDevicesEvent(),
+                          );
+                        }
+                      },
+                    ),
               ),
             ),
             36.getH(),
             method == _list[0]
                 ? Expanded(
-                    child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Looking for nearby devices...",
+                      style: AppTextStyle.urbanistW700.copyWith(
+                        fontSize: 24.w,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: 12.h,
+                        bottom: 36.h,
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8.w,
+                        vertical: 8.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.cFAFAFA,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          SvgPicture.asset(AppImages.wifi),
+                          8.getW(),
+                          SvgPicture.asset(AppImages.bluetooth),
+                          8.getW(),
                           Text(
-                            "Looking for nearby devices...",
+                            "Turn on your Wifi & Bluetooth to connect",
                             style: AppTextStyle.urbanistW700.copyWith(
-                              fontSize: 24.w,
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(
-                              top: 12.h,
-                              bottom: 36.h,
-                            ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 8.w,
-                              vertical: 8.h,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.cFAFAFA,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SvgPicture.asset(AppImages.wifi),
-                                8.getW(),
-                                SvgPicture.asset(AppImages.bluetooth),
-                                8.getW(),
-                                Text(
-                                  "Turn on your Wifi & Bluetooth to connect",
-                                  style: AppTextStyle.urbanistW700.copyWith(
-                                    fontSize: 16.w,
-                                    color: AppColors.c616161,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          const RippleItem(),
-                          36.getH(),
-                          Ink(
-                            height: 58.h,
-                            width: MediaQuery.of(context).size.width / 2 + 35.w,
-                            decoration: BoxDecoration(
-                              color: AppColors.c405FF2,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(30),
-                              onTap: () {},
-                              child: Center(
-                                child: Text(
-                                  "Connect to All Devices",
-                                  style: AppTextStyle.urbanistW700.copyWith(
-                                    fontSize: 16.w,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          36.getH(),
-                          Text(
-                            "Can't find your devices?",
-                            style: AppTextStyle.urbanistW400.copyWith(
                               fontSize: 16.w,
                               color: AppColors.c616161,
                             ),
-                          ),
-                          4.getH(),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Learn more',
-                              style: AppTextStyle.urbanistW500.copyWith(
-                                fontSize: 14.w,
-                                color: AppColors.c405FF2,
-                              ),
-                            ),
-                          ),
+                          )
                         ],
                       ),
                     ),
-                  )
-                : Expanded(
-                    child: ListView(
-                      physics: const BouncingScrollPhysics(),
-                      children: [
-                        SizedBox(
-                          height: 42.h,
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            physics: const BouncingScrollPhysics(),
-                            children: List.generate(
-                              _deviceCategories.length,
-                              (index) => Padding(
-                                padding: EdgeInsets.only(
-                                  left: index == 0 ? 0 : 6.w,
-                                  right: index == _deviceCategories.length - 1
-                                      ? 0
-                                      : 6.w,
-                                ),
-                                child: DeviceCategoryItem(
-                                  title: _deviceCategories[index],
-                                  isSelected: activeIndexCategory == index,
-                                  onTap: () {
-                                    setState(() {
-                                      activeIndexCategory = index;
-                                    });
-                                    activeIndexCategory == 0
-                                        ? context.read<DevicesBloc>().add(
-                                              GetAllDevicesEvent(),
-                                            )
-                                        : context.read<DevicesBloc>().add(
-                                              GetCategoryDevicesEvent(
-                                                _deviceCategories[index],
-                                              ),
-                                            );
-                                  },
-                                ),
-                              ),
+                    const RippleItem(),
+                    36.getH(),
+                    Ink(
+                      height: 58.h,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width / 2 + 35.w,
+                      decoration: BoxDecoration(
+                        color: AppColors.c405FF2,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(30),
+                        onTap: () {},
+                        child: Center(
+                          child: Text(
+                            "Connect to All Devices",
+                            style: AppTextStyle.urbanistW700.copyWith(
+                              fontSize: 16.w,
+                              color: Colors.white,
                             ),
                           ),
                         ),
-                        28.getH(),
-                        BlocBuilder<DevicesBloc, DevicesState>(
-                          builder: (context, state) {
-                            return state.devices.isEmpty
-                                ? const Center(child: Text('No devices found'))
-                                : GridView.count(
-                                    shrinkWrap: true,
-                                    crossAxisCount: 2,
-                                    mainAxisSpacing: 16.w,
-                                    crossAxisSpacing: 16.h,
-                                    children: List.generate(
-                                      state.devices.length,
-                                      (index) => ZoomTapAnimation(
-                                        onTap: (){},
-                                        child: SizedBox(
-                                          width: width / 2.35,
-                                          height: height / 4.22,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Expanded(
-                                                child: Image.asset(
-                                                  state
-                                                      .devices[index].deviceImage,
-                                                  width: width / 2.35,
-                                                  height: height / 5.1,
-                                                  fit: BoxFit.contain,
-                                                ),
-                                              ),
-                                              12.getH(),
-                                              Text(
-                                                  state.devices[index].deviceName)
-                                            ],
-                                          ),
-                                        ),
-                                      ),
+                      ),
+                    ),
+                    36.getH(),
+                    Text(
+                      "Can't find your devices?",
+                      style: AppTextStyle.urbanistW400.copyWith(
+                        fontSize: 16.w,
+                        color: AppColors.c616161,
+                      ),
+                    ),
+                    4.getH(),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Learn more',
+                        style: AppTextStyle.urbanistW500.copyWith(
+                          fontSize: 14.w,
+                          color: AppColors.c405FF2,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+                : Expanded(
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  SizedBox(
+                    height: 42.h,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      children: List.generate(
+                        _deviceCategories.length,
+                            (index) =>
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: index == 0 ? 0 : 6.w,
+                                right: index == _deviceCategories.length - 1
+                                    ? 0
+                                    : 6.w,
+                              ),
+                              child: DeviceCategoryItem(
+                                title: _deviceCategories[index],
+                                isSelected: activeIndexCategory == index,
+                                onTap: () {
+                                  setState(() {
+                                    activeIndexCategory = index;
+                                  });
+                                  activeIndexCategory == 0
+                                      ? context.read<DevicesBloc>().add(
+                                    GetAllDevicesEvent(),
+                                  )
+                                      : context.read<DevicesBloc>().add(
+                                    GetCategoryDevicesEvent(
+                                      _deviceCategories[index],
                                     ),
                                   );
-                          },
-                        ),
-                      ],
+                                },
+                              ),
+                            ),
+                      ),
                     ),
                   ),
+                  28.getH(),
+                  BlocBuilder<DevicesBloc, DevicesState>(
+                    builder: (context, state) {
+                      return state.devices.isEmpty
+                          ? const Center(child: Text('No devices found'))
+                          : GridView.count(
+                        shrinkWrap: true,
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 16.w,
+                        crossAxisSpacing: 16.h,
+                        children: List.generate(
+                          state.devices.length,
+                              (index) =>
+                              ZoomTapAnimation(
+                                onTap: () {},
+                                child: SizedBox(
+                                  width: width / 2.35,
+                                  height: height / 4.22,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Image.asset(
+                                          state.devices[index]
+                                              .deviceImage,
+                                        ),
+                                      ),
+                                      12.getH(),
+                                      Text(state
+                                          .devices[index].deviceName)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
