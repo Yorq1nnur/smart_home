@@ -62,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Welcome Back! 👋",
+                "Xush kelibsiz! 👋",
                 style: AppTextStyle.urbanistW700.copyWith(
                   fontSize: 32.w,
                   color: AppColors.c212121,
@@ -70,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               10.getH(),
               Text(
-                "Your Smart Home, Your Rules.",
+                "Sizning aqlli uyingiz, sizning qoidalaringiz.",
                 style: AppTextStyle.urbanistW400.copyWith(
                   fontSize: 18.w,
                   color: AppColors.c616161,
@@ -107,7 +107,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     16.getH(),
                     Text(
-                      'Password',
+                      'Parol',
                       style: AppTextStyle.urbanistW600.copyWith(
                         fontSize: 18.w,
                       ),
@@ -127,7 +127,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         });
                       },
                       prefixIcon: AppImages.email,
-                      hintText: 'Password',
+                      hintText: 'Parol',
                     ),
                   ],
                 ),
@@ -173,7 +173,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       16.getW(),
                       Text(
-                        'Remember me',
+                        'Meni eslab qol',
                         style: AppTextStyle.urbanistW500.copyWith(
                           fontSize: 18.w,
                         ),
@@ -183,7 +183,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ZoomTapAnimation(
                     onTap: () {},
                     child: Text(
-                      'Forgot password?',
+                      'Parolni unutdingizmi?',
                       style: AppTextStyle.urbanistW600.copyWith(
                         fontSize: 18.w,
                         color: AppColors.c405FF2,
@@ -204,7 +204,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                   Text(
-                    'or',
+                    'yoki',
                     style: AppTextStyle.urbanistW500.copyWith(
                       fontSize: 18.w,
                       color: AppColors.c616161,
@@ -222,22 +222,22 @@ class _SignInScreenState extends State<SignInScreen> {
               10.getH(),
               ContinueButton(
                 imagePath: AppImages.google,
-                title: 'Continue with Google',
+                title: 'Google bilan davom etish',
                 onTap: () {},
               ),
               ContinueButton(
                 imagePath: AppImages.apple,
-                title: 'Continue with Apple',
+                title: 'Apple bilan davom etish',
                 onTap: () {},
               ),
               ContinueButton(
                 imagePath: AppImages.facebook,
-                title: 'Continue with Facebook',
+                title: 'Facebook bilan davom etish',
                 onTap: () {},
               ),
               ContinueButton(
                 imagePath: AppImages.twitter,
-                title: 'Continue with Twitter',
+                title: 'Twitter bilan davom etish',
                 onTap: () {},
               ),
               14.getH(),
@@ -258,7 +258,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     _passwordFocusNode.unfocus();
                     UtilityFunctions.showAuthDialog(
                       context: context,
-                      message: 'Sign in...',
+                      message: 'Kirish...',
                     );
                     Future.delayed(const Duration(seconds: 3), () {
                       Navigator.pushNamedAndRemoveUntil(
@@ -269,7 +269,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     });
                   }
                 },
-                title: 'Sign in',
+                title: 'Kirish',
               ),
               26.getH(),
             ],

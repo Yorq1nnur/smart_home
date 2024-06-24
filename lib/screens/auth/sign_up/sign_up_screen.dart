@@ -229,7 +229,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 Text(
-                  'or',
+                  'yoki',
                   style: AppTextStyle.urbanistW500.copyWith(
                     fontSize: 18.w,
                     color: AppColors.c616161,
@@ -282,7 +282,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     });
                     UtilityFunctions.showAuthDialog(
                       context: context,
-                      message: 'Sign up...',
+                      message: "Ro'yxatdan o'tish...",
                     );
                     Future.delayed(const Duration(seconds: 3), () {
                       Navigator.pushNamedAndRemoveUntil(
