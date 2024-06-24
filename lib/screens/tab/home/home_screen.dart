@@ -258,16 +258,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             34.getW(),
-            Ink(
-              height: 60.h,
-              width: 60.w,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.c405FF2,
-              ),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(50),
-                onTap: () {},
+            ZoomTapAnimation(
+              child: Ink(
+                height: 60.h,
+                width: 60.w,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.c405FF2,
+                ),
                 child: Center(
                   child: Icon(
                     Icons.add,
