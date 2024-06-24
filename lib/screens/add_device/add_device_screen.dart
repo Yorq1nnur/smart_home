@@ -19,7 +19,7 @@ class AddDeviceScreen extends StatefulWidget {
 }
 
 class _AddDeviceScreenState extends State<AddDeviceScreen> {
-  String method = 'Nearby Devices';
+  String method = 'Yaqin-atrofdagilar';
   int activeIndexCategory = 0;
 
   @override
@@ -28,7 +28,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Add Device',
+          "Qurilma qo'shish",
           style: AppTextStyle.urbanistW700.copyWith(
             fontSize: 24.w,
           ),
@@ -94,10 +94,11 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            "Looking for nearby devices...",
+                            "Yaqin-atrofdagi qurilmalar qidirilmoqda...",
                             style: AppTextStyle.urbanistW700.copyWith(
                               fontSize: 24.w,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           Container(
                             margin: EdgeInsets.only(
@@ -119,11 +120,13 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                 8.getW(),
                                 SvgPicture.asset(AppImages.bluetooth),
                                 8.getW(),
-                                Text(
-                                  "Turn on your Wifi & Bluetooth to connect",
-                                  style: AppTextStyle.urbanistW700.copyWith(
-                                    fontSize: 16.w,
-                                    color: AppColors.c616161,
+                                Expanded(
+                                  child: Text(
+                                    "Ulanish uchun WiFi & Bluetoothni yoqing",
+                                    style: AppTextStyle.urbanistW700.copyWith(
+                                      fontSize: 16.w,
+                                      color: AppColors.c616161,
+                                    ),
                                   ),
                                 )
                               ],
@@ -143,7 +146,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                               onTap: () {},
                               child: Center(
                                 child: Text(
-                                  "Connect to All Devices",
+                                  "Barcha qurilmalarga ulanish",
                                   style: AppTextStyle.urbanistW700.copyWith(
                                     fontSize: 16.w,
                                     color: Colors.white,
@@ -153,18 +156,20 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                             ),
                           ),
                           36.getH(),
-                          Text(
-                            "Can't find your devices?",
-                            style: AppTextStyle.urbanistW400.copyWith(
-                              fontSize: 16.w,
-                              color: AppColors.c616161,
+                          TextButton(
+                            onPressed: (){},
+                            child: Text(
+                              "Qurilmalaringizni topib boʻlmadimi?",
+                              style: AppTextStyle.urbanistW400.copyWith(
+                                fontSize: 16.w,
+                                color: AppColors.c616161,
+                              ),
                             ),
                           ),
-                          4.getH(),
                           TextButton(
                             onPressed: () {},
                             child: Text(
-                              'Learn more',
+                              "Batafsil ma'lumot",
                               style: AppTextStyle.urbanistW500.copyWith(
                                 fontSize: 14.w,
                                 color: AppColors.c405FF2,
@@ -176,89 +181,96 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                     ),
                   )
                 : Expanded(
-                    child: ListView(
-                      physics: const BouncingScrollPhysics(),
-                      children: [
-                        SizedBox(
-                          height: 42.h,
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            physics: const BouncingScrollPhysics(),
-                            children: List.generate(
-                              _deviceCategories.length,
-                              (index) => Padding(
-                                padding: EdgeInsets.only(
-                                  left: index == 0 ? 0 : 6.w,
-                                  right: index == _deviceCategories.length - 1
-                                      ? 0
-                                      : 6.w,
-                                ),
-                                child: DeviceCategoryItem(
-                                  title: _deviceCategories[index],
-                                  isSelected: activeIndexCategory == index,
-                                  onTap: () {
-                                    setState(() {
-                                      activeIndexCategory = index;
-                                    });
-                                    activeIndexCategory == 0
-                                        ? context.read<DevicesBloc>().add(
-                                              GetAllDevicesEvent(),
-                                            )
-                                        : context.read<DevicesBloc>().add(
-                                              GetCategoryDevicesEvent(
-                                                _deviceCategories[index],
-                                              ),
-                                            );
-                                  },
-                                ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: height/18,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
+                          children: List.generate(
+                            _deviceCategories.length,
+                                (index) => Padding(
+                              padding: EdgeInsets.only(
+                                left: index == 0 ? 0 : 6.w,
+                                right: index == _deviceCategories.length - 1
+                                    ? 0
+                                    : 6.w,
+                              ),
+                              child: DeviceCategoryItem(
+                                title: _deviceCategories[index],
+                                isSelected: activeIndexCategory == index,
+                                onTap: () {
+                                  setState(() {
+                                    activeIndexCategory = index;
+                                  });
+                                  activeIndexCategory == 0
+                                      ? context.read<DevicesBloc>().add(
+                                    GetAllDevicesEvent(),
+                                  )
+                                      : context.read<DevicesBloc>().add(
+                                    GetCategoryDevicesEvent(
+                                      _deviceCategories[index],
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                           ),
                         ),
-                        28.getH(),
-                        BlocBuilder<DevicesBloc, DevicesState>(
-                          builder: (context, state) {
-                            return state.devices.isEmpty
-                                ? const Center(child: Text('No devices found'))
-                                : GridView.count(
-                                    shrinkWrap: true,
-                                    crossAxisCount: 2,
-                                    mainAxisSpacing: 16.w,
-                                    crossAxisSpacing: 16.h,
-                                    children: List.generate(
-                                      state.devices.length,
-                                      (index) => ZoomTapAnimation(
-                                        onTap: () {},
-                                        child: SizedBox(
-                                          width: width / 2.35,
-                                          height: height / 4.22,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Expanded(
-                                                child: Image.asset(
-                                                  state.devices[index]
-                                                      .deviceImage,
+                      ),
+                      Expanded(
+                          child: ListView(
+                            physics: const BouncingScrollPhysics(),
+                            children: [
+                              28.getH(),
+                              BlocBuilder<DevicesBloc, DevicesState>(
+                                builder: (context, state) {
+                                  return state.devices.isEmpty
+                                      ? const Center(child: Text('Hech qanday qurilma topilmadi:('))
+                                      : GridView.count(
+                                    physics: const NeverScrollableScrollPhysics(),
+                                          shrinkWrap: true,
+                                          crossAxisCount: 2,
+                                          mainAxisSpacing: 16.w,
+                                          crossAxisSpacing: 16.h,
+                                          children: List.generate(
+                                            state.devices.length,
+                                            (index) => ZoomTapAnimation(
+                                              onTap: () {},
+                                              child: SizedBox(
+                                                width: width / 2.35,
+                                                height: height / 4.22,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Image.asset(
+                                                        state.devices[index]
+                                                            .deviceImage,
+                                                      ),
+                                                    ),
+                                                    12.getH(),
+                                                    Text(
+                                                      state.devices[index].deviceName,
+                  
+                                                      ///TODO CONFIRM TEXT STYLE
+                                                    )
+                                                  ],
                                                 ),
                                               ),
-                                              12.getH(),
-                                              Text(
-                                                state.devices[index].deviceName,
-
-                                                ///TODO CONFIRM TEXT STYLE
-                                              )
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                          },
+                                        );
+                                },
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
+                    ],
                   ),
+                ),
           ],
         ),
       ),
@@ -266,14 +278,14 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
   }
 
   final List<String> _deviceCategories = [
-    'Popular',
-    'Lightning',
-    'Camera',
-    'Electrical',
+    'Ommabop',
+    'Chaqmoq',
+    'Kamera',
+    'Elektr',
   ];
 
   final List<String> _list = [
-    'Nearby Devices',
-    'Add Manual',
+    'Yaqin-atrofdagilar',
+    "Qo'lda qo'shish",
   ];
 }

@@ -76,7 +76,7 @@ class WeatherWidget extends StatelessWidget {
               ),
               5.getH(),
               Text(
-                'Today Cloudy',
+                'Bugun bulutli',
                 style: AppTextStyle.urbanistW500.copyWith(
                   fontSize: 12.w,
                   color: Colors.white,

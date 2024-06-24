@@ -14,7 +14,9 @@ import 'package:smart_home/utils/size.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -47,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             children: [
               Text(
-                "My Home",
+                "Mening Uyim",
                 style: AppTextStyle.urbanistW700.copyWith(
                   fontSize: 24.w,
                 ),
@@ -95,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "All Devices",
+                  "Barcha qurilmalar",
                   style: AppTextStyle.urbanistW700.copyWith(
                     fontSize: 20.w,
                   ),
@@ -126,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             containerColors: _activeIndex == -1
                                 ? AppColors.c405FF2
                                 : Colors.white,
-                            title: 'All Rooms',
+                            title: 'Barcha xonalar',
                             onTap: () {
                               setState(() {
                                 _activeIndex = -1;
@@ -169,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           containerColors: _activeIndex == -1
                               ? AppColors.c405FF2
                               : Colors.white,
-                          title: 'All Rooms',
+                          title: 'Barcha xonalar',
                           onTap: () {
                             setState(() {
                               _activeIndex = -1;
@@ -194,14 +196,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   24.getH(),
                   Text(
-                    'No devices',
+                    "Qurilmalar yo'q",
                     style: AppTextStyle.urbanistW700.copyWith(
                       fontSize: 20.w,
                     ),
                   ),
                   8.getH(),
                   Text(
-                    "You haven't added a device yet.",
+                    "Siz hali qurilma qo‘shmagansiz.",
                     style: AppTextStyle.urbanistW400.copyWith(
                       fontSize: 16.w,
                       color: AppColors.c616161,
@@ -209,8 +211,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   24.getH(),
                   Ink(
-                    height: 50.h,
-                    width: 160.w,
+                    // height: 50.h,
+                    // width: 160.w,
                     decoration: BoxDecoration(
                       color: AppColors.c405FF2,
                       borderRadius: BorderRadius.circular(30),
@@ -229,15 +231,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           vertical: 14.h,
                         ),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Icon(
                               Icons.add,
                               size: 16.w,
                               color: Colors.white,
                             ),
+                            16.getW(),
                             Text(
-                              'Add device',
+                              "Qurilma qo'shish",
                               style: AppTextStyle.urbanistW700.copyWith(
                                 fontSize: 14.w,
                                 color: Colors.white,

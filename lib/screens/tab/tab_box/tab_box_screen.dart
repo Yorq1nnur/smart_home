@@ -61,8 +61,8 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
             backgroundColor: Colors.white,
             items: [
               BottomNavigationBarItem(
-                label: 'Home',
-                tooltip: "Home screen",
+                label: 'Mening uyim',
+                tooltip: "Mening uyim",
                 icon: SvgPicture.asset(
                   AppImages.unActiveHome,
                   width: 24.w,
@@ -75,8 +75,8 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
                 ),
               ),
               BottomNavigationBarItem(
-                label: 'Smart',
-                tooltip: "Smart screen",
+                label: 'Aqlli uy',
+                tooltip: "Aqlli uy",
                 icon: SvgPicture.asset(
                   AppImages.unActiveSmart,
                   width: 24.w,
@@ -89,8 +89,8 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
                 ),
               ),
               BottomNavigationBarItem(
-                label: 'Reports',
-                tooltip: "Reports screen",
+                label: 'Hisobotlar',
+                tooltip: "Hisobotlar",
                 icon: SvgPicture.asset(
                   AppImages.unActiveReport,
                   width: 24.w,
@@ -103,8 +103,8 @@ class _TabBoxScreenState extends State<TabBoxScreen> {
                 ),
               ),
               BottomNavigationBarItem(
-                label: 'Account',
-                tooltip: "Account screen",
+                label: 'Hisob',
+                tooltip: "Hisob",
                 icon: SvgPicture.asset(
                   AppImages.unActiveAccount,
                   width: 24.w,

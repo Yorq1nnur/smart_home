@@ -18,7 +18,6 @@ class AddDeviceMethodsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Ink(
-      height: 42.h,
       width: width / 2 - 24,
       decoration: BoxDecoration(
         color: isSelected ? AppColors.c405FF2 : AppColors.cF5F5F5,
@@ -28,11 +27,17 @@ class AddDeviceMethodsItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(6),
         onTap: onTap,
         child: Center(
-          child: Text(
-            title,
-            style: AppTextStyle.urbanistW700.copyWith(
-              fontSize: 16.w,
-              color: isSelected ? Colors.white : AppColors.c212121,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: 10.h,
+            ),
+            child: Text(
+              title,
+              style: AppTextStyle.urbanistW700.copyWith(
+                fontSize: 16.w,
+                color: isSelected ? Colors.white : AppColors.c212121,
+              ),
+              textAlign: TextAlign.center,
             ),
           ),
         ),

@@ -14,32 +14,32 @@ class DeviceModel {
 
 final List<DeviceModel> activeDevices = [
   DeviceModel(
-    deviceCategoryName: 'Lightning',
+    deviceCategoryName: 'Chaqmoq',
     deviceImage: AppImages.lamp,
     deviceName: 'Smart Lamp',
   ),
   DeviceModel(
-    deviceCategoryName: 'Camera',
+    deviceCategoryName: 'Kamera',
     deviceImage: AppImages.cam,
     deviceName: 'Smart V1 CCTV',
   ),
   DeviceModel(
-    deviceCategoryName: 'Camera',
+    deviceCategoryName: 'Kamera',
     deviceImage: AppImages.webCam,
     deviceName: 'Smart Webcam',
   ),
   DeviceModel(
-    deviceCategoryName: 'Camera',
+    deviceCategoryName: 'Kamera',
     deviceImage: AppImages.camera,
     deviceName: 'Smart V2 CCTV',
   ),
   DeviceModel(
-    deviceCategoryName: 'Electrical',
+    deviceCategoryName: 'Kamera',
     deviceImage: AppImages.musicPlayer,
     deviceName: 'Music Player',
   ),
   DeviceModel(
-    deviceCategoryName: 'Electrical',
+    deviceCategoryName: 'Elektr',
     deviceImage: AppImages.router,
     deviceName: 'Smart Router',
   ),

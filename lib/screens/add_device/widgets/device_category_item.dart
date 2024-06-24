@@ -34,11 +34,13 @@ class DeviceCategoryItem extends StatelessWidget {
             horizontal: 20.w,
             vertical: 10.h,
           ),
-          child: Text(
-            title,
-            style: AppTextStyle.urbanistW600.copyWith(
-              fontSize: 16.w,
-              color: isSelected ? Colors.white : AppColors.c212121,
+          child: Center(
+            child: Text(
+              title,
+              style: AppTextStyle.urbanistW600.copyWith(
+                fontSize: 16.w,
+                color: isSelected ? Colors.white : AppColors.c212121,
+              ),
             ),
           ),
         ),
