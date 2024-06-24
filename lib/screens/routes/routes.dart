@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_home/screens/add_device/add_device_screen.dart';
 import 'package:smart_home/screens/auth/sign_in/sign_in_screen.dart';
 import 'package:smart_home/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:smart_home/screens/countries/countries_screen.dart';
@@ -50,6 +51,10 @@ class AppRoutes {
         return navigate(
           const WellDoneScreen(),
         );
+      case RouteNames.addDeviceScreen:
+        return navigate(
+          const AddDeviceScreen(),
+        );
       default:
         return navigate(
           const Scaffold(
@@ -77,6 +82,7 @@ class RouteNames {
   static const String signUpScreen = "/sign_up_route";
   static const String signInScreen = "/sign_in_route";
   static const String homeScreen = "/home_route";
+  static const String addDeviceScreen = "/add_device_route";
   static const String countriesScreen = "/countries_route";
   static const String tabBoxScreen = "/tab_box_route";
   static const String wellDoneScreen = "/well_done_route";

@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_home/bloc/map/map_bloc.dart';
 import 'package:smart_home/bloc/map/map_event.dart';
 import 'package:smart_home/bloc/rooms/rooms_bloc.dart';
+import 'package:smart_home/screens/routes/routes.dart';
 import 'package:smart_home/screens/tab/home/widgets/room_item.dart';
 import 'package:smart_home/screens/tab/home/widgets/weather_widget.dart';
 import 'package:smart_home/utils/app_colors.dart';
@@ -216,7 +217,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(30),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteNames.addDeviceScreen,
+                        );
+                      },
                       child: Padding(
                         padding: EdgeInsets.symmetric(
                           horizontal: 24.w,
@@ -268,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Ink(
               height: 60.h,
               width: 60.w,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.c405FF2,
               ),

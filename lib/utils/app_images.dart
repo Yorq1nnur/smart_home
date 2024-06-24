@@ -6,9 +6,13 @@ class AppImages {
   static const String firstOnBoarding = 'assets/images/first_onboarding.png';
   static const String secondOnBoarding = 'assets/images/second_onboarding.png';
   static const String thirdOnBoarding = 'assets/images/third_onboarding.png';
+  static const String profile = 'assets/images/profile.png';
 
   ///.svg
   static const String apple = 'assets/icons/apple.svg';
+  static const String scanner = 'assets/icons/scanner.svg';
+  static const String wifi = 'assets/icons/wifi.svg';
+  static const String bluetooth = 'assets/icons/bluetooth.svg';
   static const String microphone = 'assets/icons/microphone.svg';
   static const String noDevices = 'assets/icons/no_devices.svg';
   static const String gradus = 'assets/icons/gradus.svg';
