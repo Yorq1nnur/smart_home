@@ -9,7 +9,7 @@ class AppImages {
   static const String profile = 'assets/images/profile.png';
   static const String cam = 'assets/images/cam.png';
   static const String camera = 'assets/images/camera.png';
-  static const String webCam = 'assets/images/web_cam.png';
+  static const String webCam = 'assets/images/webcam.png';
   static const String lamp = 'assets/images/lamp.png';
   static const String musicPlayer = 'assets/images/music_player.png';
   static const String router = 'assets/images/router.png';

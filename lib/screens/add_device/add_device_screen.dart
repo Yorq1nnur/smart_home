@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_home/bloc/devices/devices_bloc.dart';
 import 'package:smart_home/screens/add_device/widgets/add_device_methods_item.dart';
+import 'package:smart_home/screens/add_device/widgets/device_category_item.dart';
 import 'package:smart_home/screens/add_device/widgets/ripple_item.dart';
 import 'package:smart_home/utils/app_colors.dart';
 import 'package:smart_home/utils/app_images.dart';
@@ -17,6 +20,17 @@ class AddDeviceScreen extends StatefulWidget {
 
 class _AddDeviceScreenState extends State<AddDeviceScreen> {
   String method = 'Nearby Devices';
+  int activeIndexCategory = 0;
+
+  @override
+  void initState() {
+    Future.microtask(
+      () => context.read<DevicesBloc>().add(
+            GetAllDevicesEvent(),
+          ),
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +132,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                           36.getH(),
                           Ink(
                             height: 58.h,
-                            width: width / 2 + 35.w,
+                            width: MediaQuery.of(context).size.width / 2 + 35.w,
                             decoration: BoxDecoration(
                               color: AppColors.c405FF2,
                               borderRadius: BorderRadius.circular(30),
@@ -160,12 +174,102 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                       ),
                     ),
                   )
-                : const SizedBox.shrink(),
+                : Expanded(
+                    child: ListView(
+                      physics: const BouncingScrollPhysics(),
+                      children: [
+                        SizedBox(
+                          height: 42.h,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            physics: const BouncingScrollPhysics(),
+                            children: List.generate(
+                              _deviceCategories.length,
+                              (index) => Padding(
+                                padding: EdgeInsets.only(
+                                  left: index == 0 ? 0 : 6.w,
+                                  right: index == _deviceCategories.length - 1
+                                      ? 0
+                                      : 6.w,
+                                ),
+                                child: DeviceCategoryItem(
+                                  title: _deviceCategories[index],
+                                  isSelected: activeIndexCategory == index,
+                                  onTap: () {
+                                    setState(() {
+                                      activeIndexCategory = index;
+                                    });
+                                    activeIndexCategory == 0
+                                        ? context.read<DevicesBloc>().add(
+                                              GetAllDevicesEvent(),
+                                            )
+                                        : context.read<DevicesBloc>().add(
+                                              GetCategoryDevicesEvent(
+                                                _deviceCategories[index],
+                                              ),
+                                            );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        28.getH(),
+                        BlocBuilder<DevicesBloc, DevicesState>(
+                          builder: (context, state) {
+                            return state.devices.isEmpty
+                                ? const Center(child: Text('No devices found'))
+                                : GridView.count(
+                                    shrinkWrap: true,
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 16.w,
+                                    crossAxisSpacing: 16.h,
+                                    children: List.generate(
+                                      state.devices.length,
+                                      (index) => ZoomTapAnimation(
+                                        onTap: (){},
+                                        child: SizedBox(
+                                          width: width / 2.35,
+                                          height: height / 4.22,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                child: Image.asset(
+                                                  state
+                                                      .devices[index].deviceImage,
+                                                  width: width / 2.35,
+                                                  height: height / 5.1,
+                                                  fit: BoxFit.contain,
+                                                ),
+                                              ),
+                                              12.getH(),
+                                              Text(
+                                                  state.devices[index].deviceName)
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
           ],
         ),
       ),
     );
   }
+
+  final List<String> _deviceCategories = [
+    'Popular',
+    'Lightning',
+    'Camera',
+    'Electrical',
+  ];
 
   final List<String> _list = [
     'Nearby Devices',
