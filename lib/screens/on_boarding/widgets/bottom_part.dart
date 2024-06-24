@@ -27,7 +27,7 @@ class BottomPart extends StatelessWidget {
             Text(
               title,
               style: AppTextStyle.urbanistW700.copyWith(
-                fontSize: 32.w,
+                fontSize: 28.w,
                 color: AppColors.c212121,
               ),
               textAlign: TextAlign.center,
