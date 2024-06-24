@@ -16,11 +16,13 @@ class BottomPart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: MediaQuery.sizeOf(context).height / 1.9,
+      top: height / 1.9,
       left: 0,
       right: 0,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        padding: EdgeInsets.symmetric(
+          horizontal: 24.w,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
