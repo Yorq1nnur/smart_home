@@ -245,8 +245,8 @@ class _ConnectToDeviceScreenState extends State<ConnectToDeviceScreen> {
         value += 0.01;
         if (value >= 1.0) {
           value = 1.0;
-          voidCallback.call();
           _timer?.cancel();
+          voidCallback.call();
         }
       });
     });
