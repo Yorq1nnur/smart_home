@@ -10,6 +10,22 @@ class DeviceModel {
     required this.deviceImage,
     required this.deviceName,
   });
+
+  factory DeviceModel.fromJson(Map<String, dynamic> json) {
+    return DeviceModel(
+      deviceName: json['deviceName'] as String? ?? '',
+      deviceCategoryName: json['deviceCategoryName'] as String? ?? '',
+      deviceImage: json['deviceImage'] as String? ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'deviceName': deviceName,
+      'deviceCategoryName': deviceCategoryName,
+      'deviceImage': deviceImage,
+    };
+  }
 }
 
 final List<DeviceModel> activeDevices = [

@@ -8,6 +8,7 @@ import 'package:smart_home/bloc/map/map_event.dart';
 import 'package:smart_home/bloc/my_home/my_home_bloc.dart';
 import 'package:smart_home/bloc/rooms/rooms_bloc.dart';
 import 'package:smart_home/bloc/tab_box/tab_box_bloc.dart';
+import 'package:smart_home/data/local/local_db.dart';
 import 'package:smart_home/data/repositories/country_repository.dart';
 import '../screens/routes/routes.dart';
 
@@ -21,6 +22,9 @@ class App extends StatelessWidget {
         RepositoryProvider(
           create: (_) => CountryRepository(),
         ),
+        RepositoryProvider(
+          create: (_) => LocalDb(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -33,7 +37,9 @@ class App extends StatelessWidget {
             create: (_) => MyHomeBloc(),
           ),
           BlocProvider(
-            create: (_) => DevicesBloc(),
+            create: (_) => DevicesBloc(
+              context.read<LocalDb>(),
+            ),
           ),
           BlocProvider(
             create: (_) => RoomsBloc(),

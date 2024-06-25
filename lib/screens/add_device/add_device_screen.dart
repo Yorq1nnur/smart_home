@@ -76,10 +76,10 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                     if (method == _list[1]) {
                       activeIndexCategory == 0
                           ? context.read<DevicesBloc>().add(
-                                GetAllDevicesEvent(),
+                                GetAllDevicesFromListEvent(),
                               )
                           : context.read<DevicesBloc>().add(
-                                GetCategoryDevicesEvent(
+                                GetCategoryDevicesFromListEvent(
                                   _deviceCategories[activeIndexCategory],
                                 ),
                               );
@@ -162,10 +162,10 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                     });
                                     activeIndexCategory == 0
                                         ? context.read<DevicesBloc>().add(
-                                              GetAllDevicesEvent(),
+                                              GetAllDevicesFromListEvent(),
                                             )
                                         : context.read<DevicesBloc>().add(
-                                              GetCategoryDevicesEvent(
+                                              GetCategoryDevicesFromListEvent(
                                                 _deviceCategories[index],
                                               ),
                                             );

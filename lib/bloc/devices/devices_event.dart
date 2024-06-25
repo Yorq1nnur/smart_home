@@ -4,20 +4,38 @@ sealed class DevicesEvent extends Equatable {
   const DevicesEvent();
 }
 
-class GetAllDevicesEvent extends DevicesEvent {
+class GetAllDevicesFromListEvent extends DevicesEvent {
   @override
   List<Object?> get props => [];
 }
 
-class GetCategoryDevicesEvent extends DevicesEvent {
+class GetCategoryDevicesFromListEvent extends DevicesEvent {
   final String categoryName;
 
-  const GetCategoryDevicesEvent(
+  const GetCategoryDevicesFromListEvent(
     this.categoryName,
   );
 
   @override
   List<Object?> get props => [
         categoryName,
+      ];
+}
+
+class GetAllDevicesFromDbEvent extends DevicesEvent {
+  @override
+  List<Object?> get props => [];
+}
+
+class AddDeviceToDbEvent extends DevicesEvent {
+  final DeviceModel deviceModel;
+
+  const AddDeviceToDbEvent(
+    this.deviceModel,
+  );
+
+  @override
+  List<Object?> get props => [
+        deviceModel,
       ];
 }
