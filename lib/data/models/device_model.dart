@@ -50,7 +50,7 @@ final List<DeviceModel> activeDevices = [
     deviceName: 'Smart V2 CCTV',
   ),
   DeviceModel(
-    deviceCategoryName: 'Kamera',
+    deviceCategoryName: 'Elektr',
     deviceImage: AppImages.musicPlayer,
     deviceName: 'Music Player',
   ),

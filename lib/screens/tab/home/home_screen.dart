@@ -293,42 +293,45 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.only(
           bottom: 16.h,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ZoomTapAnimation(
-              child: SvgPicture.asset(
-                AppImages.microphone,
-                width: 28.w,
-                height: 28.h,
-              ),
-            ),
-            34.getW(),
-            ZoomTapAnimation(
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  RouteNames.addDeviceScreen,
-                );
-              },
-              child: Ink(
-                height: 60.h,
-                width: 60.h,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.c405FF2,
+        child: Material(
+          color: Colors.transparent,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ZoomTapAnimation(
+                child: SvgPicture.asset(
+                  AppImages.microphone,
+                  width: 28.w,
+                  height: 28.h,
                 ),
-                child: Center(
-                  child: Icon(
-                    Icons.add,
-                    size: 28.w,
-                    color: Colors.white,
+              ),
+              34.getW(),
+              ZoomTapAnimation(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    RouteNames.addDeviceScreen,
+                  );
+                },
+                child: Ink(
+                  height: 60.h,
+                  width: 60.h,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.c405FF2,
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.add,
+                      size: 28.w,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
