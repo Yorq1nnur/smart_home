@@ -1,4 +1,5 @@
 import 'package:path/path.dart';
+import 'package:smart_home/utils/utility_functions.dart';
 import 'package:sqflite/sqflite.dart';
 import '../models/device_model.dart';
 import '../network/network_response.dart';
@@ -29,25 +30,28 @@ class LocalDb {
   }
 
   Future<void> _onCreate(Database db, int version) async {
-    await db.execute(
-        '''
+    await db.execute('''
       CREATE TABLE MyDevices(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         deviceName TEXT,
         deviceCategoryName TEXT,
         deviceImage TEXT
       )
-      '''
-    );
+      ''');
   }
 
   Future<NetworkResponse> insertDevice(DeviceModel device) async {
     final db = await database;
     try {
       await db.insert('MyDevices', device.toJson());
+      UtilityFunctions.methodPrint(
+        "Device inserted successfully",
+      );
       return NetworkResponse(data: 'Device inserted successfully');
     } catch (e) {
-      return NetworkResponse(errorText: e.toString());
+      return NetworkResponse(
+        errorText: e.toString(),
+      );
     }
   }
 

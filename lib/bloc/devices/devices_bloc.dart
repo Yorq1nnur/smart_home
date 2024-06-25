@@ -10,14 +10,13 @@ part 'devices_event.dart';
 part 'devices_state.dart';
 
 class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
-  DevicesBloc(this.localDb) : super(DevicesState.initial()) {
+  DevicesBloc() : super(DevicesState.initial()) {
     on<GetAllDevicesFromListEvent>(_getAllDevicesFromList);
     on<GetAllDevicesFromDbEvent>(_getAllDevicesFromDb);
     on<AddDeviceToDbEvent>(_insertDeviceToDb);
     on<GetCategoryDevicesFromListEvent>(_getCategoryDevicesFromList);
   }
 
-  final LocalDb localDb;
 
   _insertDeviceToDb(AddDeviceToDbEvent event, emit) async {
     emit(
@@ -26,7 +25,7 @@ class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
       ),
     );
 
-    NetworkResponse networkResponse = await localDb.insertDevice(
+    NetworkResponse networkResponse = await LocalDb().insertDevice(
       event.deviceModel,
     );
 
@@ -53,7 +52,7 @@ class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
       ),
     );
 
-    NetworkResponse networkResponse = await localDb.getDevices();
+    NetworkResponse networkResponse = await LocalDb().getDevices();
 
     if (networkResponse.errorText.isEmpty) {
       emit(

@@ -175,16 +175,16 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                             ),
                           ),
                         ),
-                        Expanded(
-                          child: BlocBuilder<DevicesBloc, DevicesState>(
-                            builder: (context, state) {
-                              return state.devices.isEmpty
-                                  ? const Center(
-                                      child: Text(
-                                        'Hech qanday qurilma topilmadi:(',
-                                      ),
-                                    )
-                                  : GridView.count(
+                        BlocBuilder<DevicesBloc, DevicesState>(
+                          builder: (context, state) {
+                            return state.devices.isEmpty
+                                ? const Center(
+                                    child: Text(
+                                      'Hech qanday qurilma topilmadi:(',
+                                    ),
+                                  )
+                                : Expanded(
+                                  child: GridView.count(
                                       physics: const BouncingScrollPhysics(),
                                       padding: EdgeInsets.symmetric(
                                         vertical: 28.h,
@@ -231,9 +231,9 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                           ),
                                         ),
                                       ),
-                                    );
-                            },
-                          ),
+                                    ),
+                                );
+                          },
                         ),
                       ],
                     ),

@@ -198,7 +198,9 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_home/bloc/devices/devices_bloc.dart';
 import 'package:smart_home/data/models/device_model.dart';
 import 'package:smart_home/screens/global_widgets/can_not_device_item.dart';
 import 'package:smart_home/screens/global_widgets/global_button.dart';
@@ -255,6 +257,11 @@ class _ConnectToDeviceScreenState extends State<ConnectToDeviceScreen> {
   @override
   Widget build(BuildContext context) {
     voidCallback = () {
+      context.read<DevicesBloc>().add(
+            AddDeviceToDbEvent(
+              widget.deviceModel,
+            ),
+          );
       Navigator.pushNamedAndRemoveUntil(
         context,
         RouteNames.connectSuccessfullyScreen,
