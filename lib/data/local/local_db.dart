@@ -62,6 +62,9 @@ class LocalDb {
       List<DeviceModel> devices = List.generate(maps.length, (i) {
         return DeviceModel.fromJson(maps[i]);
       });
+      UtilityFunctions.methodPrint(
+        "GET ALL DEVICES FROM DB OF LENGTH IS: ${devices.length}",
+      );
       return NetworkResponse(data: devices);
     } catch (e) {
       return NetworkResponse(errorText: e.toString());

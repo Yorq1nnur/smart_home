@@ -14,9 +14,19 @@ class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
     on<GetAllDevicesFromListEvent>(_getAllDevicesFromList);
     on<GetAllDevicesFromDbEvent>(_getAllDevicesFromDb);
     on<AddDeviceToDbEvent>(_insertDeviceToDb);
+    on<ChangeDevicesInitialStateEvent>(_changeToInitial);
     on<GetCategoryDevicesFromListEvent>(_getCategoryDevicesFromList);
   }
 
+  _changeToInitial(ChangeDevicesInitialStateEvent event, emit) {
+    emit(
+      state.copyWith(
+        formStatus: FormStatus.pure,
+        errorText: '',
+        devices: [],
+      ),
+    );
+  }
 
   _insertDeviceToDb(AddDeviceToDbEvent event, emit) async {
     emit(

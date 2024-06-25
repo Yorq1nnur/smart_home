@@ -201,6 +201,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_home/bloc/devices/devices_bloc.dart';
+import 'package:smart_home/bloc/form_status/form_status.dart';
 import 'package:smart_home/data/models/device_model.dart';
 import 'package:smart_home/screens/global_widgets/can_not_device_item.dart';
 import 'package:smart_home/screens/global_widgets/global_button.dart';
@@ -262,12 +263,6 @@ class _ConnectToDeviceScreenState extends State<ConnectToDeviceScreen> {
               widget.deviceModel,
             ),
           );
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        RouteNames.connectSuccessfullyScreen,
-        (predicate) => false,
-        arguments: widget.deviceModel,
-      );
     };
     return Scaffold(
       appBar: AppBar(
@@ -305,6 +300,22 @@ class _ConnectToDeviceScreenState extends State<ConnectToDeviceScreen> {
         ),
         physics: const BouncingScrollPhysics(),
         children: [
+          BlocListener<DevicesBloc, DevicesState>(
+            listener: (context, state) {
+              if (state.formStatus == FormStatus.success) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RouteNames.connectSuccessfullyScreen,
+                  (predicate) => false,
+                  arguments: widget.deviceModel,
+                );
+                context.read<DevicesBloc>().add(
+                      ChangeDevicesInitialStateEvent(),
+                    );
+              }
+            },
+            child: const SizedBox.shrink(),
+          ),
           Text(
             'Qurilmaga ulanish',
             textAlign: TextAlign.center,

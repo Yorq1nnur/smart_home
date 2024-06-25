@@ -39,3 +39,8 @@ class AddDeviceToDbEvent extends DevicesEvent {
         deviceModel,
       ];
 }
+
+class ChangeDevicesInitialStateEvent extends DevicesEvent {
+  @override
+  List<Object?> get props => [];
+}

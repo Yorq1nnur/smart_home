@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smart_home/bloc/devices/devices_bloc.dart';
 import 'package:smart_home/bloc/rooms/rooms_bloc.dart';
 import 'package:smart_home/screens/routes/routes.dart';
 import 'package:smart_home/screens/tab/home/widgets/room_item.dart';
@@ -22,6 +23,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _activeIndex = -1;
+
+  @override
+  void initState() {
+    Future.microtask(
+      () => context.read<DevicesBloc>().add(
+            GetAllDevicesFromDbEvent(),
+          ),
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
