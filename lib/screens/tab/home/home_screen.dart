@@ -179,17 +179,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
               },
             ),
-            47.getH(),
             BlocBuilder<DevicesBloc, DevicesState>(
               builder: (context, state) {
                 if (state.formStatus == FormStatus.loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: 47.h,
+                      ),
+                      child: const CircularProgressIndicator(),
+                    ),
                   );
                 }
                 if (state.formStatus == FormStatus.error) {
                   return Center(
-                    child: Text(state.errorText),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: 47.h,
+                      ),
+                      child: Text(state.errorText),
+                    ),
                   );
                 }
                 if (state.formStatus == FormStatus.success) {
@@ -197,6 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Center(
                       child: Column(
                         children: [
+                          47.getH(),
                           SvgPicture.asset(
                             AppImages.noDevices,
                             width: 120.w,
@@ -220,8 +230,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           24.getH(),
                           Ink(
-                            // height: 50.h,
-                            // width: 160.w,
                             decoration: BoxDecoration(
                               color: AppColors.c405FF2,
                               borderRadius: BorderRadius.circular(30),
@@ -267,6 +275,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   } else {
                     return Expanded(
                       child: GridView.builder(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 47.h,
+                        ),
+                        physics: const BouncingScrollPhysics(),
                         itemCount: state.devices.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
@@ -302,8 +314,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ZoomTapAnimation(
                 child: SvgPicture.asset(
                   AppImages.microphone,
-                  width: 28.w,
-                  height: 28.h,
+                  width: 30.w,
+                  height: 30.w,
                 ),
               ),
               34.getW(),
@@ -324,7 +336,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Center(
                     child: Icon(
                       Icons.add,
-                      size: 28.w,
+                      size: 30.w,
                       color: Colors.white,
                     ),
                   ),
