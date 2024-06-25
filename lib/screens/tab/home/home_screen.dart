@@ -268,8 +268,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Expanded(
                       child: GridView.builder(
                         itemCount: state.devices.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
+                          crossAxisSpacing: 16.w,
+                          mainAxisSpacing: 16.h,
                         ),
                         itemBuilder: (context, index) {
                           return Image.asset(
@@ -304,6 +306,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             34.getW(),
             ZoomTapAnimation(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  RouteNames.addDeviceScreen,
+                );
+              },
               child: Ink(
                 height: 60.h,
                 width: 60.w,
