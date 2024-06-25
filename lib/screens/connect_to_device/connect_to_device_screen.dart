@@ -309,7 +309,7 @@ class _ConnectToDeviceScreenState extends State<ConnectToDeviceScreen> {
           connectOnTapped
               ? const SizedBox.shrink()
               : Text(
-                  "Chiroqni yoqing va yorug'lik tez miltillashini tasdiqlang.",
+                  "${widget.deviceModel.deviceName}ni yoqing.",
                   style: AppTextStyle.urbanistW400.copyWith(
                     fontSize: 18.w,
                   ),
