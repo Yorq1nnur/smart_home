@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_home/bloc/devices/devices_bloc.dart';
+import 'package:smart_home/bloc/form_status/form_status.dart';
 import 'package:smart_home/bloc/rooms/rooms_bloc.dart';
 import 'package:smart_home/screens/routes/routes.dart';
 import 'package:smart_home/screens/tab/home/widgets/room_item.dart';
@@ -179,75 +180,108 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             47.getH(),
-            Center(
-              child: Column(
-                children: [
-                  SvgPicture.asset(
-                    AppImages.noDevices,
-                    width: 120.w,
-                    height: 120.h,
-                    fit: BoxFit.contain,
-                  ),
-                  24.getH(),
-                  Text(
-                    "Qurilmalar yo'q",
-                    style: AppTextStyle.urbanistW700.copyWith(
-                      fontSize: 20.w,
-                    ),
-                  ),
-                  8.getH(),
-                  Text(
-                    "Siz hali qurilma qo‘shmagansiz.",
-                    style: AppTextStyle.urbanistW400.copyWith(
-                      fontSize: 16.w,
-                      color: AppColors.c616161,
-                    ),
-                  ),
-                  24.getH(),
-                  Ink(
-                    // height: 50.h,
-                    // width: 160.w,
-                    decoration: BoxDecoration(
-                      color: AppColors.c405FF2,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(30),
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          RouteNames.addDeviceScreen,
-                        );
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 24.w,
-                          vertical: 14.h,
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              size: 16.w,
-                              color: Colors.white,
+            BlocBuilder<DevicesBloc, DevicesState>(
+              builder: (context, state) {
+                if (state.formStatus == FormStatus.loading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (state.formStatus == FormStatus.error) {
+                  return Center(
+                    child: Text(state.errorText),
+                  );
+                }
+                if (state.formStatus == FormStatus.success) {
+                  if (state.devices.isEmpty) {
+                    return Center(
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(
+                            AppImages.noDevices,
+                            width: 120.w,
+                            height: 120.h,
+                            fit: BoxFit.contain,
+                          ),
+                          24.getH(),
+                          Text(
+                            "Qurilmalar yo'q",
+                            style: AppTextStyle.urbanistW700.copyWith(
+                              fontSize: 20.w,
                             ),
-                            16.getW(),
-                            Text(
-                              "Qurilma qo'shish",
-                              style: AppTextStyle.urbanistW700.copyWith(
-                                fontSize: 14.w,
-                                color: Colors.white,
+                          ),
+                          8.getH(),
+                          Text(
+                            "Siz hali qurilma qo‘shmagansiz.",
+                            style: AppTextStyle.urbanistW400.copyWith(
+                              fontSize: 16.w,
+                              color: AppColors.c616161,
+                            ),
+                          ),
+                          24.getH(),
+                          Ink(
+                            // height: 50.h,
+                            // width: 160.w,
+                            decoration: BoxDecoration(
+                              color: AppColors.c405FF2,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(30),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  RouteNames.addDeviceScreen,
+                                );
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 24.w,
+                                  vertical: 14.h,
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.add,
+                                      size: 16.w,
+                                      color: Colors.white,
+                                    ),
+                                    16.getW(),
+                                    Text(
+                                      "Qurilma qo'shish",
+                                      style: AppTextStyle.urbanistW700.copyWith(
+                                        fontSize: 14.w,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                ],
-              ),
+                    );
+                  } else {
+                    return Expanded(
+                      child: GridView.builder(
+                        itemCount: state.devices.length,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                        ),
+                        itemBuilder: (context, index) {
+                          return Image.asset(
+                            state.devices[index].deviceImage,
+                          );
+                        },
+                      ),
+                    );
+                  }
+                }
+                return const SizedBox.shrink();
+              },
             ),
           ],
         ),
