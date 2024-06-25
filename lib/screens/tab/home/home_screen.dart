@@ -314,7 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               child: Ink(
                 height: 60.h,
-                width: 60.w,
+                width: 60.h,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.c405FF2,
