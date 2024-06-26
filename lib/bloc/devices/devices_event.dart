@@ -44,3 +44,16 @@ class ChangeDevicesInitialStateEvent extends DevicesEvent {
   @override
   List<Object?> get props => [];
 }
+
+class UpdateDeviceEvent extends DevicesEvent {
+  final DeviceModel deviceModel;
+
+  const UpdateDeviceEvent(
+    this.deviceModel,
+  );
+
+  @override
+  List<Object?> get props => [
+        deviceModel,
+      ];
+}

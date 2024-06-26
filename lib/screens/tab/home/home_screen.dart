@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_home/bloc/devices/devices_bloc.dart';
 import 'package:smart_home/bloc/form_status/form_status.dart';
 import 'package:smart_home/bloc/rooms/rooms_bloc.dart';
+import 'package:smart_home/data/models/device_model.dart';
 import 'package:smart_home/screens/routes/routes.dart';
 import 'package:smart_home/screens/tab/home/widgets/room_item.dart';
 import 'package:smart_home/screens/tab/home/widgets/weather_widget.dart';
@@ -413,11 +414,35 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: 44.w,
                                     height: 24.h,
                                     child: CupertinoSwitch(
-                                      value: state.devices[index].isActiveDevice == 1,
+                                      value:
+                                          state.devices[index].isActiveDevice ==
+                                              1,
                                       onChanged: (v) {
-                                        setState(() {
-                                          isActiveDevice = !isActiveDevice;
-                                        });
+                                        DeviceModel device =
+                                            DeviceModel.initial();
+                                        if (state.devices[index]
+                                            .isActiveDevice ==
+                                            1) {
+                                          device =
+                                              state.devices[index].copyWith(
+                                                isActiveDevice: 0,
+                                              );
+                                          context.read<DevicesBloc>().add(
+                                            UpdateDeviceEvent(
+                                              device,
+                                            ),
+                                          );
+                                        }else{
+                                          device =
+                                              state.devices[index].copyWith(
+                                                isActiveDevice: 1,
+                                              );
+                                          context.read<DevicesBloc>().add(
+                                            UpdateDeviceEvent(
+                                              device,
+                                            ),
+                                          );
+                                        }
                                       },
                                     ),
                                   ),

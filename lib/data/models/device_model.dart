@@ -40,10 +40,6 @@ class DeviceModel {
 
   Map<String, dynamic> toJsonForUpdate() {
     return {
-      'deviceName': deviceName,
-      'deviceCategoryName': deviceCategoryName,
-      'deviceImage': deviceImage,
-      'roomName': roomName,
       'isActiveDevice': isActiveDevice,
     };
   }

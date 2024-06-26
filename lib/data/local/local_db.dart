@@ -35,7 +35,9 @@ class LocalDb {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         deviceName TEXT,
         deviceCategoryName TEXT,
-        deviceImage TEXT
+        deviceImage TEXT,
+        isActiveDevice INTEGER,
+        roomName TEXT
       )
       ''');
   }
@@ -54,6 +56,27 @@ class LocalDb {
       );
     }
   }
+
+  Future<NetworkResponse> updateDevice(DeviceModel device) async {
+    final db = await database;
+    try {
+      await db.update(
+        'MyDevices',
+        device.toJsonForUpdate(),
+        where: 'id = ?',
+        whereArgs: [device.id],
+      );
+      UtilityFunctions.methodPrint(
+        "Device updated successfully",
+      );
+      return NetworkResponse(data: 'Device updated successfully');
+    } catch (e) {
+      return NetworkResponse(
+        errorText: e.toString(),
+      );
+    }
+  }
+
 
   Future<NetworkResponse> getDevices() async {
     final db = await database;

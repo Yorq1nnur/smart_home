@@ -15,7 +15,28 @@ class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
     on<GetAllDevicesFromDbEvent>(_getAllDevicesFromDb);
     on<AddDeviceToDbEvent>(_insertDeviceToDb);
     on<ChangeDevicesInitialStateEvent>(_changeToInitial);
+    on<UpdateDeviceEvent>(_updateDevice);
     on<GetCategoryDevicesFromListEvent>(_getCategoryDevicesFromList);
+  }
+
+  _updateDevice(UpdateDeviceEvent event, emit) async {
+    NetworkResponse networkResponse = await LocalDb().updateDevice(
+      event.deviceModel,
+    );
+    if (networkResponse.errorText.isEmpty) {
+      emit(
+        state.copyWith(
+          formStatus: FormStatus.success,
+        ),
+      );
+    } else {
+      emit(
+        state.copyWith(
+          formStatus: FormStatus.error,
+          errorText: networkResponse.errorText,
+        ),
+      );
+    }
   }
 
   _changeToInitial(ChangeDevicesInitialStateEvent event, emit) {
