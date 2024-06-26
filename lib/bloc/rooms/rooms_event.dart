@@ -19,5 +19,5 @@ class AddRoomsEvent extends RoomsEvent {
 
 class GetAllRoomsEvent extends RoomsEvent {
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }

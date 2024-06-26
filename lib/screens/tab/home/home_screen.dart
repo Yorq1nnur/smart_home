@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,6 +25,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _activeIndex = -1;
+  bool isActiveDevice = true;
 
   @override
   void initState() {
@@ -286,8 +288,142 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisSpacing: 16.h,
                         ),
                         itemBuilder: (context, index) {
-                          return Image.asset(
-                            state.devices[index].deviceImage,
+                          return Expanded(
+                            child: Stack(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 16.w,
+                                    vertical: 16.h,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Image.asset(
+                                            state.devices[index].deviceImage,
+                                            height: 60.h,
+                                            width: 60.w,
+                                            fit: BoxFit.contain,
+                                          ),
+                                          8.getH(),
+                                          Text(
+                                            state.devices[index].deviceName,
+                                            style: AppTextStyle.urbanistW600
+                                                .copyWith(
+                                              fontSize: 18.w,
+                                            ),
+                                          ),
+                                          8.getH(),
+                                          index % 2 == 0
+                                              ? Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                    vertical: 6.h,
+                                                    horizontal: 8.w,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors.cF5F5F5,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.wifi,
+                                                        size: 12.w,
+                                                        color:
+                                                            AppColors.c9E9E9E,
+                                                      ),
+                                                      4.getW(),
+                                                      Text(
+                                                        'Wi-Fi',
+                                                        style: AppTextStyle
+                                                            .urbanistW400
+                                                            .copyWith(
+                                                          fontSize: 12.w,
+                                                          color:
+                                                              AppColors.c9E9E9E,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                              : Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                    vertical: 6.h,
+                                                    horizontal: 8.w,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors.cF5F5F5,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.bluetooth,
+                                                        size: 12.w,
+                                                        color:
+                                                            AppColors.c9E9E9E,
+                                                      ),
+                                                      4.getW(),
+                                                      Text(
+                                                        'Bluetooth',
+                                                        style: AppTextStyle
+                                                            .urbanistW400
+                                                            .copyWith(
+                                                          fontSize: 12.w,
+                                                          color:
+                                                              AppColors.c9E9E9E,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 16.h,
+                                  right: 16.w,
+                                  child: SizedBox(
+                                    width: 44.w,
+                                    height: 24.h,
+                                    child: CupertinoSwitch(
+                                      value: state.devices[index].isActiveDevice == 1,
+                                      onChanged: (v) {
+                                        setState(() {
+                                          isActiveDevice = !isActiveDevice;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       ),

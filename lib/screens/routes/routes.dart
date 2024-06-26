@@ -6,6 +6,7 @@ import 'package:smart_home/screens/auth/sign_up/sign_up_screen.dart';
 import 'package:smart_home/screens/connect_to_device/connect_to_device_screen.dart';
 import 'package:smart_home/screens/connected_successfully/connected_successfully_screen.dart';
 import 'package:smart_home/screens/countries/countries_screen.dart';
+import 'package:smart_home/screens/select_room/select_room_screen.dart';
 import 'package:smart_home/screens/tab/home/home_screen.dart';
 import 'package:smart_home/screens/on_boarding/on_boarding_screen.dart';
 import 'package:smart_home/screens/tab/tab_box/tab_box_screen.dart';
@@ -70,6 +71,12 @@ class AppRoutes {
             deviceModel: settings.arguments as DeviceModel,
           ),
         );
+      case RouteNames.selectRoomScreen:
+        return navigate(
+          SelectRoomScreen(
+            deviceModel: settings.arguments as DeviceModel,
+          ),
+        );
       default:
         return navigate(
           const Scaffold(
@@ -103,4 +110,5 @@ class RouteNames {
   static const String wellDoneScreen = "/well_done_route";
   static const String connectToDeviceScreen = "/connect_to_device_route";
   static const String connectSuccessfullyScreen = "/connect_successfully_route";
+  static const String selectRoomScreen = "/select_room_route";
 }

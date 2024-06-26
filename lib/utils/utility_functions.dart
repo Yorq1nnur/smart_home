@@ -2,9 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
 
+import 'app_images.dart';
+
 class UtilityFunctions {
   static void methodPrint(dynamic data) {
     debugPrint("\$\$\$\$\$\n$data\n\$\$\$\$\$");
+  }
+
+  static Future<List<String>> getRoomImages(
+      {required List<String> rooms}) async {
+    List<String> roomImages = [];
+    for (int i = 0; i < rooms.length; i++) {
+      if (rooms[i] == 'Mehmonxona') {
+        roomImages.add(AppImages.livingRoom);
+      }
+      if (rooms[i] == 'Yotoqxona') {
+        roomImages.add(AppImages.badRoom);
+      }
+      if (rooms[i] == 'Hammom') {
+        roomImages.add(AppImages.bathroom);
+      }
+      if (rooms[i] == 'Oshxona') {
+        roomImages.add(AppImages.kitchen);
+      }
+      if (rooms[i] == 'Ovqatlanish xonasi') {
+        roomImages.add(AppImages.diningRoom);
+      }
+      if (rooms[i] == "O'quv xonasi") {
+        roomImages.add(AppImages.studyRoom);
+      }
+      if (rooms[i] == 'Orqa hovli') {
+        roomImages.add(AppImages.backyard);
+      }
+    }
+    return roomImages;
   }
 
   static void showAuthDialog({

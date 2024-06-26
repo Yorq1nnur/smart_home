@@ -14,6 +14,8 @@ import 'package:smart_home/utils/app_text_style.dart';
 import 'package:smart_home/utils/size.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
+import '../../bloc/rooms/rooms_bloc.dart';
+
 class AddDeviceScreen extends StatefulWidget {
   const AddDeviceScreen({super.key});
 
@@ -197,9 +199,12 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
                                         state.devices.length,
                                         (index) => ZoomTapAnimation(
                                           onTap: () {
+                                            context.read<RoomsBloc>().add(
+                                              GetAllRoomsEvent(),
+                                            );
                                             Navigator.pushNamed(
                                               context,
-                                              RouteNames.connectToDeviceScreen,
+                                              RouteNames.selectRoomScreen,
                                               arguments: state.devices[index],
                                             );
                                           },
