@@ -67,9 +67,9 @@ class LocalDb {
         whereArgs: [device.id],
       );
       UtilityFunctions.methodPrint(
-        "Device updated successfully",
+        "Device updated successfully, Updated device is: ${device.toString()}",
       );
-      return NetworkResponse(data: 'Device updated successfully');
+      return NetworkResponse(data: 'Device updated successfully. Updated device is: ${device.toString()}');
     } catch (e) {
       return NetworkResponse(
         errorText: e.toString(),
