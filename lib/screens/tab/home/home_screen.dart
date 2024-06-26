@@ -407,48 +407,53 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                   ),
                                 ),
-                                Positioned(
-                                  top: 16.h,
-                                  right: 16.w,
-                                  child: SizedBox(
-                                    width: 44.w,
-                                    height: 24.h,
-                                    child: CupertinoSwitch(
-                                      value:
-                                          state.devices[index].isActiveDevice ==
+                                BlocConsumer<DevicesBloc, DevicesState>(
+                                  listener: (context, state) {},
+                                  builder: (context, state) {
+                                    return Positioned(
+                                      top: 16.h,
+                                      right: 16.w,
+                                      child: SizedBox(
+                                        width: 44.w,
+                                        height: 24.h,
+                                        child: CupertinoSwitch(
+                                          value: state.devices[index]
+                                                  .isActiveDevice ==
                                               1,
-                                      onChanged: (v) {
-                                        DeviceModel device =
-                                            DeviceModel.initial();
-                                        if (state.devices[index]
-                                                .isActiveDevice ==
-                                            1) {
-                                          device =
-                                              state.devices[index].copyWith(
-                                            isActiveDevice: 0,
-                                          );
-                                          context.read<DevicesBloc>().add(
-                                                UpdateDeviceEvent(
-                                                  device,
-                                                ),
+                                          onChanged: (v) {
+                                            DeviceModel device =
+                                                DeviceModel.initial();
+                                            if (state.devices[index]
+                                                    .isActiveDevice ==
+                                                1) {
+                                              device =
+                                                  state.devices[index].copyWith(
+                                                isActiveDevice: 0,
                                               );
-                                        } else {
-                                          device =
-                                              state.devices[index].copyWith(
-                                            isActiveDevice: 1,
-                                          );
-                                          context.read<DevicesBloc>().add(
-                                                UpdateDeviceEvent(
-                                                  device,
-                                                ),
+                                              context.read<DevicesBloc>().add(
+                                                    UpdateDeviceEvent(
+                                                      device,
+                                                    ),
+                                                  );
+                                            } else {
+                                              device =
+                                                  state.devices[index].copyWith(
+                                                isActiveDevice: 1,
                                               );
-                                        }
-                                        context.read<DevicesBloc>().add(
-                                              GetAllDevicesFromDbEvent(),
-                                            );
-                                      },
-                                    ),
-                                  ),
+                                              context.read<DevicesBloc>().add(
+                                                    UpdateDeviceEvent(
+                                                      device,
+                                                    ),
+                                                  );
+                                            }
+                                            context.read<DevicesBloc>().add(
+                                                  GetAllDevicesFromDbEvent(),
+                                                );
+                                          },
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ],
                             ),
