@@ -31,9 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     Future.microtask(
-      () => context.read<DevicesBloc>().add(
+      () => mounted ? context.read<DevicesBloc>().add(
             GetAllDevicesFromDbEvent(),
-          ),
+          ): null,
     );
     super.initState();
   }
@@ -184,16 +184,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BlocBuilder<DevicesBloc, DevicesState>(
               builder: (context, state) {
-                // if (state.formStatus == FormStatus.loading) {
-                //   return Center(
-                //     child: Padding(
-                //       padding: EdgeInsets.only(
-                //         top: 47.h,
-                //       ),
-                //       child: const CircularProgressIndicator(),
-                //     ),
-                //   );
-                // }
+                if (state.formStatus == FormStatus.loading) {
+                  return Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: 47.h,
+                      ),
+                      child: const CircularProgressIndicator(),
+                    ),
+                  );
+                }
                 if (state.formStatus == FormStatus.error) {
                   return Center(
                     child: Padding(
