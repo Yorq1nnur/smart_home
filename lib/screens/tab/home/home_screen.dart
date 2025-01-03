@@ -31,9 +31,18 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     Future.microtask(
-      () => mounted ? context.read<DevicesBloc>().add(
-            GetAllDevicesFromDbEvent(),
-          ): null,
+      () => mounted
+          ? context.read<DevicesBloc>().add(
+                GetAllDevicesFromDbEvent(),
+              )
+          : null,
+    );
+    Future.microtask(
+      () => mounted
+          ? context.read<RoomsBloc>().add(
+                GetAllRoomsEvent(),
+              )
+          : null,
     );
     super.initState();
   }

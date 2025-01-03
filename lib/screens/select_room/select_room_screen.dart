@@ -23,6 +23,18 @@ class SelectRoomScreen extends StatefulWidget {
 class _SelectRoomScreenState extends State<SelectRoomScreen> {
   int activeIndex = -1;
 
+  @override
+  void initState() {
+    Future.microtask(
+      () => mounted
+          ? context.read<RoomsBloc>().add(
+                GetAllRoomsEvent(),
+              )
+          : null,
+    );
+    super.initState();
+  }
+
   DeviceModel device = DeviceModel.initial();
 
   @override
