@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             children: [
               Text(
-                "Mening Uyim",
+                'Mening Uyim',
                 style: AppTextStyle.urbanistW700.copyWith(
                   fontSize: 24.w,
                 ),
