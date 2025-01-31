@@ -26,5 +26,6 @@ class RoomsState extends Equatable {
   @override
   List<Object?> get props => [
         rooms,
+        roomImages,
       ];
 }
