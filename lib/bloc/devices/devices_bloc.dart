@@ -4,6 +4,7 @@ import 'package:smart_home/bloc/form_status/form_status.dart';
 import 'package:smart_home/data/local/local_db.dart';
 import 'package:smart_home/data/models/device_model.dart';
 import 'package:smart_home/data/network/network_response.dart';
+import 'package:smart_home/utils/utility_functions.dart';
 
 part 'devices_event.dart';
 
@@ -110,7 +111,32 @@ class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
     );
   }
 
-  _getCategoryDevicesFromList(GetCategoryDevicesFromListEvent event, emit) {
+  _getCategoryDevicesFromList(
+      GetCategoryDevicesFromListEvent event, emit) async {
+    NetworkResponse networkResponse = await LocalDb().getDevices();
+
+    if (networkResponse.errorText.isEmpty) {
+      final List<DeviceModel> devices = networkResponse.data;
+      emit(
+        state.copyWith(
+          devices: devices
+            ..where(
+              (e) => e.deviceCategoryName.toLowerCase().contains(
+                    event.categoryName.toLowerCase(),
+                  ),
+            ).toList(),
+        ),
+        formStatus: FormStatus.success,
+      );
+    } else {
+      emit(
+        state.copyWith(
+          formStatus: FormStatus.error,
+          errorText: networkResponse.errorText,
+        ),
+      );
+    }
+
     emit(
       state.copyWith(
         devices: activeDevices
@@ -121,6 +147,9 @@ class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
             )
             .toList(),
       ),
+    );
+    UtilityFunctions.methodPrint(
+      'CATEGORY DEVICES OF LENGTH IS: ${state.devices.length}',
     );
   }
 }

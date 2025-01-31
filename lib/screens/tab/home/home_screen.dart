@@ -138,6 +138,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: 'Barcha xonalar',
                             onTap: () {
                               setState(() {
+                                context.read<DevicesBloc>().add(
+                                      GetAllDevicesFromDbEvent(),
+                                    );
                                 _activeIndex = -1;
                               });
                             },
@@ -158,6 +161,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: () {
                                   setState(() {
                                     _activeIndex = index;
+                                    context.read<DevicesBloc>().add(
+                                          GetCategoryDevicesFromListEvent(
+                                            state.rooms[_activeIndex],
+                                          ),
+                                        );
                                   });
                                 },
                               ),
