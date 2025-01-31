@@ -160,12 +160,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 title: state.rooms[index],
                                 onTap: () {
                                   setState(() {
-                                    _activeIndex = index;
                                     context.read<DevicesBloc>().add(
-                                          GetCategoryDevicesFromListEvent(
-                                            state.rooms[_activeIndex],
-                                          ),
-                                        );
+                                      GetCategoryDevicesFromListEvent(
+                                        state.rooms[index],
+                                      ),
+                                    );
+                                    _activeIndex = index;
                                   });
                                 },
                               ),

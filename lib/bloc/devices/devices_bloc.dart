@@ -112,21 +112,37 @@ class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
   }
 
   _getCategoryDevicesFromList(
-      GetCategoryDevicesFromListEvent event, emit) async {
+    GetCategoryDevicesFromListEvent event,
+    emit,
+  ) async {
+    UtilityFunctions.methodPrint(
+      'SELECTED ROOM IS: ${event.categoryName}',
+    );
+
     NetworkResponse networkResponse = await LocalDb().getDevices();
 
     if (networkResponse.errorText.isEmpty) {
       final List<DeviceModel> devices = networkResponse.data;
+      for (DeviceModel element in devices) {
+        UtilityFunctions.methodPrint(
+          element.roomName,
+        );
+      }
+      UtilityFunctions.methodPrint(
+        'CURRENT DEVICES OF LENGTH IS: ${devices.length}',
+      );
+      final List<DeviceModel> categoryDevices = devices
+          .where(
+            (e) => e.roomName.toLowerCase().contains(
+                  event.categoryName.toLowerCase(),
+                ),
+          )
+          .toList();
       emit(
         state.copyWith(
-          devices: devices
-            ..where(
-              (e) => e.deviceCategoryName.toLowerCase().contains(
-                    event.categoryName.toLowerCase(),
-                  ),
-            ).toList(),
+          devices: categoryDevices,
+          formStatus: FormStatus.success,
         ),
-        formStatus: FormStatus.success,
       );
     } else {
       emit(
@@ -136,18 +152,6 @@ class DevicesBloc extends Bloc<DevicesEvent, DevicesState> {
         ),
       );
     }
-
-    emit(
-      state.copyWith(
-        devices: activeDevices
-            .where(
-              (e) => e.deviceCategoryName.toLowerCase().contains(
-                    event.categoryName.toLowerCase(),
-                  ),
-            )
-            .toList(),
-      ),
-    );
     UtilityFunctions.methodPrint(
       'CATEGORY DEVICES OF LENGTH IS: ${state.devices.length}',
     );
