@@ -312,8 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Column(
@@ -344,8 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 decoration: BoxDecoration(
                                                   color: AppColors.cF5F5F5,
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          20),
+                                                      BorderRadius.circular(20),
                                                 ),
                                                 child: Row(
                                                   mainAxisSize:
@@ -356,8 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     Icon(
                                                       Icons.wifi,
                                                       size: 12.w,
-                                                      color:
-                                                          AppColors.c9E9E9E,
+                                                      color: AppColors.c9E9E9E,
                                                     ),
                                                     4.getW(),
                                                     Text(
@@ -381,8 +378,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 decoration: BoxDecoration(
                                                   color: AppColors.cF5F5F5,
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          20),
+                                                      BorderRadius.circular(20),
                                                 ),
                                                 child: Row(
                                                   mainAxisSize:
@@ -393,8 +389,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     Icon(
                                                       Icons.bluetooth,
                                                       size: 12.w,
-                                                      color:
-                                                          AppColors.c9E9E9E,
+                                                      color: AppColors.c9E9E9E,
                                                     ),
                                                     4.getW(),
                                                     Text(
@@ -416,8 +411,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               BlocConsumer<DevicesBloc, DevicesState>(
-                                listener: (context, state) {},
-                                builder: (context, state) {
+                                listener: (
+                                  context,
+                                  state,
+                                ) {},
+                                builder: (
+                                  context,
+                                  state,
+                                ) {
                                   return Positioned(
                                     top: 16.h,
                                     right: 16.w,
